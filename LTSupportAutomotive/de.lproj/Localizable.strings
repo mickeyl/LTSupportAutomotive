@@ -1,0 +1,1056 @@
+//
+//  Copyright (c) Dr. Michael Lauer Information Technology. All rights reserved.
+//
+
+//
+// GENERIC
+//
+"OBD2_NO_DATA" = "Keine Daten";
+"OBD2_ON" = "An";
+"OBD2_OFF" = "Aus";
+"OBD2_DTC" = "Fehler";
+"OBD2_SENSOR" = "Sensor";
+"OBD2_BANK" = "Bank";
+
+//
+// COMMAND purposes
+//
+"IGNITION_STATUS" = "Zündung";
+"BATTERY_VOLTAGE" = "Batteriespannung";
+"VEHICLE_PROTOCOL" = "Transportprotokoll";
+"VIN_CODE" = "Identifikationscode";
+"FUEL_TYPE" = "Treibstoffart";
+"MONITOR_STATUS_SINCE_DTC_CLEARED" = "Status MKL";
+"TIME_SINCE_DTC_CLEARED" = "Zeit seit Löschen";
+"WARMUPS_SINCE_DTC_CLEARED" = "Warmphasen seit Löschen";
+"DISTANCE_SINCE_DTC_CLEARED" = "Gefahren seit Löschen";
+"TIME_WITH_MIL" = "Zeit mit MKL an";
+"DISTANCE_WITH_MIL" = "Gefahren mit MKL an";
+"FUEL_TANK_LEVEL" = "Tankfüllstand";
+"AMBIENT_TEMP" = "Außentemperatur";
+"ABSOLUTE_BAROMETRIC_PRESSURE" = "Außendruck";
+"CATALYST_TEMP_B1S1" = "KAT-Temperatur an B1S1";
+"CATALYST_TEMP_B2S1" = "KAT-Temperatur an B2S1";
+"CATALYST_TEMP_B1S2" = "KAT-Temperatur an B1S2";
+"CATALYST_TEMP_B2S2" = "KAT-Temperatur an B2S2";
+"CONTROL_MODULE_VOLTAGE" = "Spannung";
+"THROTTLE" = "Drosselklappe";
+"RELATIVE_ACCELERATOR_PEDAL_POSITION" = "Gaspedal (relativ)";
+"RELATIVE_THROTTLE_POS" = "Drosselklappe (relativ)";
+"ABSOLUTE_THROTTLE_POS_B" = "Drosselklappe an B";
+"ABSOLUTE_THROTTLE_POS_C" = "Drosselklappe an C";
+"ACC_PEDAL_POS_D" = "Gaspedal an D";
+"ACC_PEDAL_POS_E" = "Gaspedal an E";
+"ACC_PEDAL_POS_F" = "Gaspedal an F";
+"COMMANDED_THROTTLE_ACTUATOR" = "Drosselklappenstellglied";
+"ENGINE_TORQUE_DEMANDED" = "Drehmoment (abgerufen)";
+"ENGINE_TORQUE_PERCENTAGE" = "Drehmoment (tatsächlich)";
+"ENGINE_REF_TORQUE" = "Drehmoment (referenz)";
+"RUNTIME" = "Laufzeit seit Start";
+"ENGINE_RPM" = "Drehzahl";
+"VEHICLE_SPEED" = "Geschwindigkeit";
+"ENGINE_LOAD" = "Last (berechnet)";
+"ABSOLUTE_ENGINE_LOAD" = "Last (absolut)";
+"COOLANT_TEMP" = "Kühltemperatur";
+"ENGINE_OIL_TEMP" = "Öltemperatur";
+"ENGINE_FUEL_RATE" = "Kraftstoffrate";
+"FUEL_SYSTEM_STATUS" = "Status des\nEinspritzsystems";
+"SHORT_TERM_FUEL_TRIM_1" = "Kurzzeit-Trimm Bank 1";
+"LONG_TERM_FUEL_TRIM_1" = "Langzeit-Trimm Bank 1";
+"SHORT_TERM_FUEL_TRIM_2" = "Kurzzeit-Trimm Bank 2";
+"LONG_TERM_FUEL_TRIM_2" = "Langzeit-Trimm Bank 2";
+"FUEL_PRESSURE" = "Kraftstoffdruck";
+"INTAKE_MAP" = "Luftdruck im Einlaßkanal";
+"MAX_VALUE_INTAKE_MAP" = "Luftdruck im Einlaßkanal (MAX)";
+"TIMING_ADVANCE" = "Zündwinkel Zylinder 1";
+"FUEL_INJECTION_TIMING" = "Einspritzzeitpunkt";
+"INTAKE_TEMP" = "Temperatur im Einlaßkanal";
+"MAF_FLOW" = "Luftdurchfluß";
+"MAX_VALUE_MAF_AIR_FLOW_RATE" = "Luftdurchfluß (MAX)";
+"SECONDARY_AIR_STATUS" = "Sekundärluft";
+"FUEL_RAIL_PRESSURE" = "Kraftstoffdruck im Verteiler";
+"FUEL_RAIL_GAUGE_PRESSURE" = "Kraftstoffdruck im Verteiler (Gauge)";
+"FUEL_RAIL_ABSOLUTE_PRESSURE" = "Kraftstoffdruck im Verteiler (absolut)";
+"AIR_FUEL_EQUIV_RATIO" = "Luft/Kraftstoffverhältnis";
+"MAX_VALUE_FUEL_AIR_EQUIVALENCE_RATIO" = "Luft/Kraftstoffverhältnis (MAX)";
+"OXYGEN_SENSORS_PRESENT_2_BANKS" = "Positionen (2 Bänke)";
+"OXYGEN_SENSORS_PRESENT_4_BANKS" = "Positionen (4 Bänke)";
+"O2SENSOR_TYPE_CONVENTIONAL" = "Konventionell";
+"O2SENSOR_TYPE_WIDERANGE" = "Breitband/linear";
+"O2SENSOR_TYPE_UNKNOWN" = "Unbekannter Sensortyp";
+"O2SENSOR_UNIT_VOLTAGE" = "Ausgangsspannung";
+"O2SENSOR_UNIT_CURRENT" = "Ausgangsstromstärke";
+"O2SENSOR_UNIT_STFT" = "Kurzzeit-Trimm";
+
+//
+// ISO 3780 World Manufacturer Identifier Region
+//
+"ISO3780_WMI_REGION_A" = "Afrika";
+"ISO3780_WMI_REGION_B" = "Afrika";
+"ISO3780_WMI_REGION_C" = "Afrika";
+"ISO3780_WMI_REGION_D" = "Afrika";
+"ISO3780_WMI_REGION_E" = "Afrika";
+"ISO3780_WMI_REGION_F" = "Afrika";
+"ISO3780_WMI_REGION_G" = "Afrika";
+"ISO3780_WMI_REGION_H" = "Afrika";
+"ISO3780_WMI_REGION_J" = "Asien";
+"ISO3780_WMI_REGION_K" = "Asien";
+"ISO3780_WMI_REGION_L" = "Asien";
+"ISO3780_WMI_REGION_M" = "Asien";
+"ISO3780_WMI_REGION_P" = "Asien";
+"ISO3780_WMI_REGION_P" = "Asien";
+"ISO3780_WMI_REGION_Q" = "Asien";
+"ISO3780_WMI_REGION_R" = "Asien";
+"ISO3780_WMI_REGION_S" = "Europa";
+"ISO3780_WMI_REGION_T" = "Europa";
+"ISO3780_WMI_REGION_U" = "Europa";
+"ISO3780_WMI_REGION_V" = "Europa";
+"ISO3780_WMI_REGION_W" = "Europa";
+"ISO3780_WMI_REGION_X" = "Europa";
+"ISO3780_WMI_REGION_Y" = "Europa";
+"ISO3780_WMI_REGION_Z" = "Europa";
+"ISO3780_WMI_REGION_1" = "Nordamerika";
+"ISO3780_WMI_REGION_2" = "Nordamerika";
+"ISO3780_WMI_REGION_3" = "Nordamerika";
+"ISO3780_WMI_REGION_4" = "Nordamerika";
+"ISO3780_WMI_REGION_5" = "Nordamerika";
+"ISO3780_WMI_REGION_6" = "Ozeanien";
+"ISO3780_WMI_REGION_7" = "Ozeanien";
+"ISO3780_WMI_REGION_8" = "Südamerika";
+"ISO3780_WMI_REGION_9" = "Südamerika";
+"ISO3780_WMI_REGION_0" = "Südamerika";
+
+//
+// ISO 3780 World Manufacturer Identifier Country
+//
+"ISO3780_WMI_COUNTRY_AA" = "Südafrika";
+"ISO3780_WMI_COUNTRY_AB" = "Südafrika";
+"ISO3780_WMI_COUNTRY_AC" = "Südafrika";
+"ISO3780_WMI_COUNTRY_AD" = "Südafrika";
+"ISO3780_WMI_COUNTRY_AE" = "Südafrika";
+"ISO3780_WMI_COUNTRY_AF" = "Südafrika";
+"ISO3780_WMI_COUNTRY_AG" = "Südafrika";
+"ISO3780_WMI_COUNTRY_AJ" = "Elfenbeinküste";
+"ISO3780_WMI_COUNTRY_AK" = "Elfenbeinküste";
+"ISO3780_WMI_COUNTRY_AL" = "Elfenbeinküste";
+"ISO3780_WMI_COUNTRY_AM" = "Elfenbeinküste";
+"ISO3780_WMI_COUNTRY_AN" = "Elfenbeinküste";
+
+"ISO3780_WMI_COUNTRY_BA" = "Angola";
+"ISO3780_WMI_COUNTRY_BB" = "Angola";
+"ISO3780_WMI_COUNTRY_BC" = "Angola";
+"ISO3780_WMI_COUNTRY_BD" = "Angola";
+"ISO3780_WMI_COUNTRY_BE" = "Angola";
+"ISO3780_WMI_COUNTRY_BF" = "Kenya";
+"ISO3780_WMI_COUNTRY_BG" = "Kenya";
+"ISO3780_WMI_COUNTRY_BH" = "Kenya";
+"ISO3780_WMI_COUNTRY_BJ" = "Kenya";
+"ISO3780_WMI_COUNTRY_BK" = "Kenya";
+"ISO3780_WMI_COUNTRY_BL" = "Tanzanien";
+"ISO3780_WMI_COUNTRY_BM" = "Tanzanien";
+"ISO3780_WMI_COUNTRY_BN" = "Tanzanien";
+"ISO3780_WMI_COUNTRY_BP" = "Tanzanien";
+"ISO3780_WMI_COUNTRY_BR" = "Tanzanien";
+
+"ISO3780_WMI_COUNTRY_CA" = "Benin";
+"ISO3780_WMI_COUNTRY_CB" = "Benin";
+"ISO3780_WMI_COUNTRY_CC" = "Benin";
+"ISO3780_WMI_COUNTRY_CD" = "Benin";
+"ISO3780_WMI_COUNTRY_CE" = "Benin";
+"ISO3780_WMI_COUNTRY_CF" = "Madagascar";
+"ISO3780_WMI_COUNTRY_CG" = "Madagascar";
+"ISO3780_WMI_COUNTRY_CH" = "Madagascar";
+"ISO3780_WMI_COUNTRY_CJ" = "Madagascar";
+"ISO3780_WMI_COUNTRY_CK" = "Madagascar";
+"ISO3780_WMI_COUNTRY_CL" = "Tunisien";
+"ISO3780_WMI_COUNTRY_CM" = "Tunisien";
+"ISO3780_WMI_COUNTRY_CN" = "Tunisien";
+"ISO3780_WMI_COUNTRY_CP" = "Tunisien";
+"ISO3780_WMI_COUNTRY_CR" = "Tunisien";
+
+"ISO3780_WMI_COUNTRY_DA" = "Ägypten";
+"ISO3780_WMI_COUNTRY_DB" = "Ägypten";
+"ISO3780_WMI_COUNTRY_DC" = "Ägypten";
+"ISO3780_WMI_COUNTRY_DD" = "Ägypten";
+"ISO3780_WMI_COUNTRY_DE" = "Ägypten";
+"ISO3780_WMI_COUNTRY_DF" = "Marokko";
+"ISO3780_WMI_COUNTRY_DG" = "Marokko";
+"ISO3780_WMI_COUNTRY_DH" = "Marokko";
+"ISO3780_WMI_COUNTRY_DJ" = "Marokko";
+"ISO3780_WMI_COUNTRY_DK" = "Marokko";
+"ISO3780_WMI_COUNTRY_DL" = "Zambien";
+"ISO3780_WMI_COUNTRY_DM" = "Zambien";
+"ISO3780_WMI_COUNTRY_DN" = "Zambien";
+"ISO3780_WMI_COUNTRY_DP" = "Zambien";
+"ISO3780_WMI_COUNTRY_DR" = "Zambien";
+
+"ISO3780_WMI_COUNTRY_EA" = "Ethiopien";
+"ISO3780_WMI_COUNTRY_EB" = "Ethiopien";
+"ISO3780_WMI_COUNTRY_EC" = "Ethiopien";
+"ISO3780_WMI_COUNTRY_ED" = "Ethiopien";
+"ISO3780_WMI_COUNTRY_EE" = "Ethiopien";
+"ISO3780_WMI_COUNTRY_EF" = "Mozambique";
+"ISO3780_WMI_COUNTRY_EG" = "Mozambique";
+"ISO3780_WMI_COUNTRY_EH" = "Mozambique";
+"ISO3780_WMI_COUNTRY_EJ" = "Mozambique";
+"ISO3780_WMI_COUNTRY_EK" = "Mozambique";
+
+"ISO3780_WMI_COUNTRY_FA" = "Ghana";
+"ISO3780_WMI_COUNTRY_FB" = "Ghana";
+"ISO3780_WMI_COUNTRY_FC" = "Ghana";
+"ISO3780_WMI_COUNTRY_FD" = "Ghana";
+"ISO3780_WMI_COUNTRY_FE" = "Ghana";
+"ISO3780_WMI_COUNTRY_FF" = "Nigerien";
+"ISO3780_WMI_COUNTRY_FG" = "Nigerien";
+"ISO3780_WMI_COUNTRY_FH" = "Nigerien";
+"ISO3780_WMI_COUNTRY_FJ" = "Nigerien";
+"ISO3780_WMI_COUNTRY_FK" = "Nigerien";
+
+"ISO3780_WMI_COUNTRY_J" = "Japan";
+
+"ISO3780_WMI_COUNTRY_KA" = "Sri Lanka";
+"ISO3780_WMI_COUNTRY_KB" = "Sri Lanka";
+"ISO3780_WMI_COUNTRY_KC" = "Sri Lanka";
+"ISO3780_WMI_COUNTRY_KD" = "Sri Lanka";
+"ISO3780_WMI_COUNTRY_KE" = "Sri Lanka";
+"ISO3780_WMI_COUNTRY_KF" = "Israel";
+"ISO3780_WMI_COUNTRY_KG" = "Israel";
+"ISO3780_WMI_COUNTRY_KH" = "Israel";
+"ISO3780_WMI_COUNTRY_KJ" = "Israel";
+"ISO3780_WMI_COUNTRY_KK" = "Israel";
+"ISO3780_WMI_COUNTRY_KL" = "Südkorea";
+"ISO3780_WMI_COUNTRY_KM" = "Südkorea";
+"ISO3780_WMI_COUNTRY_KN" = "Südkorea";
+"ISO3780_WMI_COUNTRY_KP" = "Südkorea";
+"ISO3780_WMI_COUNTRY_KR" = "Südkorea";
+"ISO3780_WMI_COUNTRY_KS" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_KT" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_KU" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_KV" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_KW" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_KX" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_KY" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_KZ" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K1" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K2" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K3" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K4" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K5" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K6" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K7" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K8" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K9" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K0" = "Kazakhstan";
+
+"ISO3780_WMI_COUNTRY_L" = "China";
+
+"ISO3780_WMI_COUNTRY_MA" = "Indien";
+"ISO3780_WMI_COUNTRY_MB" = "Indien";
+"ISO3780_WMI_COUNTRY_MC" = "Indien";
+"ISO3780_WMI_COUNTRY_MD" = "Indien";
+"ISO3780_WMI_COUNTRY_ME" = "Indien";
+"ISO3780_WMI_COUNTRY_MF" = "Indonesien";
+"ISO3780_WMI_COUNTRY_MG" = "Indonesien";
+"ISO3780_WMI_COUNTRY_MH" = "Indonesien";
+"ISO3780_WMI_COUNTRY_MJ" = "Indonesien";
+"ISO3780_WMI_COUNTRY_MK" = "Indonesien";
+"ISO3780_WMI_COUNTRY_ML" = "Thailand";
+"ISO3780_WMI_COUNTRY_MM" = "Thailand";
+"ISO3780_WMI_COUNTRY_MN" = "Thailand";
+"ISO3780_WMI_COUNTRY_MO" = "Thailand";
+"ISO3780_WMI_COUNTRY_MP" = "Thailand";
+"ISO3780_WMI_COUNTRY_MR" = "Thailand";
+
+"ISO3780_WMI_COUNTRY_NA" = "Iran";
+"ISO3780_WMI_COUNTRY_NB" = "Iran";
+"ISO3780_WMI_COUNTRY_NC" = "Iran";
+"ISO3780_WMI_COUNTRY_ND" = "Iran";
+"ISO3780_WMI_COUNTRY_NE" = "Iran";
+"ISO3780_WMI_COUNTRY_NF" = "Pakistan";
+"ISO3780_WMI_COUNTRY_NG" = "Pakistan";
+"ISO3780_WMI_COUNTRY_NH" = "Pakistan";
+"ISO3780_WMI_COUNTRY_NJ" = "Pakistan";
+"ISO3780_WMI_COUNTRY_NK" = "Pakistan";
+"ISO3780_WMI_COUNTRY_NL" = "Turkey";
+"ISO3780_WMI_COUNTRY_NM" = "Turkey";
+"ISO3780_WMI_COUNTRY_NN" = "Turkey";
+"ISO3780_WMI_COUNTRY_NP" = "Turkey";
+"ISO3780_WMI_COUNTRY_NR" = "Turkey";
+
+"ISO3780_WMI_COUNTRY_PA" = "Philippines";
+"ISO3780_WMI_COUNTRY_PB" = "Philippines";
+"ISO3780_WMI_COUNTRY_PC" = "Philippines";
+"ISO3780_WMI_COUNTRY_PD" = "Philippines";
+"ISO3780_WMI_COUNTRY_PE" = "Philippines";
+"ISO3780_WMI_COUNTRY_PF" = "Singapore";
+"ISO3780_WMI_COUNTRY_PG" = "Singapore";
+"ISO3780_WMI_COUNTRY_PH" = "Singapore";
+"ISO3780_WMI_COUNTRY_PJ" = "Singapore";
+"ISO3780_WMI_COUNTRY_PK" = "Singapore";
+"ISO3780_WMI_COUNTRY_PL" = "Malaysien";
+"ISO3780_WMI_COUNTRY_PM" = "Malaysien";
+"ISO3780_WMI_COUNTRY_PN" = "Malaysien";
+"ISO3780_WMI_COUNTRY_PP" = "Malaysien";
+"ISO3780_WMI_COUNTRY_PR" = "Malaysien";
+
+"ISO3780_WMI_COUNTRY_KA" = "Sri Lanka";
+"ISO3780_WMI_COUNTRY_KB" = "Sri Lanka";
+"ISO3780_WMI_COUNTRY_KC" = "Sri Lanka";
+"ISO3780_WMI_COUNTRY_KD" = "Sri Lanka";
+"ISO3780_WMI_COUNTRY_KE" = "Sri Lanka";
+"ISO3780_WMI_COUNTRY_KF" = "Israel";
+"ISO3780_WMI_COUNTRY_KG" = "Israel";
+"ISO3780_WMI_COUNTRY_KH" = "Israel";
+"ISO3780_WMI_COUNTRY_KJ" = "Israel";
+"ISO3780_WMI_COUNTRY_KK" = "Israel";
+"ISO3780_WMI_COUNTRY_KL" = "Südkorea";
+"ISO3780_WMI_COUNTRY_KM" = "Südkorea";
+"ISO3780_WMI_COUNTRY_KN" = "Südkorea";
+"ISO3780_WMI_COUNTRY_KP" = "Südkorea";
+"ISO3780_WMI_COUNTRY_KR" = "Südkorea";
+"ISO3780_WMI_COUNTRY_KS" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_KT" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_KU" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_KV" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_KW" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_KX" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_KY" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_KZ" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K1" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K2" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K3" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K4" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K5" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K6" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K7" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K8" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K9" = "Kazakhstan";
+"ISO3780_WMI_COUNTRY_K0" = "Kazakhstan";
+
+"ISO3780_WMI_COUNTRY_RA" = "Vereinigte Arabische Emirate";
+"ISO3780_WMI_COUNTRY_RB" = "Vereinigte Arabische Emirate";
+"ISO3780_WMI_COUNTRY_RC" = "Vereinigte Arabische Emirate";
+"ISO3780_WMI_COUNTRY_RD" = "Vereinigte Arabische Emirate";
+"ISO3780_WMI_COUNTRY_RE" = "Vereinigte Arabische Emirate";
+"ISO3780_WMI_COUNTRY_RF" = "Taiwan";
+"ISO3780_WMI_COUNTRY_RG" = "Taiwan";
+"ISO3780_WMI_COUNTRY_RH" = "Taiwan";
+"ISO3780_WMI_COUNTRY_RJ" = "Taiwan";
+"ISO3780_WMI_COUNTRY_RK" = "Taiwan";
+"ISO3780_WMI_COUNTRY_RL" = "Vietnam";
+"ISO3780_WMI_COUNTRY_RM" = "Vietnam";
+"ISO3780_WMI_COUNTRY_RN" = "Vietnam";
+"ISO3780_WMI_COUNTRY_RP" = "Vietnam";
+"ISO3780_WMI_COUNTRY_RR" = "Vietnam";
+"ISO3780_WMI_COUNTRY_RS" = "Saudi Arabien";
+"ISO3780_WMI_COUNTRY_RT" = "Saudi Arabien";
+"ISO3780_WMI_COUNTRY_RU" = "Saudi Arabien";
+"ISO3780_WMI_COUNTRY_RV" = "Saudi Arabien";
+"ISO3780_WMI_COUNTRY_RW" = "Saudi Arabien";
+"ISO3780_WMI_COUNTRY_RX" = "Saudi Arabien";
+"ISO3780_WMI_COUNTRY_RY" = "Saudi Arabien";
+"ISO3780_WMI_COUNTRY_RZ" = "Saudi Arabien";
+"ISO3780_WMI_COUNTRY_R1" = "Saudi Arabien";
+"ISO3780_WMI_COUNTRY_R2" = "Saudi Arabien";
+"ISO3780_WMI_COUNTRY_R3" = "Saudi Arabien";
+"ISO3780_WMI_COUNTRY_R4" = "Saudi Arabien";
+"ISO3780_WMI_COUNTRY_R5" = "Saudi Arabien";
+"ISO3780_WMI_COUNTRY_R6" = "Saudi Arabien";
+"ISO3780_WMI_COUNTRY_R7" = "Saudi Arabien";
+"ISO3780_WMI_COUNTRY_R8" = "Saudi Arabien";
+"ISO3780_WMI_COUNTRY_R9" = "Saudi Arabien";
+"ISO3780_WMI_COUNTRY_R0" = "Saudi Arabien";
+
+"ISO3780_WMI_COUNTRY_SA" = "Großbritannien";
+"ISO3780_WMI_COUNTRY_SB" = "Großbritannien";
+"ISO3780_WMI_COUNTRY_SC" = "Großbritannien";
+"ISO3780_WMI_COUNTRY_SD" = "Großbritannien";
+"ISO3780_WMI_COUNTRY_SE" = "Großbritannien";
+"ISO3780_WMI_COUNTRY_SF" = "Großbritannien";
+"ISO3780_WMI_COUNTRY_SG" = "Großbritannien";
+"ISO3780_WMI_COUNTRY_SH" = "Großbritannien";
+"ISO3780_WMI_COUNTRY_SJ" = "Großbritannien";
+"ISO3780_WMI_COUNTRY_SK" = "Großbritannien";
+"ISO3780_WMI_COUNTRY_SL" = "Großbritannien";
+"ISO3780_WMI_COUNTRY_SM" = "Großbritannien";
+"ISO3780_WMI_COUNTRY_SN" = "Deutschland";
+"ISO3780_WMI_COUNTRY_SP" = "Deutschland";
+"ISO3780_WMI_COUNTRY_SR" = "Deutschland";
+"ISO3780_WMI_COUNTRY_SS" = "Deutschland";
+"ISO3780_WMI_COUNTRY_ST" = "Deutschland";
+"ISO3780_WMI_COUNTRY_SU" = "Polen";
+"ISO3780_WMI_COUNTRY_SV" = "Polen";
+"ISO3780_WMI_COUNTRY_SW" = "Polen";
+"ISO3780_WMI_COUNTRY_SX" = "Polen";
+"ISO3780_WMI_COUNTRY_SY" = "Polen";
+"ISO3780_WMI_COUNTRY_SZ" = "Polen";
+"ISO3780_WMI_COUNTRY_S1" = "Lettland";
+"ISO3780_WMI_COUNTRY_S2" = "Lettland";
+"ISO3780_WMI_COUNTRY_S3" = "Lettland";
+"ISO3780_WMI_COUNTRY_S4" = "Lettland";
+
+"ISO3780_WMI_COUNTRY_TA" = "Schweiz";
+"ISO3780_WMI_COUNTRY_TB" = "Schweiz";
+"ISO3780_WMI_COUNTRY_TC" = "Schweiz";
+"ISO3780_WMI_COUNTRY_TD" = "Schweiz";
+"ISO3780_WMI_COUNTRY_TE" = "Schweiz";
+"ISO3780_WMI_COUNTRY_TF" = "Schweiz";
+"ISO3780_WMI_COUNTRY_TG" = "Schweiz";
+"ISO3780_WMI_COUNTRY_TH" = "Schweiz";
+"ISO3780_WMI_COUNTRY_TJ" = "Czech Republic";
+"ISO3780_WMI_COUNTRY_TK" = "Czech Republic";
+"ISO3780_WMI_COUNTRY_TL" = "Czech Republic";
+"ISO3780_WMI_COUNTRY_TM" = "Czech Republic";
+"ISO3780_WMI_COUNTRY_TN" = "Czech Republic";
+"ISO3780_WMI_COUNTRY_TP" = "Czech Republic";
+"ISO3780_WMI_COUNTRY_TR" = "Ungarn";
+"ISO3780_WMI_COUNTRY_TS" = "Ungarn";
+"ISO3780_WMI_COUNTRY_TT" = "Ungarn";
+"ISO3780_WMI_COUNTRY_TU" = "Ungarn";
+"ISO3780_WMI_COUNTRY_TV" = "Ungarn";
+"ISO3780_WMI_COUNTRY_TW" = "Portugal";
+"ISO3780_WMI_COUNTRY_TX" = "Portugal";
+"ISO3780_WMI_COUNTRY_TY" = "Portugal";
+"ISO3780_WMI_COUNTRY_TZ" = "Portugal";
+"ISO3780_WMI_COUNTRY_T1" = "Portugal";
+
+"ISO3780_WMI_COUNTRY_UH" = "Dänemark";
+"ISO3780_WMI_COUNTRY_UJ" = "Dänemark";
+"ISO3780_WMI_COUNTRY_UK" = "Dänemark";
+"ISO3780_WMI_COUNTRY_UL" = "Dänemark";
+"ISO3780_WMI_COUNTRY_UM" = "Dänemark";
+"ISO3780_WMI_COUNTRY_UN" = "Irland";
+"ISO3780_WMI_COUNTRY_UP" = "Irland";
+"ISO3780_WMI_COUNTRY_UR" = "Irland";
+"ISO3780_WMI_COUNTRY_US" = "Irland";
+"ISO3780_WMI_COUNTRY_UT" = "Irland";
+"ISO3780_WMI_COUNTRY_UU" = "Rumänien";
+"ISO3780_WMI_COUNTRY_UV" = "Rumänien";
+"ISO3780_WMI_COUNTRY_UW" = "Rumänien";
+"ISO3780_WMI_COUNTRY_UX" = "Rumänien";
+"ISO3780_WMI_COUNTRY_UY" = "Rumänien";
+"ISO3780_WMI_COUNTRY_UZ" = "Rumänien";
+"ISO3780_WMI_COUNTRY_U5" = "Slovakei";
+"ISO3780_WMI_COUNTRY_U6" = "Slovakei";
+"ISO3780_WMI_COUNTRY_U7" = "Slovakei";
+
+"ISO3780_WMI_COUNTRY_VA" = "Österreich";
+"ISO3780_WMI_COUNTRY_VB" = "Austrien";
+"ISO3780_WMI_COUNTRY_VC" = "Austrien";
+"ISO3780_WMI_COUNTRY_VD" = "Austrien";
+"ISO3780_WMI_COUNTRY_VE" = "Austrien";
+"ISO3780_WMI_COUNTRY_VF" = "Frankreich";
+"ISO3780_WMI_COUNTRY_VG" = "Frankreich";
+"ISO3780_WMI_COUNTRY_VH" = "Frankreich";
+"ISO3780_WMI_COUNTRY_VJ" = "Frankreich";
+"ISO3780_WMI_COUNTRY_VK" = "Frankreich";
+"ISO3780_WMI_COUNTRY_VL" = "Frankreich";
+"ISO3780_WMI_COUNTRY_VM" = "Frankreich";
+"ISO3780_WMI_COUNTRY_VN" = "Frankreich";
+"ISO3780_WMI_COUNTRY_VP" = "Frankreich";
+"ISO3780_WMI_COUNTRY_VR" = "Frankreich";
+"ISO3780_WMI_COUNTRY_VS" = "Spain";
+"ISO3780_WMI_COUNTRY_VT" = "Spain";
+"ISO3780_WMI_COUNTRY_VU" = "Spain";
+"ISO3780_WMI_COUNTRY_VV" = "Spain";
+"ISO3780_WMI_COUNTRY_VW" = "Spain";
+"ISO3780_WMI_COUNTRY_VX" = "Serbien";
+"ISO3780_WMI_COUNTRY_VY" = "Serbien";
+"ISO3780_WMI_COUNTRY_VZ" = "Serbien";
+"ISO3780_WMI_COUNTRY_V1" = "Serbien";
+"ISO3780_WMI_COUNTRY_V2" = "Serbien";
+"ISO3780_WMI_COUNTRY_V3" = "Croatien";
+"ISO3780_WMI_COUNTRY_V4" = "Croatien";
+"ISO3780_WMI_COUNTRY_V5" = "Croatien";
+"ISO3780_WMI_COUNTRY_V6" = "Estonien";
+"ISO3780_WMI_COUNTRY_V7" = "Estonien";
+"ISO3780_WMI_COUNTRY_V8" = "Estonien";
+"ISO3780_WMI_COUNTRY_V9" = "Estonien";
+"ISO3780_WMI_COUNTRY_V0" = "Estonien";
+
+"ISO3780_WMI_COUNTRY_W" = "Deutschland";
+
+"ISO3780_WMI_COUNTRY_XA" = "Bulgarien";
+"ISO3780_WMI_COUNTRY_XB" = "Bulgarien";
+"ISO3780_WMI_COUNTRY_XC" = "Bulgarien";
+"ISO3780_WMI_COUNTRY_XD" = "Bulgarien";
+"ISO3780_WMI_COUNTRY_XE" = "Bulgarien";
+"ISO3780_WMI_COUNTRY_XF" = "Greece";
+"ISO3780_WMI_COUNTRY_XG" = "Greece";
+"ISO3780_WMI_COUNTRY_XH" = "Greece";
+"ISO3780_WMI_COUNTRY_XJ" = "Greece";
+"ISO3780_WMI_COUNTRY_XK" = "Greece";
+"ISO3780_WMI_COUNTRY_XL" = "Netherlands";
+"ISO3780_WMI_COUNTRY_XM" = "Netherlands";
+"ISO3780_WMI_COUNTRY_XN" = "Netherlands";
+"ISO3780_WMI_COUNTRY_XP" = "Netherlands";
+"ISO3780_WMI_COUNTRY_XR" = "Netherlands";
+"ISO3780_WMI_COUNTRY_XS" = "USSR";
+"ISO3780_WMI_COUNTRY_XT" = "USSR";
+"ISO3780_WMI_COUNTRY_XU" = "USSR";
+"ISO3780_WMI_COUNTRY_XV" = "USSR";
+"ISO3780_WMI_COUNTRY_XW" = "USSR";
+"ISO3780_WMI_COUNTRY_XX" = "Luxembourg";
+"ISO3780_WMI_COUNTRY_X1" = "Luxembourg";
+"ISO3780_WMI_COUNTRY_X2" = "Luxembourg";
+"ISO3780_WMI_COUNTRY_X3" = "Russien";
+"ISO3780_WMI_COUNTRY_X4" = "Russien";
+"ISO3780_WMI_COUNTRY_X5" = "Russien";
+"ISO3780_WMI_COUNTRY_X6" = "Russien";
+"ISO3780_WMI_COUNTRY_X7" = "Russien";
+"ISO3780_WMI_COUNTRY_X8" = "Russien";
+"ISO3780_WMI_COUNTRY_X9" = "Russien";
+"ISO3780_WMI_COUNTRY_X0" = "Russien";
+
+"ISO3780_WMI_COUNTRY_YA" = "Belgium";
+"ISO3780_WMI_COUNTRY_YB" = "Belgium";
+"ISO3780_WMI_COUNTRY_YC" = "Belgium";
+"ISO3780_WMI_COUNTRY_YD" = "Belgium";
+"ISO3780_WMI_COUNTRY_YE" = "Belgium";
+"ISO3780_WMI_COUNTRY_YF" = "Finland";
+"ISO3780_WMI_COUNTRY_YG" = "Finland";
+"ISO3780_WMI_COUNTRY_YH" = "Finland";
+"ISO3780_WMI_COUNTRY_YJ" = "Finland";
+"ISO3780_WMI_COUNTRY_YK" = "Finland";
+"ISO3780_WMI_COUNTRY_YL" = "Malta";
+"ISO3780_WMI_COUNTRY_YM" = "Malta";
+"ISO3780_WMI_COUNTRY_YN" = "Malta";
+"ISO3780_WMI_COUNTRY_YP" = "Malta";
+"ISO3780_WMI_COUNTRY_YR" = "Malta";
+"ISO3780_WMI_COUNTRY_YS" = "Sweden";
+"ISO3780_WMI_COUNTRY_YT" = "Sweden";
+"ISO3780_WMI_COUNTRY_YU" = "Sweden";
+"ISO3780_WMI_COUNTRY_YV" = "Sweden";
+"ISO3780_WMI_COUNTRY_YW" = "Sweden";
+"ISO3780_WMI_COUNTRY_YX" = "Norway";
+"ISO3780_WMI_COUNTRY_Y1" = "Norway";
+"ISO3780_WMI_COUNTRY_Y2" = "Norway";
+"ISO3780_WMI_COUNTRY_Y3" = "Belarus";
+"ISO3780_WMI_COUNTRY_Y4" = "Belarus";
+"ISO3780_WMI_COUNTRY_Y5" = "Belarus";
+"ISO3780_WMI_COUNTRY_Y6" = "Ukraine";
+"ISO3780_WMI_COUNTRY_Y7" = "Ukraine";
+"ISO3780_WMI_COUNTRY_Y8" = "Ukraine";
+"ISO3780_WMI_COUNTRY_Y9" = "Ukraine";
+"ISO3780_WMI_COUNTRY_Y0" = "Ukraine";
+
+"ISO3780_WMI_COUNTRY_ZA" = "Italy";
+"ISO3780_WMI_COUNTRY_ZB" = "Italy";
+"ISO3780_WMI_COUNTRY_ZC" = "Italy";
+"ISO3780_WMI_COUNTRY_ZD" = "Italy";
+"ISO3780_WMI_COUNTRY_ZE" = "Italy";
+"ISO3780_WMI_COUNTRY_ZF" = "Italy";
+"ISO3780_WMI_COUNTRY_ZG" = "Italy";
+"ISO3780_WMI_COUNTRY_ZH" = "Italy";
+"ISO3780_WMI_COUNTRY_ZJ" = "Italy";
+"ISO3780_WMI_COUNTRY_ZK" = "Italy";
+"ISO3780_WMI_COUNTRY_ZL" = "Italy";
+"ISO3780_WMI_COUNTRY_ZM" = "Italy";
+"ISO3780_WMI_COUNTRY_ZN" = "Italy";
+"ISO3780_WMI_COUNTRY_ZP" = "Italy";
+"ISO3780_WMI_COUNTRY_ZR" = "Italy";
+"ISO3780_WMI_COUNTRY_ZX" = "Slovenien";
+"ISO3780_WMI_COUNTRY_Z1" = "Slovenien";
+"ISO3780_WMI_COUNTRY_Z2" = "Slovenien";
+"ISO3780_WMI_COUNTRY_Z3" = "Lithuanien";
+"ISO3780_WMI_COUNTRY_Z4" = "Lithuanien";
+"ISO3780_WMI_COUNTRY_Z5" = "Lithuanien";
+
+"ISO3780_WMI_COUNTRY_1" = "USA";
+
+"ISO3780_WMI_COUNTRY_2" = "Canada";
+
+"ISO3780_WMI_COUNTRY_3A" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3B" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3C" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3D" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3E" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3F" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3G" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3H" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3J" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3K" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3L" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3M" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3N" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3P" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3R" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3S" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3T" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3U" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3V" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3W" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3X" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3Y" = "Mexiko";
+"ISO3780_WMI_COUNTRY_3Z" = "Mexiko";
+"ISO3780_WMI_COUNTRY_31" = "Mexiko";
+"ISO3780_WMI_COUNTRY_32" = "Mexiko";
+"ISO3780_WMI_COUNTRY_33" = "Mexiko";
+"ISO3780_WMI_COUNTRY_34" = "Mexiko";
+"ISO3780_WMI_COUNTRY_35" = "Mexiko";
+"ISO3780_WMI_COUNTRY_36" = "Mexiko";
+"ISO3780_WMI_COUNTRY_37" = "Mexiko";
+"ISO3780_WMI_COUNTRY_38" = "Cayman Islands";
+"ISO3780_WMI_COUNTRY_39" = "Cayman Islands";
+"ISO3780_WMI_COUNTRY_30" = "Cayman Islands";
+
+"ISO3780_WMI_COUNTRY_4" = "USA";
+
+"ISO3780_WMI_COUNTRY_5" = "USA";
+
+"ISO3780_WMI_COUNTRY_6A" = "Australien";
+"ISO3780_WMI_COUNTRY_6B" = "Australien";
+"ISO3780_WMI_COUNTRY_6C" = "Australien";
+"ISO3780_WMI_COUNTRY_6D" = "Australien";
+"ISO3780_WMI_COUNTRY_6E" = "Australien";
+"ISO3780_WMI_COUNTRY_6F" = "Australien";
+"ISO3780_WMI_COUNTRY_6G" = "Australien";
+"ISO3780_WMI_COUNTRY_6H" = "Australien";
+"ISO3780_WMI_COUNTRY_6J" = "Australien";
+"ISO3780_WMI_COUNTRY_6K" = "Australien";
+"ISO3780_WMI_COUNTRY_6L" = "Australien";
+"ISO3780_WMI_COUNTRY_6M" = "Australien";
+"ISO3780_WMI_COUNTRY_6N" = "Australien";
+"ISO3780_WMI_COUNTRY_6P" = "Australien";
+"ISO3780_WMI_COUNTRY_6R" = "Australien";
+"ISO3780_WMI_COUNTRY_6S" = "Australien";
+"ISO3780_WMI_COUNTRY_6T" = "Australien";
+"ISO3780_WMI_COUNTRY_6U" = "Australien";
+"ISO3780_WMI_COUNTRY_6V" = "Australien";
+"ISO3780_WMI_COUNTRY_6W" = "Australien";
+
+"ISO3780_WMI_COUNTRY_7A" = "Neuseeland";
+"ISO3780_WMI_COUNTRY_7B" = "Neuseeland";
+"ISO3780_WMI_COUNTRY_7C" = "Neuseeland";
+"ISO3780_WMI_COUNTRY_7D" = "Neuseeland";
+"ISO3780_WMI_COUNTRY_7E" = "Neuseeland";
+
+"ISO3780_WMI_COUNTRY_8A" = "Argentina";
+"ISO3780_WMI_COUNTRY_8B" = "Argentina";
+"ISO3780_WMI_COUNTRY_8C" = "Argentina";
+"ISO3780_WMI_COUNTRY_8D" = "Argentina";
+"ISO3780_WMI_COUNTRY_8E" = "Argentina";
+"ISO3780_WMI_COUNTRY_8F" = "Chile";
+"ISO3780_WMI_COUNTRY_8G" = "Chile";
+"ISO3780_WMI_COUNTRY_8H" = "Chile";
+"ISO3780_WMI_COUNTRY_8J" = "Chile";
+"ISO3780_WMI_COUNTRY_8K" = "Chile";
+"ISO3780_WMI_COUNTRY_8L" = "Ecuador";
+"ISO3780_WMI_COUNTRY_8M" = "Ecuador";
+"ISO3780_WMI_COUNTRY_8N" = "Ecuador";
+"ISO3780_WMI_COUNTRY_8P" = "Ecuador";
+"ISO3780_WMI_COUNTRY_8R" = "Ecuador";
+"ISO3780_WMI_COUNTRY_8S" = "Peru";
+"ISO3780_WMI_COUNTRY_8T" = "Peru";
+"ISO3780_WMI_COUNTRY_8U" = "Peru";
+"ISO3780_WMI_COUNTRY_8V" = "Peru";
+"ISO3780_WMI_COUNTRY_8W" = "Peru";
+"ISO3780_WMI_COUNTRY_8X" = "Venezuela";
+"ISO3780_WMI_COUNTRY_8Y" = "Venezuela";
+"ISO3780_WMI_COUNTRY_8Z" = "Venezuela";
+"ISO3780_WMI_COUNTRY_81" = "Venezuela";
+"ISO3780_WMI_COUNTRY_82" = "Venezuela";
+
+"ISO3780_WMI_COUNTRY_9A" = "Brasilien";
+"ISO3780_WMI_COUNTRY_9B" = "Brasilien";
+"ISO3780_WMI_COUNTRY_9C" = "Brasilien";
+"ISO3780_WMI_COUNTRY_9D" = "Brasilien";
+"ISO3780_WMI_COUNTRY_9E" = "Brasilien";
+"ISO3780_WMI_COUNTRY_9F" = "Kolumbien";
+"ISO3780_WMI_COUNTRY_9G" = "Kolumbien";
+"ISO3780_WMI_COUNTRY_9H" = "Kolumbien";
+"ISO3780_WMI_COUNTRY_9J" = "Kolumbien";
+"ISO3780_WMI_COUNTRY_9K" = "Kolumbien";
+"ISO3780_WMI_COUNTRY_9L" = "Paraguay";
+"ISO3780_WMI_COUNTRY_9M" = "Paraguay";
+"ISO3780_WMI_COUNTRY_9N" = "Paraguay";
+"ISO3780_WMI_COUNTRY_9P" = "Paraguay";
+"ISO3780_WMI_COUNTRY_9R" = "Paraguay";
+"ISO3780_WMI_COUNTRY_9S" = "Uruguay";
+"ISO3780_WMI_COUNTRY_9T" = "Uruguay";
+"ISO3780_WMI_COUNTRY_9U" = "Uruguay";
+"ISO3780_WMI_COUNTRY_9V" = "Uruguay";
+"ISO3780_WMI_COUNTRY_9W" = "Uruguay";
+"ISO3780_WMI_COUNTRY_9X" = "Trinidad & Tobago";
+"ISO3780_WMI_COUNTRY_9Y" = "Trinidad & Tobago";
+"ISO3780_WMI_COUNTRY_9Z" = "Trinidad & Tobago";
+"ISO3780_WMI_COUNTRY_91" = "Trinidad & Tobago";
+"ISO3780_WMI_COUNTRY_92" = "Trinidad & Tobago";
+"ISO3780_WMI_COUNTRY_93" = "Brasilien";
+"ISO3780_WMI_COUNTRY_94" = "Brasilien";
+"ISO3780_WMI_COUNTRY_95" = "Brasilien";
+"ISO3780_WMI_COUNTRY_96" = "Brasilien";
+"ISO3780_WMI_COUNTRY_97" = "Brasilien";
+"ISO3780_WMI_COUNTRY_98" = "Brasilien";
+"ISO3780_WMI_COUNTRY_99" = "Brasilien";
+
+//
+// ISO 3780 World Manufacturer Identifier Manufacturer
+//
+"ISO3780_WMI_MANUFACTURER_AAV" = "Volkswagen";
+"ISO3780_WMI_MANUFACTURER_AC5" = "Hyundai";
+"ISO3780_WMI_MANUFACTURER_ADD" = "Hyundai";
+"ISO3780_WMI_MANUFACTURER_AFA" = "Ford";
+"ISO3780_WMI_MANUFACTURER_AHT" = "Toyota";
+
+"ISO3780_WMI_MANUFACTURER_CL9" = "Wallyscar";
+
+"ISO3780_WMI_MANUFACTURER_JA3" = "Mitsubishi";
+"ISO3780_WMI_MANUFACTURER_JA4" = "Mitsubishi";
+"ISO3780_WMI_MANUFACTURER_JA" = "Isuzu";
+"ISO3780_WMI_MANUFACTURER_JD" = "Daihatsu";
+"ISO3780_WMI_MANUFACTURER_JF" = "Fuji Heavy Industries";
+"ISO3780_WMI_MANUFACTURER_JH" = "Honda";
+"ISO3780_WMI_MANUFACTURER_JHL" = "Honda";
+"ISO3780_WMI_MANUFACTURER_JHM" = "Honda";
+"ISO3780_WMI_MANUFACTURER_JK" = "Kawasaki";
+"ISO3780_WMI_MANUFACTURER_JL5" = "Mitsubishi Fuso";
+"ISO3780_WMI_MANUFACTURER_JMB" = "Mitsubishi";
+"ISO3780_WMI_MANUFACTURER_JMY" = "Mitsubishi";
+"ISO3780_WMI_MANUFACTURER_JMZ" = "Mazda";
+"ISO3780_WMI_MANUFACTURER_JN" = "Nissan";
+"ISO3780_WMI_MANUFACTURER_JS" = "Suzuki";
+"ISO3780_WMI_MANUFACTURER_JT" = "Toyota";
+"ISO3780_WMI_MANUFACTURER_JY" = "Yamaha";
+
+"ISO3780_WMI_MANUFACTURER_KL" = "Daewoo/GM Korea";
+"ISO3780_WMI_MANUFACTURER_KM" = "Hyundai";
+"ISO3780_WMI_MANUFACTURER_KMH" = "Hyundai";
+"ISO3780_WMI_MANUFACTURER_KMY" = "Daelim";
+"ISO3780_WMI_MANUFACTURER_KM1" = "Hyosung";
+"ISO3780_WMI_MANUFACTURER_KN" = "Kien";
+"ISO3780_WMI_MANUFACTURER_KNM" = "Renault Samsung";
+"ISO3780_WMI_MANUFACTURER_KPA" = "SsangYong";
+"ISO3780_WMI_MANUFACTURER_KPT" = "SsangYong";
+
+"ISO3780_WMI_MANUFACTURER_MMF" = "BMW CKD Thailand"; // <= 1999
+
+"ISO3780_WMI_MANUFACTURER_NC0" = "BMW";
+"ISO3780_WMI_MANUFACTURER_NMT" = "Toyota";
+
+"ISO3780_WMI_MANUFACTURER_SAJ" = "Jaguar";
+"ISO3780_WMI_MANUFACTURER_SAL" = "Land Rover";
+"ISO3780_WMI_MANUFACTURER_SAR" = "Rover";
+"ISO3780_WMI_MANUFACTURER_SAT" = "Triumph";
+"ISO3780_WMI_MANUFACTURER_SA9" = "Rolls Royce Hierus";
+"ISO3780_WMI_MANUFACTURER_SB1" = "Toyota";
+"ISO3780_WMI_MANUFACTURER_SCA" = "Rolls Royce Goodwood";
+"ISO3780_WMI_MANUFACTURER_SCC" = "Lotus Cars";
+"ISO3780_WMI_MANUFACTURER_SCE" = "DeLorean";
+"ISO3780_WMI_MANUFACTURER_SHH" = "Honda";
+"ISO3780_WMI_MANUFACTURER_SHS" = "Honda";
+"ISO3780_WMI_MANUFACTURER_SJN" = "Nissan";
+
+"ISO3780_WMI_MANUFACTURER_TCC" = "Micro Compact Car AG (SMART 1998-1999)";
+"ISO3780_WMI_MANUFACTURER_TMA" = "Hyundai";
+"ISO3780_WMI_MANUFACTURER_TMB" = "Škoda";
+"ISO3780_WMI_MANUFACTURER_TRU" = "Audi";
+"ISO3780_WMI_MANUFACTURER_TSM" = "Suzuki";
+
+"ISO3780_WMI_MANUFACTURER_U5Y" = "Kien";
+"ISO3780_WMI_MANUFACTURER_UU" = "Dacien";
+
+"ISO3780_WMI_MANUFACTURER_VA0" = "ÖAF";
+"ISO3780_WMI_MANUFACTURER_VF1" = "Renault";
+"ISO3780_WMI_MANUFACTURER_VF2" = "Renault";
+"ISO3780_WMI_MANUFACTURER_VF3" = "Peugeot";
+"ISO3780_WMI_MANUFACTURER_VF4" = "Talbot";
+"ISO3780_WMI_MANUFACTURER_VF5" = "Iveco Unic SA";
+"ISO3780_WMI_MANUFACTURER_VF6" = "Renault Trucks/Volvo";
+"ISO3780_WMI_MANUFACTURER_VF7" = "Citroën";
+"ISO3780_WMI_MANUFACTURER_VF8" = "Matra/Talbot/Simca";
+"ISO3780_WMI_MANUFACTURER_VF9" = "Bugatti";
+"ISO3780_WMI_MANUFACTURER_VFE" = "IvecoBus";
+"ISO3780_WMI_MANUFACTURER_VNK" = "Toyota";
+"ISO3780_WMI_MANUFACTURER_VSS" = "SEAT";
+"ISO3780_WMI_MANUFACTURER_VV9" = "Tauro Sport Auto";
+
+"ISO3780_WMI_MANUFACTURER_WAU" = "Audi";
+"ISO3780_WMI_MANUFACTURER_WAP" = "Alpina";
+"ISO3780_WMI_MANUFACTURER_WBA" = "BMW";
+"ISO3780_WMI_MANUFACTURER_WBS" = "BMW M";
+"ISO3780_WMI_MANUFACTURER_WBX" = "Magna Steyr";
+"ISO3780_WMI_MANUFACTURER_WB1" = "BMW Motorcycle";
+"ISO3780_WMI_MANUFACTURER_WDB" = "Mercedes-Benz";
+"ISO3780_WMI_MANUFACTURER_WDC" = "DaimlerChrysler AG/Daimler AG";
+"ISO3780_WMI_MANUFACTURER_WDD" = "DaimlerChrysler AG/Daimler AG";
+"ISO3780_WMI_MANUFACTURER_WMX" = "DaimlerChrysler AG/Daimler AG";
+"ISO3780_WMI_MANUFACTURER_WEB" = "EvoBus";
+"ISO3780_WMI_MANUFACTURER_WF0" = "Ford of Europa";
+"ISO3780_WMI_MANUFACTURER_WJM" = "Iveco";
+"ISO3780_WMI_MANUFACTURER_WJR" = "Irmscher";
+"ISO3780_WMI_MANUFACTURER_WKK" = "Kässbohrer";
+"ISO3780_WMI_MANUFACTURER_WMA" = "MAN";
+"ISO3780_WMI_MANUFACTURER_WME" = "Smart";
+"ISO3780_WMI_MANUFACTURER_WMW" = "Mini";
+"ISO3780_WMI_MANUFACTURER_WP0" = "Porsche car";
+"ISO3780_WMI_MANUFACTURER_WP1" = "Porsche SUV";
+"ISO3780_WMI_MANUFACTURER_WUA" = "Quattro";
+"ISO3780_WMI_MANUFACTURER_WVG" = "Volkswagen";
+"ISO3780_WMI_MANUFACTURER_WVW" = "Volkswagen";
+"ISO3780_WMI_MANUFACTURER_WV1" = "Volkswagen Commercial Vehicles";
+"ISO3780_WMI_MANUFACTURER_WV2" = "Volkswagen Commercial Vehicles";
+"ISO3780_WMI_MANUFACTURER_WV3" = "Volkswagen";
+"ISO3780_WMI_MANUFACTURER_WV5" = "Volkswagen";
+"ISO3780_WMI_MANUFACTURER_W0L" = "Opel/Vauxhall";
+"ISO3780_WMI_MANUFACTURER_W0S" = "Opel Special Vehicles";
+
+"ISO3780_WMI_MANUFACTURER_X4X" = "BMW CKD Avtotor; Kaliningrad";
+
+"ISO3780_WMI_MANUFACTURER_YK1" = "Saab";
+"ISO3780_WMI_MANUFACTURER_YS3" = "Saab";
+"ISO3780_WMI_MANUFACTURER_YTN" = "Saab NEVS";
+"ISO3780_WMI_MANUFACTURER_YV1" = "Volvo Cars";
+
+"ISO3780_WMI_MANUFACTURER_ZA9" = "Bugatti";
+"ISO3780_WMI_MANUFACTURER_ZAM" = "Maserati";
+"ISO3780_WMI_MANUFACTURER_ZAR" = "Alfa Romeo";
+"ISO3780_WMI_MANUFACTURER_ZCF" = "Iveco";
+"ISO3780_WMI_MANUFACTURER_ZFA" = "Fiat Automobiles";
+"ISO3780_WMI_MANUFACTURER_ZFF" = "Ferrari";
+"ISO3780_WMI_MANUFACTURER_ZGA" = "IvecoBus";
+"ISO3780_WMI_MANUFACTURER_ZHW" = "Lamborghini";
+"ISO3780_WMI_MANUFACTURER_ZLA" = "Lancien";
+
+"ISO3780_WMI_MANUFACTURER_1B" = "Dodge";
+"ISO3780_WMI_MANUFACTURER_1C" = "Chrysler";
+"ISO3780_WMI_MANUFACTURER_1F" = "Ford";
+"ISO3780_WMI_MANUFACTURER_1G" = "General Motors";
+"ISO3780_WMI_MANUFACTURER_1G3" = "Oldsmobile";
+"ISO3780_WMI_MANUFACTURER_1G9" = "Google";
+"ISO3780_WMI_MANUFACTURER_1GC" = "Chevrolet";
+"ISO3780_WMI_MANUFACTURER_1GM" = "Pontiac";
+"ISO3780_WMI_MANUFACTURER_1HG" = "Honda";
+"ISO3780_WMI_MANUFACTURER_1J" = "Jeep";
+"ISO3780_WMI_MANUFACTURER_1L" = "Lincoln";
+"ISO3780_WMI_MANUFACTURER_1M" = "Mercury";
+"ISO3780_WMI_MANUFACTURER_1N" = "Nissan";
+"ISO3780_WMI_MANUFACTURER_1VW" = "Volkswagen";
+"ISO3780_WMI_MANUFACTURER_1V1" = "Volkswagen";
+"ISO3780_WMI_MANUFACTURER_1YV" = "Mazda";
+
+"ISO3780_WMI_MANUFACTURER_2F" = "Ford";
+"ISO3780_WMI_MANUFACTURER_2G" = "General Motors";
+"ISO3780_WMI_MANUFACTURER_2G1" = "Chevrolet";
+"ISO3780_WMI_MANUFACTURER_2G2" = "Pontiac";
+"ISO3780_WMI_MANUFACTURER_2HG" = "Honda";
+"ISO3780_WMI_MANUFACTURER_2HH" = "Acura";
+"ISO3780_WMI_MANUFACTURER_2HJ" = "Honda";
+"ISO3780_WMI_MANUFACTURER_2HK" = "Honda";
+"ISO3780_WMI_MANUFACTURER_2HM" = "Hyundai";
+"ISO3780_WMI_MANUFACTURER_2M" = "Mercury";
+"ISO3780_WMI_MANUFACTURER_2T" = "Toyota";
+
+"ISO3780_WMI_MANUFACTURER_3AV" = "BMW CKD Mexiko";
+"ISO3780_WMI_MANUFACTURER_3F" = "Ford";
+"ISO3780_WMI_MANUFACTURER_3G" = "General Motors";
+"ISO3780_WMI_MANUFACTURER_3HG" = "Honda";
+"ISO3780_WMI_MANUFACTURER_3HM" = "Honda";
+"ISO3780_WMI_MANUFACTURER_3N" = "Nissan";
+"ISO3780_WMI_MANUFACTURER_3VW" = "Volkswagen";
+
+"ISO3780_WMI_MANUFACTURER_4F" = "Mazda";
+"ISO3780_WMI_MANUFACTURER_4J" = "Mercedes-Benz";
+"ISO3780_WMI_MANUFACTURER_4M" = "Mercury";
+"ISO3780_WMI_MANUFACTURER_4S3" = "Subaru";
+"ISO3780_WMI_MANUFACTURER_4S4" = "Subaru";
+"ISO3780_WMI_MANUFACTURER_4S6" = "Honda";
+"ISO3780_WMI_MANUFACTURER_4T" = "Toyota";
+"ISO3780_WMI_MANUFACTURER_4US" = "BMW US";
+
+"ISO3780_WMI_MANUFACTURER_5FN" = "Honda";
+"ISO3780_WMI_MANUFACTURER_5J6" = "Honda";
+"ISO3780_WMI_MANUFACTURER_5L" = "Lincoln";
+"ISO3780_WMI_MANUFACTURER_5T" = "Toyota";
+"ISO3780_WMI_MANUFACTURER_5UM" = "BMW M US";
+"ISO3780_WMI_MANUFACTURER_5UX" = "BMW US MPV";
+"ISO3780_WMI_MANUFACTURER_5X" = "Hyundai/Kien";
+"ISO3780_WMI_MANUFACTURER_5YJ" = "Tesla";
+"ISO3780_WMI_MANUFACTURER_55" = "Mercedes-Benz";
+
+"ISO3780_WMI_MANUFACTURER_6F" = "Ford";
+"ISO3780_WMI_MANUFACTURER_6G" = "General Motors";
+"ISO3780_WMI_MANUFACTURER_6G1" = "Chevrolet";
+"ISO3780_WMI_MANUFACTURER_6G2" = "Pontiac";
+"ISO3780_WMI_MANUFACTURER_6H" = "Holden";
+"ISO3780_WMI_MANUFACTURER_6MM" = "Mitsubishi";
+"ISO3780_WMI_MANUFACTURER_6T1" = "Toyota";
+
+"ISO3780_WMI_MANUFACTURER_8AP" = "Fiat";
+"ISO3780_WMI_MANUFACTURER_8AT" = "Iveco";
+
+"ISO3780_WMI_MANUFACTURER_9BD" = "Fiat Automóveis";
+"ISO3780_WMI_MANUFACTURER_9BW" = "Volkswagen";
+"ISO3780_WMI_MANUFACTURER_93H" = "Honda";
+"ISO3780_WMI_MANUFACTURER_93W" = "Fiat Professional";
+"ISO3780_WMI_MANUFACTURER_93Z" = "Iveco";
+"ISO3780_WMI_MANUFACTURER_9BH" = "Hyundai";
+
+//
+// OBD2 PID 0101 STATUS (DTC & MONITORS)
+//
+"OBD2_MONITOR_GENERIC_B0" = "Fehlzündungen";
+"OBD2_MONITOR_GENERIC_B1" = "Einspritzung";
+"OBD2_MONITOR_GENERIC_B2" = "Übrige Komponenten";
+"OBD2_MONITOR_SPARK_C0" = "Katalysator";
+"OBD2_MONITOR_SPARK_C1" = "Beheizter Katalysator";
+"OBD2_MONITOR_SPARK_C2" = "Kraftstoffverdunstungssystem";
+"OBD2_MONITOR_SPARK_C3" = "Sekundärluftsystem";
+"OBD2_MONITOR_SPARK_C4" = "Klimaanlagensystem";
+"OBD2_MONITOR_SPARK_C5" = "Lambdasonden";
+"OBD2_MONITOR_SPARK_C6" = "Heizung für Lambdasonde";
+"OBD2_MONITOR_SPARK_C7" = "Abgasrückführung";
+"OBD2_MONITOR_COMPRESSION_C0" = "NMHC-Katalysator";
+"OBD2_MONITOR_COMPRESSION_C1" = "NOx/SCR-Monitor";
+"OBD2_MONITOR_COMPRESSION_C3" = "Boost Pressure";
+"OBD2_MONITOR_COMPRESSION_C5" = "Exhaust Gas Sensor";
+"OBD2_MONITOR_COMPRESSION_C6" = "PM filter monitoring";
+"OBD2_MONITOR_COMPRESSION_C7" = "EGR und/oder VVT System";
+
+"OBD2_MONITOR_RESULT_UNAVAILABLE" = "Nicht verfügbar";
+"OBD2_MONITOR_RESULT_PASSED" = "OK";
+"OBD2_MONITOR_RESULT_FAILED" = "Fehlgeschlagen";
+
+//
+// OBD2 PID 0103 FUEL SYSTEM STATUS
+//
+"OBD2_FUEL_SYSTEM_STATUS_01" = "Offen, Motor noch in Aufwärmphase";
+"OBD2_FUEL_SYSTEM_STATUS_02" = "Geschlossen, Lambdasonde bestimmt Kraftstoffzusammensetzung";
+"OBD2_FUEL_SYSTEM_STATUS_04" = "Offen, wegen Motorlast oder Schubabschaltung";
+"OBD2_FUEL_SYSTEM_STATUS_08" = "Offen, wegen eines Systemfehlers";
+"OBD2_FUEL_SYSTEM_STATUS_10" = "Geschlossen, benutzt mindestens einen O2-Sensor, aber Fehler vom Feedback-System";
+
+//
+// OBD2 PID 0112 COMMANDED SECONDARY AIR STATUS
+//
+"OBD2_SECONDARY_AIR_STATUS_01" = "Vor dem Katalysator";
+"OBD2_SECONDARY_AIR_STATUS_02" = "Hinter dem Katalysator";
+"OBD2_SECONDARY_AIR_STATUS_04" = "Von Außenluft oder aus";
+"OBD2_SECONDARY_AIR_STATUS_08" = "An für Diagnosemodus";
+
+//
+// OBD2 PID 011C SUPPORTED OBD STANDARDS
+//
+"OBD2_OBD_STANDARD_01" = "OBD-II gemäß CARB";
+"OBD2_OBD_STANDARD_02" = "OBD gemäß EPA";
+"OBD2_OBD_STANDARD_03" = "OBD und OBD-II";
+"OBD2_OBD_STANDARD_04" = "OBD-I";
+"OBD2_OBD_STANDARD_05" = "Nicht vorgesehen für OBD";
+"OBD2_OBD_STANDARD_06" = "EOBD (Europa)";
+"OBD2_OBD_STANDARD_07" = "EOBD und OBD-II";
+"OBD2_OBD_STANDARD_08" = "EOBD und OBD";
+"OBD2_OBD_STANDARD_09" = "EOBD / OBD und OBD II";
+"OBD2_OBD_STANDARD_0A" = "JOBD (Japan)";
+"OBD2_OBD_STANDARD_0B" = "JOBD und OBD II";
+"OBD2_OBD_STANDARD_0C" = "JOBD und EOBD";
+"OBD2_OBD_STANDARD_0D" = "JOBD / EOBD und OBD II";
+"OBD2_OBD_STANDARD_11" = "Engine Manufacturer Diagnostics (EMD)";
+"OBD2_OBD_STANDARD_12" = "Engine Manufacturer Diagnostics Enhanced (EMD+)";
+"OBD2_OBD_STANDARD_13" = "Heavy Duty On-Board Diagnostics (Child/Partial) (HD OBD-C)";
+"OBD2_OBD_STANDARD_14" = "Heavy Duty On-Board Diagnostics (HD OBD)";
+"OBD2_OBD_STANDARD_15" = "World Wide Harmonized OBD (WWH OBD)";
+"OBD2_OBD_STANDARD_17" = "Heavy Duty Euro OBD I ohne NOx-Kontrolle (HD EOBD-I)";
+"OBD2_OBD_STANDARD_18" = "Heavy Duty Euro OBD I mit NOx-Kontrolle (HD EOBD-I N)";
+"OBD2_OBD_STANDARD_19" = "Heavy Duty Euro OBD II ohne NOx-Kontrolle (HD EOBD-II)";
+"OBD2_OBD_STANDARD_1B" = "Heavy Duty Euro OBD II mit NOx-Kontrolle (HD EOBD-II N)";
+"OBD2_OBD_STANDARD_1C" = "Brazil OBD Phase 1 (OBDBr-1)";
+"OBD2_OBD_STANDARD_1D" = "Brazil OBD Phase 2 (OBDBr-2)";
+"OBD2_OBD_STANDARD_1E" = "Korean OBD (KOBD)";
+"OBD2_OBD_STANDARD_1F" = "India OBD I (IOBD I)";
+"OBD2_OBD_STANDARD_20" = "India OBD II (IOBD II)";
+"OBD2_OBD_STANDARD_33" = "Heavy Duty Euro OBD VI (HD EOBD-IV)";
+
+//
+// OBD2 PID 0152 FUEL TYPE
+//
+"OBD2_FUEL_TYPE_01" = "Benzin";
+"OBD2_FUEL_TYPE_02" = "Methanol";
+"OBD2_FUEL_TYPE_03" = "Ethanol";
+"OBD2_FUEL_TYPE_04" = "Diesel";
+"OBD2_FUEL_TYPE_05" = "LPG";
+"OBD2_FUEL_TYPE_06" = "CNG";
+"OBD2_FUEL_TYPE_07" = "Propan";
+"OBD2_FUEL_TYPE_08" = "Elektrisch";
+"OBD2_FUEL_TYPE_09" = "Bifuel/Benzin";
+"OBD2_FUEL_TYPE_0A" = "Bifuel/Methanol";
+"OBD2_FUEL_TYPE_0B" = "Bifuel/Ethanol";
+"OBD2_FUEL_TYPE_0C" = "Bifuel/LPG";
+"OBD2_FUEL_TYPE_0D" = "Bifuel/CNG";
+"OBD2_FUEL_TYPE_0E" = "Bifuel/Propan";
+"OBD2_FUEL_TYPE_0F" = "Bifuel/Elektrisch";
+"OBD2_FUEL_TYPE_10" = "Bifuel gemischt Gas/Elektrisch";
+"OBD2_FUEL_TYPE_11" = "Hybrid Benzin";
+"OBD2_FUEL_TYPE_12" = "Hybrid Ethanol";
+"OBD2_FUEL_TYPE_13" = "Hybrid Diesel";
+"OBD2_FUEL_TYPE_14" = "Hybrid Elektrisch";
+"OBD2_FUEL_TYPE_15" = "Hybrid Gemischt";
+"OBD2_FUEL_TYPE_16" = "Hybrid Regenerativ";
+
+//
+// OBD2 PID 0907 / 090B PERFORMANCE TRACKING MNEMONIC
+//
+"OBD2_PERFORMANCE_TRACKING_OBDCOND" = "– Anzahl Probleme –";
+"OBD2_PERFORMANCE_TRACKING_IGNCNTR" = "– Anzahl Zyklen –";
+"OBD2_PERFORMANCE_TRACKING_CATCOMP1" = "Katalysator Bank 1";
+"OBD2_PERFORMANCE_TRACKING_CATCOND1" = "Katalysator Bank 1 Fehler";
+"OBD2_PERFORMANCE_TRACKING_CATCOMP2" = "Katalysator Bank 2";
+"OBD2_PERFORMANCE_TRACKING_CATCOND2" = "Katalysator Bank 2 Fehler";
+"OBD2_PERFORMANCE_TRACKING_O2SCOMP1" = "Lambdasonde Bank 1";
+"OBD2_PERFORMANCE_TRACKING_O2SCOND1" = "Lambdasonde Bank 1 Fehler";
+"OBD2_PERFORMANCE_TRACKING_O2SCOMP2" = "Lambdasonde Bank 2";
+"OBD2_PERFORMANCE_TRACKING_O2SCOND2" = "Lambdasonde Bank 2 Fehler";
+"OBD2_PERFORMANCE_TRACKING_EGRCOMP" = "Abgasrückführung";
+"OBD2_PERFORMANCE_TRACKING_EGRCOND" = "Abgasrückführung Fehler";
+"OBD2_PERFORMANCE_TRACKING_AIRCOMP" = "Sekundärluft";
+"OBD2_PERFORMANCE_TRACKING_AIRCOND" = "Sekundärluft Fehler";
+"OBD2_PERFORMANCE_TRACKING_EVAPCOMP" = "Kraftstoffverdunstungssystem";
+"OBD2_PERFORMANCE_TRACKING_EVAPCOND" = "Kraftstoffverdunstungssystem Fehler";
+"OBD2_PERFORMANCE_TRACKING_SO2SCOMP1" = "Sekundärlambdasonde Bank 1";
+"OBD2_PERFORMANCE_TRACKING_SO2SCOND1" = "Sekundärlambdasonde Bank 1 Fehler";
+"OBD2_PERFORMANCE_TRACKING_SO2SCOMP2" = "Sekundärlambdasonde Bank 2";
+"OBD2_PERFORMANCE_TRACKING_SO2SCOND2" = "Sekundärlambdasonde Bank 2 Fehler";
+"OBD2_PERFORMANCE_TRACKING_HCCATCOMP" = "NMHC-Katalysator";
+"OBD2_PERFORMANCE_TRACKING_HCCATCOND" = "NMHC-Katalysator Fehler";
+"OBD2_PERFORMANCE_TRACKING_NCATCOMP" = "NOx/SCR-Katalysator";
+"OBD2_PERFORMANCE_TRACKING_NCATCOND" = "NOx/SCR-Katalysator Fehler";
+"OBD2_PERFORMANCE_TRACKING_NADSCOMP" = "NOx-Anreicherung";
+"OBD2_PERFORMANCE_TRACKING_NADSCOND" = "NOx-Anreicherung Fehler";
+"OBD2_PERFORMANCE_TRACKING_PMCOMP" = "Rußpartikelwerte";
+"OBD2_PERFORMANCE_TRACKING_PMCOND" = "Rußpartikelwerte Fehler";
+"OBD2_PERFORMANCE_TRACKING_EGSCOMP" = "Abgasdetektor";
+"OBD2_PERFORMANCE_TRACKING_EGSCOND" = "Abgasdetektor Fehler";
+"OBD2_PERFORMANCE_TRACKING_EGRCOMP" = "EGR und/oder VVT";
+"OBD2_PERFORMANCE_TRACKING_EGRCOND" = "EGR und/oder VVT Fehler";
+"OBD2_PERFORMANCE_TRACKING_BPCOMP" = "Turbodruck";
+"OBD2_PERFORMANCE_TRACKING_BPCOND" = "Turbodruck Fehler";
+"OBD2_PERFORMANCE_TRACKING_FUELCOMP" = "Kraftstoffsystem";
+"OBD2_PERFORMANCE_TRACKING_FUELCOND" = "Kraftstoffsystem Fehler";
+
+//
+// OBD2 STANDARD DTCs (CATEGORIES)
+//
+"OBD2_DTC_UNKNOWN" = "Unbekannt bzw. herstellerspezifisch";
+"OBD2_DTC_0_B" = "Karosserie";
+"OBD2_DTC_0_C" = "Fahrwerk";
+"OBD2_DTC_0_P" = "Antrieb, Motor, Getriebe";
+"OBD2_DTC_0_U" = "Netzwerk";
+"OBD2_DTC_1_0" = "SAE J2102-definiert";
+"OBD2_DTC_1_1" = "Herstellerspezifisch";
+"OBD2_DTC_1_2" = "Herstellerspezifisch";
+"OBD2_DTC_1_3" = "Herstellerspezifisch";
+"OBD2_DTC_2_0" = "Undefiniert";
+"OBD2_DTC_2_1" = "Kraftstoff- und Luftzufuhrmessung";
+"OBD2_DTC_2_2" = "Kraftstoff- und Luftzufuhrmessung Einspritzsystem";
+"OBD2_DTC_2_3" = "Zündsystem";
+"OBD2_DTC_2_4" = "Abgasregelung, z.B. Lambdasonde";
+"OBD2_DTC_2_5" = "Geschwindigkeits- und Leerlaufregelung";
+"OBD2_DTC_2_6" = "Computer und Ausgangssignale";
+"OBD2_DTC_2_7" = "Getriebe";
+"OBD2_DTC_2_8" = "Getriebe";
+"OBD2_DTC_2_9" = "Undefiniert";
+"OBD2_DTC_2_A" = "Undefiniert";
+"OBD2_DTC_2_B" = "Undefiniert";
+"OBD2_DTC_2_C" = "Undefiniert";
+"OBD2_DTC_2_D" = "Undefiniert";
+"OBD2_DTC_2_E" = "Undefiniert";
+"OBD2_DTC_2_F" = "Undefiniert";

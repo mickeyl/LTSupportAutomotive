@@ -1,0 +1,13 @@
+build
+*.mode1v3
+*.pbxuser
+*.pyc
+*.dat
+AntiCrack-InfoScanner-Result.h
+*~
+.DS_Store
+._*
+.smbdelete*
+project.xcworkspace
+xcuserdata
+DerivedData
