@@ -14,7 +14,7 @@ Represents an OBD2 command. Concrete subclasses, e.g. for the well-known OBD2 PI
 
 ### LTOBD2Protocol (Abstract) ###
 
-Represents a generic vehicle protocol. Concrete subclasses for protocols such as ISO14230-4 (CAN), ISO15765-4, ISO9141-2, or SAEJ1850 are available.
+Represents a generic vehicle protocol. Concrete subclasses for protocols such as ISO14230-4 (KWP2000), ISO15765-4 (CAN), ISO9141-2 (K-LINE), or SAEJ1850 (PWM, VPWM) are available.
 
 ### LTBTLESerialTransporter ###
 
@@ -28,7 +28,7 @@ If anyone wants to make this *cocoapods* or *carthage* aware, feel free to suppl
 
 # Examples #
 
-`LTAutomotiveSupportDemo.xcodeproj` is a (pretty bare-bones) example project.
+`Demo.xcodeproj` is a (pretty bare-bones) example project.
 
 # Apps using this library #
 
