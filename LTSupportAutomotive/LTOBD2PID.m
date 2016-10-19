@@ -218,16 +218,6 @@
     return [ma componentsJoinedByString:@", "];
 }
 
--(NSArray<NSNumber*>*)anyResponse
-{
-    if ( self.cookedResponse.count < 1 )
-    {
-        return nil;
-    }
-    
-    return [self.cookedResponse objectForKey:self.cookedResponse.allKeys.firstObject];
-}
-
 -(NSArray<NSNumber*>*)anyResponseWithMinimumLength:(NSUInteger)minimumLength
 {
     NSArray<NSString*>* sortedECUs = [self.cookedResponse.allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
