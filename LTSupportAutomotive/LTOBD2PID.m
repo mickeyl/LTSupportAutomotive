@@ -1302,7 +1302,9 @@
     {
         [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C0"   availableByte:C availableBit:0 incompleteByte:D incompleteBit:0]];
         [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C1"   availableByte:C availableBit:1 incompleteByte:D incompleteBit:1]];
+        [ma addObject:[LTOBD2MonitorResult resultWithTestName:@"OBD2_NO_DATA" result:OBD2MonitorTestNotAvailable]];
         [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C3"   availableByte:C availableBit:3 incompleteByte:D incompleteBit:3]];
+        [ma addObject:[LTOBD2MonitorResult resultWithTestName:@"OBD2_NO_DATA" result:OBD2MonitorTestNotAvailable]];
         [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C5"   availableByte:C availableBit:5 incompleteByte:D incompleteBit:5]];
         [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C6"   availableByte:C availableBit:6 incompleteByte:D incompleteBit:6]];
         [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C7"   availableByte:C availableBit:7 incompleteByte:D incompleteBit:7]];
