@@ -75,6 +75,13 @@ typedef enum : NSUInteger {
 
 @end
 
+@interface LTOBD2PIDComponentMonitoring : LTOBD2PID
+
+@property(nonatomic,readonly) NSArray<LTOBD2MonitorResult*>* monitorResults;
+@property(nonatomic,readonly) LTIgnitionType ignitionType;
+
+@end
+
 @interface LTOBD2PID_OXYGEN_SENSORS_INFO_1 : LTOBD2PID
 
 +(instancetype)pid NS_UNAVAILABLE;
@@ -117,13 +124,10 @@ typedef enum : NSUInteger {
 
 @end
 
-@interface LTOBD2PID_MONITOR_STATUS_THIS_DRIVE_CYCLE_41 : LTOBD2PID
-
-@property(nonatomic,readonly) NSArray<LTOBD2MonitorResult*>* monitorResults;
-
+@interface LTOBD2PID_MONITOR_STATUS_THIS_DRIVE_CYCLE_41 : LTOBD2PIDComponentMonitoring
 @end
 
-@interface LTOBD2PID_MONITOR_STATUS_SINCE_DTC_CLEARED_01 : LTOBD2PID_MONITOR_STATUS_THIS_DRIVE_CYCLE_41
+@interface LTOBD2PID_MONITOR_STATUS_SINCE_DTC_CLEARED_01 : LTOBD2PIDComponentMonitoring
 
 +(instancetype)pidForFreezeFrame:(NSUInteger)freezeFrame NS_UNAVAILABLE;
 +(instancetype)pidForFreezeFrameDTC:(LTOBD2DTC *)freezeFrameDTC NS_UNAVAILABLE;

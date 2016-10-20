@@ -451,6 +451,83 @@
 
 @end
 
+@implementation LTOBD2PIDComponentMonitoring
+
+-(LTOBD2MonitorResult*)monitorResultForName:(NSString*)name availableByte:(int)availableByte availableBit:(int)availableBit incompleteByte:(int)incompleteByte incompleteBit:(int)incompleteBit
+{
+    OBD2MonitorTestResult testResult = OBD2MonitorTestNotAvailable;
+    if ( availableByte & 1 << availableBit )
+    {
+        testResult = (incompleteByte & 1 << incompleteBit) ? OBD2MonitorTestFailed : OBD2MonitorTestPassed;
+    }
+    return [LTOBD2MonitorResult resultWithTestName:name result:testResult];
+}
+
+-(NSArray<LTOBD2MonitorResult*>*)monitorResults
+{
+    NSArray<NSNumber*>* response = [self anyResponseWithMinimumLength:4];
+    
+    if ( !response )
+    {
+        return nil;
+    }
+    
+    NSMutableArray<LTOBD2MonitorResult*>* ma = [NSMutableArray array];
+    
+    uint B = response[1].unsignedIntValue;
+    uint C = response[2].unsignedIntValue;
+    uint D = response[3].unsignedIntValue;
+    
+    [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_GENERIC_B0"     availableByte:B availableBit:0 incompleteByte:B incompleteBit:4]];
+    [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_GENERIC_B1"     availableByte:B availableBit:1 incompleteByte:B incompleteBit:5]];
+    [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_GENERIC_B2"     availableByte:B availableBit:2 incompleteByte:B incompleteBit:6]];
+    
+    BOOL sparkIgnition = ! ( B & 1 << 3 );
+    
+    if ( sparkIgnition )
+    {
+        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_SPARK_C0"   availableByte:C availableBit:0 incompleteByte:D incompleteBit:0]];
+        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_SPARK_C1"   availableByte:C availableBit:1 incompleteByte:D incompleteBit:1]];
+        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_SPARK_C2"   availableByte:C availableBit:2 incompleteByte:D incompleteBit:2]];
+        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_SPARK_C3"   availableByte:C availableBit:3 incompleteByte:D incompleteBit:3]];
+        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_SPARK_C4"   availableByte:C availableBit:4 incompleteByte:D incompleteBit:4]];
+        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_SPARK_C5"   availableByte:C availableBit:5 incompleteByte:D incompleteBit:5]];
+        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_SPARK_C6"   availableByte:C availableBit:6 incompleteByte:D incompleteBit:6]];
+        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_SPARK_C7"   availableByte:C availableBit:7 incompleteByte:D incompleteBit:7]];
+    }
+    else
+    {
+        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C0"   availableByte:C availableBit:0 incompleteByte:D incompleteBit:0]];
+        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C1"   availableByte:C availableBit:1 incompleteByte:D incompleteBit:1]];
+        [ma addObject:[LTOBD2MonitorResult resultWithTestName:@"OBD2_NO_DATA" result:OBD2MonitorTestNotAvailable]];
+        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C3"   availableByte:C availableBit:3 incompleteByte:D incompleteBit:3]];
+        [ma addObject:[LTOBD2MonitorResult resultWithTestName:@"OBD2_NO_DATA" result:OBD2MonitorTestNotAvailable]];
+        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C5"   availableByte:C availableBit:5 incompleteByte:D incompleteBit:5]];
+        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C6"   availableByte:C availableBit:6 incompleteByte:D incompleteBit:6]];
+        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C7"   availableByte:C availableBit:7 incompleteByte:D incompleteBit:7]];
+    }
+    
+    return [NSArray arrayWithArray:ma];
+}
+
+-(LTIgnitionType)ignitionType
+{
+    NSArray<NSNumber*>* response = [self anyResponseWithMinimumLength:4];
+    
+    if ( !response )
+    {
+        return LTIgnitionTypeUnknown;
+    }
+    
+    uint B = response[1].unsignedIntValue;
+    BOOL sparkIgnition = ! ( B & 1 << 3 );
+    
+    return sparkIgnition ? LTIgnitionTypeSpark : LTIgnitionTypeCompression;
+}
+
+@end
+
+
 @implementation LTOBD2PID_OXYGEN_SENSORS_INFO_1
 {
     NSUInteger _sensor;
@@ -1255,64 +1332,6 @@
 @end
 
 @implementation LTOBD2PID_MONITOR_STATUS_THIS_DRIVE_CYCLE_41
-
--(LTOBD2MonitorResult*)monitorResultForName:(NSString*)name availableByte:(int)availableByte availableBit:(int)availableBit incompleteByte:(int)incompleteByte incompleteBit:(int)incompleteBit
-{
-    OBD2MonitorTestResult testResult = OBD2MonitorTestNotAvailable;
-    if ( availableByte & 1 << availableBit )
-    {
-        testResult = (incompleteByte & 1 << incompleteBit) ? OBD2MonitorTestFailed : OBD2MonitorTestPassed;
-    }
-    return [LTOBD2MonitorResult resultWithTestName:name result:testResult];
-}
-
--(NSArray<LTOBD2MonitorResult*>*)monitorResults
-{
-    NSArray<NSNumber*>* response = [self anyResponseWithMinimumLength:4];
-    
-    if ( !response )
-    {
-        return nil;
-    }
-    
-    NSMutableArray<LTOBD2MonitorResult*>* ma = [NSMutableArray array];
-    
-    uint B = response[1].unsignedIntValue;
-    uint C = response[2].unsignedIntValue;
-    uint D = response[3].unsignedIntValue;
-    
-    [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_GENERIC_B0"     availableByte:B availableBit:0 incompleteByte:B incompleteBit:4]];
-    [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_GENERIC_B1"     availableByte:B availableBit:1 incompleteByte:B incompleteBit:5]];
-    [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_GENERIC_B2"     availableByte:B availableBit:2 incompleteByte:B incompleteBit:6]];
-    
-    BOOL sparkIgnition = ! ( B & 1 << 3 );
-    
-    if ( sparkIgnition )
-    {
-        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_SPARK_C0"   availableByte:C availableBit:0 incompleteByte:D incompleteBit:0]];
-        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_SPARK_C1"   availableByte:C availableBit:1 incompleteByte:D incompleteBit:1]];
-        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_SPARK_C2"   availableByte:C availableBit:2 incompleteByte:D incompleteBit:2]];
-        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_SPARK_C3"   availableByte:C availableBit:3 incompleteByte:D incompleteBit:3]];
-        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_SPARK_C4"   availableByte:C availableBit:4 incompleteByte:D incompleteBit:4]];
-        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_SPARK_C5"   availableByte:C availableBit:5 incompleteByte:D incompleteBit:5]];
-        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_SPARK_C6"   availableByte:C availableBit:6 incompleteByte:D incompleteBit:6]];
-        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_SPARK_C7"   availableByte:C availableBit:7 incompleteByte:D incompleteBit:7]];
-    }
-    else
-    {
-        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C0"   availableByte:C availableBit:0 incompleteByte:D incompleteBit:0]];
-        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C1"   availableByte:C availableBit:1 incompleteByte:D incompleteBit:1]];
-        [ma addObject:[LTOBD2MonitorResult resultWithTestName:@"OBD2_NO_DATA" result:OBD2MonitorTestNotAvailable]];
-        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C3"   availableByte:C availableBit:3 incompleteByte:D incompleteBit:3]];
-        [ma addObject:[LTOBD2MonitorResult resultWithTestName:@"OBD2_NO_DATA" result:OBD2MonitorTestNotAvailable]];
-        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C5"   availableByte:C availableBit:5 incompleteByte:D incompleteBit:5]];
-        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C6"   availableByte:C availableBit:6 incompleteByte:D incompleteBit:6]];
-        [ma addObject:[self monitorResultForName:@"OBD2_MONITOR_COMPRESSION_C7"   availableByte:C availableBit:7 incompleteByte:D incompleteBit:7]];
-    }
-    
-    return [NSArray arrayWithArray:ma];
-}
-
 @end
 
 @implementation LTOBD2PID_CONTROL_MODULE_VOLTAGE_42
