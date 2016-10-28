@@ -60,7 +60,6 @@ static NSString* RESPONSE_FINAL_NODATA = @"NO DATA";
     {
         if ( ! [lines.firstObject isEqualToString:RESPONSE_FINAL_NODATA] )
         {
-            
             [_command didCookResponse:[protocol decode:lines originatingCommand:_command.commandString]];
         }
     }
@@ -376,31 +375,31 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
     switch ( protocol )
     {
         /* CAN w/ 11 byte headers, no checksum */
-        case OBD2VehicleProtocolCAN_11B_500K:
-        case OBD2VehicleProtocolCAN_11B_250K:
+        case OBD2VehicleProtocolCAN_11B_500K: /* P6 */
+        case OBD2VehicleProtocolCAN_11B_250K: /* P8 */
             implementation = [LTOBD2ProtocolISO15765_4 protocolVariantWith11BitHeaders];
             break;
 
         /* CAN w/ 29 bit headers, no checksum */
-        case OBD2VehicleProtocolCAN_29B_500K:
-        case OBD2VehicleProtocolCAN_29B_250K:
+        case OBD2VehicleProtocolCAN_29B_500K: /* P7 */
+        case OBD2VehicleProtocolCAN_29B_250K: /* P9 */
             implementation = [LTOBD2ProtocolISO15765_4 protocolVariantWith29BitHeaders];
             break;
             
         /* ISO 14230-4, no payload indicators, simple multiframing, checksum */
-        case OBD2VehicleProtocolKWP2000_FAST:
-        case OBD2VehicleProtocolKWP2000_5KBPS:
+        case OBD2VehicleProtocolKWP2000_FAST: /* P5 */
+        case OBD2VehicleProtocolKWP2000_5KBPS: /* P4 */
             implementation = [LTOBD2ProtocolISO14230_4 protocol];
             break;
             
         /* SAE J1850 (V)PWM */
-        case OBD2VehicleProtocolJ_1850PWM:
-        case OBD2VehicleProtocolJ_1850VPWM:
+        case OBD2VehicleProtocolJ_1850PWM:  /* P1 */
+        case OBD2VehicleProtocolJ_1850VPWM: /* P2 */
             implementation = [LTOBD2ProtocolSAEJ1850 protocol];
             break;
             
         /* ISO 9141-2 K-LINE*/
-        case OBD2VehicleProtocolISO_9141_2:
+        case OBD2VehicleProtocolISO_9141_2: /* P3 */
             implementation = [LTOBD2ProtocolISO9141_2 protocol];
             break;
 

@@ -4,6 +4,8 @@
 
 #import "LTOBD2Protocol.h"
 
+/* OBD2 Protocols P6, P7, P8, P9 */
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LTOBD2ProtocolISO15765_4 : LTOBD2Protocol

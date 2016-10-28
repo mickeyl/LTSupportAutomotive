@@ -4,6 +4,8 @@
 
 #import "LTOBD2ProtocolSAEJ1850.h"
 
+#import "LTSupportAutomotive.h"
+
 /*
  0100 single line response (PWM)
  41 6B 10 41 00 B8 7B 30 10 9E
@@ -23,20 +25,36 @@
 
 @implementation LTOBD2ProtocolSAEJ1850
 
--(NSDictionary<NSString*,NSArray<NSNumber*>*>*)decode:(NSArray<NSString*>*)lines originatingCommand:(NSString*)command
+-(NSDictionary<NSString*,LTOBD2ProtocolResult*>*)decode:(NSArray<NSString*>*)lines originatingCommand:(NSString*)command
 {
-    NSMutableDictionary<NSString*,NSMutableArray<NSNumber*>*>* md = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString*,LTOBD2ProtocolResult*>* md = [NSMutableDictionary dictionary];
     
     NSUInteger numberOfBytesInCommand = command.length / 2;
     
     for ( NSString* line in lines )
     {
         NSArray<NSNumber*>* bytesInLine = [self hexStringToArrayOfNumbers:line];
+        if ( bytesInLine.count < 3 )
+        {
+            LOG( @"Warning: Invalid or short line '%@' found", line );
+            continue;
+        }
         
         NSUInteger headerLength = 3; // format, target, source
         uint format = bytesInLine[0].unsignedIntValue;
         uint target = bytesInLine[1].unsignedIntValue;
         uint source = bytesInLine[2].unsignedIntValue;
+        
+        NSString* sourceKey = [NSString stringWithFormat:@"%02X", source];
+        LTOBD2ProtocolResult* resultForSource = md[sourceKey];
+        if ( !resultForSource )
+        {
+            md[sourceKey] = resultForSource = [self createProtocolResultForBytes:bytesInLine sidIndex:headerLength];
+        }
+        if ( resultForSource.failureType != OBD2FailureTypeInternalOK )
+        {
+            continue;
+        }
         
         NSString* headerPrefix = [NSString stringWithFormat:@"%02X %02X %02X", format, target, source];
         BOOL isMultiFrame = [self isMultiFrameWithPrefix:headerPrefix lines:lines]; // slow, should be cached?
@@ -46,11 +64,7 @@
         NSUInteger payloadLength = bytesInLine.count - payloadIndex - 1; // last byte is checksum
         NSRange payloadRange = NSMakeRange(payloadIndex, payloadLength);
         NSArray<NSNumber*>* payload = [bytesInLine subarrayWithRange:payloadRange];
-        
-        NSString* sourceString = [NSString stringWithFormat:@"%02X", source];
-        NSMutableArray<NSNumber*>* existingBytesForSource = [md objectForKey:sourceString] ?: [NSMutableArray array];
-        [existingBytesForSource addObjectsFromArray:payload];
-        [md setObject:existingBytesForSource forKey:sourceString];
+        [resultForSource appendPayloadBytes:payload];
     }
     
     return [NSDictionary dictionaryWithDictionary:md];

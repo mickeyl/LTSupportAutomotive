@@ -4,6 +4,8 @@
 
 #import <LTSupportAutomotive/LTSupportAutomotive.h>
 
+/* OBD2 Protocol P3 */
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LTOBD2ProtocolISO9141_2 : LTOBD2Protocol

@@ -130,14 +130,33 @@
     _completionTime = completionTime;
 }
 
--(void)didCookResponse:(NSDictionary<NSString *,NSArray<NSNumber *> *> *)cookedResponse
+-(void)didCookResponse:(NSDictionary<NSString*,LTOBD2ProtocolResult*>*)responseDictionary
 {
-    _cookedResponse = cookedResponse;
+    NSMutableDictionary<NSString*,NSArray<NSNumber*>*>* positiveResponses = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString*,NSNumber*>* negativeResponses = [NSMutableDictionary dictionary];
+    
+    [responseDictionary enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull source, LTOBD2ProtocolResult * _Nonnull result, BOOL * _Nonnull stop) {
+        
+        OBD2FailureType failureTypeForResult = result.failureType;
+        if ( failureTypeForResult == OBD2FailureTypeInternalOK )
+        {
+            positiveResponses[source] = result.payload;
+        }
+        else
+        {
+            negativeResponses[source] = @(failureTypeForResult);
+        }
+        
+    }];
+    
+    _cookedResponse = positiveResponses;
+    _failureResponse = negativeResponses;
 }
 
 -(void)invalidateResponse
 {
     _cookedResponse = nil;
+    _failureResponse = nil;
 }
 
 #pragma mark -

@@ -29,40 +29,46 @@
     return [LTOBD2Command commandWithString:@"3E"];
 }
 
--(NSDictionary<NSString*,NSArray<NSNumber*>*>*)decode:(NSArray<NSString*>*)lines originatingCommand:(NSString*)command
+-(NSDictionary<NSString*,LTOBD2ProtocolResult*>*)decode:(NSArray<NSString*>*)lines originatingCommand:(NSString*)command
 {
-    NSMutableDictionary<NSString*,NSMutableArray<NSNumber*>*>* md = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString*,LTOBD2ProtocolResult*>* md = [NSMutableDictionary dictionary];
     
     NSUInteger numberOfBytesInCommand = command.length / 2;
     
     for ( NSString* line in lines )
     {
         NSArray<NSNumber*>* bytesInLine = [self hexStringToArrayOfNumbers:line];
+        if ( bytesInLine.count < 3 )
+        {
+            LOG( @"Warning: Invalid or short line '%@' found", line );
+            continue;
+        }
         
         NSUInteger headerLength = 3; // format, target, source
         __unused uint format = bytesInLine[0].unsignedIntValue;
         __unused uint target = bytesInLine[1].unsignedIntValue;
         uint source = bytesInLine[2].unsignedIntValue;
         
-        //FIXME: I'm not sure whether the sid negative response has only been introduced in the successor to ISO9141-2 (14230-4 / KWP2000)
-        uint sid = bytesInLine[headerLength].unsignedIntValue;
-        if ( sid == 0x7F ) // pidmode & 0x40 is positive, 0x7F is negative response
+        NSString* sourceKey = [NSString stringWithFormat:@"%02X", source];
+        LTOBD2ProtocolResult* resultForSource = md[sourceKey];
+        if ( !resultForSource )
+        {
+            md[sourceKey] = resultForSource = [self createProtocolResultForBytes:bytesInLine sidIndex:headerLength];
+        }
+        if ( resultForSource.failureType != OBD2FailureTypeInternalOK )
         {
             continue;
         }
         
-        BOOL isMultiFrame = ( bytesInLine.count > 10 ); //FIXME: This can't be right all the time!
+        NSString* headerPrefix = [NSString stringWithFormat:@"%02X %02X %02X", format, target, source];
+        BOOL isMultiFrame = [self isMultiFrameWithPrefix:headerPrefix lines:lines]; // slow, should be cached?
         NSUInteger multiFrameCorrective = isMultiFrame ? 1 : 0;
         
         NSUInteger payloadIndex = headerLength + numberOfBytesInCommand + multiFrameCorrective;
         NSUInteger payloadLength = bytesInLine.count - payloadIndex - 1; // last byte is checksum
         NSRange payloadRange = NSMakeRange(payloadIndex, payloadLength);
         NSArray<NSNumber*>* payload = [bytesInLine subarrayWithRange:payloadRange];
-        
-        NSString* sourceString = [NSString stringWithFormat:@"%02X", source];
-        NSMutableArray<NSNumber*>* existingBytesForSource = [md objectForKey:sourceString] ?: [NSMutableArray array];
-        [existingBytesForSource addObjectsFromArray:payload];
-        [md setObject:existingBytesForSource forKey:sourceString];
+        [resultForSource appendPayloadBytes:payload];
     }
     
     return [NSDictionary dictionaryWithDictionary:md];

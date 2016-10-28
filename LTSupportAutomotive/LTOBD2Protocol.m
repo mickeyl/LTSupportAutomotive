@@ -4,6 +4,28 @@
 
 #import "LTOBD2Protocol.h"
 
+@implementation LTOBD2ProtocolResult
+{
+    NSMutableArray* _payload;
+}
+
++(instancetype)protocolResultFailureType:(OBD2FailureType)failureType
+{
+    LTOBD2ProtocolResult* obj = [[self alloc] init];
+    obj->_failureType = failureType;
+    obj->_payload = [NSMutableArray array];
+    return obj;
+}
+
+-(void)appendPayloadBytes:(NSArray<NSNumber*>*)bytes
+{
+    [_payload addObjectsFromArray:bytes];
+}
+
+@end
+
+
+
 @implementation LTOBD2Protocol
 
 +(instancetype)protocol
@@ -22,7 +44,7 @@
     return self;
 }
 
--(NSDictionary<NSString*,NSArray<NSNumber*>*>*)decode:(NSArray<NSString*>*)lines originatingCommand:(NSString*)command
+-(NSDictionary<NSString*,LTOBD2ProtocolResult*>*)decode:(NSArray<NSString*>*)lines originatingCommand:(NSString*)command
 {
     NSAssert( NO, @"please implement decode:originatingCommand: in your subclass" );
     return nil;
@@ -66,6 +88,23 @@
         }
     }];
     return [NSArray arrayWithArray:ma];
+}
+
+-(LTOBD2ProtocolResult*)createProtocolResultForBytes:(NSArray<NSNumber*>*)bytes sidIndex:(NSUInteger)sidIndex
+{
+    uint sid = bytes[sidIndex].unsignedIntValue;
+    if ( sid != OBD2FailureCode )
+    {
+        return [LTOBD2ProtocolResult protocolResultFailureType:OBD2FailureTypeInternalOK];
+    }
+    if ( sidIndex + 2 >= bytes.count )
+    {
+        return [LTOBD2ProtocolResult protocolResultFailureType:OBD2FailureTypeInternalUnknown];
+    }
+    __unused uint failedPid = bytes[sidIndex + 1].unsignedIntValue;
+    uint failureType = bytes[sidIndex + 2].unsignedIntValue;
+    
+    return [LTOBD2ProtocolResult protocolResultFailureType:failureType];
 }
 
 @end

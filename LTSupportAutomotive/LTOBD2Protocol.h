@@ -9,6 +9,9 @@
 static const NSUInteger OBD2FailureCode = 0x7F;
 
 typedef enum : NSUInteger {
+    OBD2FailureTypeInternalOK = 0x00, /* not defined by the standard */
+    OBD2FailureTypeInternalUnknown = 0x01, /* not defined by the standard */
+    
     OBD2FailureTypeGeneralReject = 0x10,
     OBD2FailureTypeServiceNotSupported = 0x11,
     OBD2FailureTypeSubfunctionNotSupportedOrInvalidFormat = 0x12,
@@ -44,6 +47,18 @@ typedef enum : NSUInteger {
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+@interface LTOBD2ProtocolResult : NSObject
+
++(instancetype)protocolResultFailureType:(OBD2FailureType)failureType;
+-(void)appendPayloadBytes:(NSArray<NSNumber*>*)bytes;
+
+@property(nonatomic,readonly) NSArray<NSNumber*>* payload;
+@property(nonatomic,readonly) OBD2FailureType failureType;
+
+@end
+
+
 @interface LTOBD2Protocol : NSObject
 
 +(instancetype)protocol;
@@ -53,9 +68,10 @@ NS_ASSUME_NONNULL_BEGIN
 // API for subclasses
 -(BOOL)isMultiFrameWithPrefix:(NSString*)prefix lines:(NSArray<NSString*>*)lines;
 -(NSArray<NSNumber*>*)hexStringToArrayOfNumbers:(NSString*)string;
+-(LTOBD2ProtocolResult*)createProtocolResultForBytes:(NSArray<NSNumber*>*)bytes sidIndex:(NSUInteger)sidIndex;
 
 // API to override in subclasses
--(NSDictionary<NSString*,NSArray<NSNumber*>*>*)decode:(NSArray<NSString*>*)lines originatingCommand:(NSString*)command;
+-(NSDictionary<NSString*,LTOBD2ProtocolResult*>*)decode:(NSArray<NSString*>*)lines originatingCommand:(NSString*)command;
 
 @end
 

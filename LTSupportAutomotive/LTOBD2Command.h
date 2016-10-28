@@ -6,6 +6,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class LTOBD2ProtocolResult;
+
 @interface LTOBD2Command : NSObject
 
 +(instancetype)commandWithRawString:(NSString*)rawString;
@@ -24,12 +26,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,readonly) NSString* commandString;
 @property(nonatomic,readonly) NSDictionary<NSString*,NSArray<NSNumber*>*>* cookedResponse;
+@property(nonatomic,readonly) NSDictionary<NSString*,NSNumber*>* failureResponse;
 @property(nonatomic,readonly,getter=gotAnswer) BOOL answer;
 @property(nonatomic,readonly,getter=gotValidAnswer) BOOL validAnswer;
 @property(nonatomic,readonly) NSString* formattedResponse;
 
 -(void)didCompleteResponse:(NSArray<NSString*>*)lines completionTime:(NSTimeInterval)completionTime;
--(void)didCookResponse:(NSDictionary<NSString*,NSArray<NSNumber*>*>*)cookedResponse;
+-(void)didCookResponse:(NSDictionary<NSString*,LTOBD2ProtocolResult*>*)responseDictionary;
 -(void)invalidateResponse;
 
 @end
