@@ -130,6 +130,11 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
     return self;
 }
 
+-(void)dealloc
+{
+    [self disconnect];
+}
+
 #pragma mark -
 #pragma mark API
 
@@ -201,10 +206,10 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
 {
     [_heartbeatTimer invalidate], _heartbeatTimer = nil;
     
-    [_inputStream close];
-    [_outputStream close];
+    [_inputStream close], _inputStream = nil;
+    [_outputStream close], _outputStream = nil;
     
-    [_logFile closeFile];
+    [_logFile closeFile], _logFile = nil;
 }
 
 #pragma mark -
