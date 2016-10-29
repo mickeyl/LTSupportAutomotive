@@ -262,8 +262,18 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
 
 -(void)cancelPendingCommands
 {
-    [_commandQueue removeAllObjects];
-    _hasPendingAnswer = NO;
+    // This cancels all but the first command in order to prevent sending a new command while
+    // the response to an active command is still pending. OBD2 adapters usually can't cope with
+    // that and emit a 'STOPPED' response in that case.
+    if ( _hasPendingAnswer )
+    {
+        NSRange allButTheFirst = NSMakeRange( 1, _commandQueue.count - 1 );
+        [_commandQueue removeObjectsInRange:allButTheFirst];
+    }
+    else
+    {
+        [_commandQueue removeAllObjects];
+    }
 }
 
 #pragma mark -
