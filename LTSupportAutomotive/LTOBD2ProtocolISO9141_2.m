@@ -4,7 +4,7 @@
 
 #import "LTOBD2ProtocolISO9141_2.h"
 
-#import "LTOBD2Command.h"
+#import "LTOBD2PID.h"
 
 /*
  0100 single frame answer
@@ -25,8 +25,8 @@
 
 -(LTOBD2Command*)heartbeatCommand
 {
-    // ISO-9141 has a timeout mechanism, we are supposed to send command 0x3E (Tester present) regularly in order to avoid this.
-    return [LTOBD2Command commandWithString:@"3E"];
+    // ISO9141 has a timeout mechanism, we are supposed to send command 0x3E (Tester present) regularly in order to avoid this.
+    return [LTOBD2PID_TESTER_PRESENT_3E pid];
 }
 
 -(NSDictionary<NSString*,LTOBD2ProtocolResult*>*)decode:(NSArray<NSString*>*)lines originatingCommand:(NSString*)command
