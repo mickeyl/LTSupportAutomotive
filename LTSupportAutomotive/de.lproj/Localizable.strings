@@ -1,16 +1,17 @@
 //
-//  Copyright (c) Dr. Michael Lauer Information Technology. All rights reserved.
+//  Copyright (c) Dr. Michael Lauer Information Technology. All rights reserviert.
 //
 
 //
 // GENERIC
 //
-"OBD2_NO_DATA" = "Keine Daten";
+"OBD2_NO_Daten" = "Keine Daten";
 "OBD2_ON" = "An";
 "OBD2_OFF" = "Aus";
 "OBD2_DTC" = "Fehler";
 "OBD2_SENSOR" = "Sensor";
 "OBD2_BANK" = "Bank";
+"OBD2_ASSEMBLY" = "Bauteil";
 
 //
 // COMMAND purposes
@@ -29,10 +30,10 @@
 "FUEL_TANK_LEVEL" = "Tankfüllstand";
 "AMBIENT_TEMP" = "Außentemperatur";
 "ABSOLUTE_BAROMETRIC_PRESSURE" = "Außendruck";
-"CATALYST_TEMP_B1S1" = "KAT-Temperatur an B1S1";
-"CATALYST_TEMP_B2S1" = "KAT-Temperatur an B2S1";
-"CATALYST_TEMP_B1S2" = "KAT-Temperatur an B1S2";
-"CATALYST_TEMP_B2S2" = "KAT-Temperatur an B2S2";
+"Katalysator_TEMP_B1S1" = "KAT-Temperatur an B1S1";
+"Katalysator_TEMP_B2S1" = "KAT-Temperatur an B2S1";
+"Katalysator_TEMP_B1S2" = "KAT-Temperatur an B1S2";
+"Katalysator_TEMP_B2S2" = "KAT-Temperatur an B2S2";
 "CONTROL_MODULE_VOLTAGE" = "Spannung";
 "THROTTLE" = "Drosselklappe";
 "RELATIVE_ACCELERATOR_PEDAL_POSITION" = "Gaspedal (relativ)";
@@ -141,32 +142,32 @@
 "ISO3780_WMI_COUNTRY_BC" = "Angola";
 "ISO3780_WMI_COUNTRY_BD" = "Angola";
 "ISO3780_WMI_COUNTRY_BE" = "Angola";
-"ISO3780_WMI_COUNTRY_BF" = "Kenya";
-"ISO3780_WMI_COUNTRY_BG" = "Kenya";
-"ISO3780_WMI_COUNTRY_BH" = "Kenya";
-"ISO3780_WMI_COUNTRY_BJ" = "Kenya";
-"ISO3780_WMI_COUNTRY_BK" = "Kenya";
-"ISO3780_WMI_COUNTRY_BL" = "Tanzanien";
-"ISO3780_WMI_COUNTRY_BM" = "Tanzanien";
-"ISO3780_WMI_COUNTRY_BN" = "Tanzanien";
-"ISO3780_WMI_COUNTRY_BP" = "Tanzanien";
-"ISO3780_WMI_COUNTRY_BR" = "Tanzanien";
+"ISO3780_WMI_COUNTRY_BF" = "Kenia";
+"ISO3780_WMI_COUNTRY_BG" = "Kenia";
+"ISO3780_WMI_COUNTRY_BH" = "Kenia";
+"ISO3780_WMI_COUNTRY_BJ" = "Kenia";
+"ISO3780_WMI_COUNTRY_BK" = "Kenia";
+"ISO3780_WMI_COUNTRY_BL" = "Tanzania";
+"ISO3780_WMI_COUNTRY_BM" = "Tanzania";
+"ISO3780_WMI_COUNTRY_BN" = "Tanzania";
+"ISO3780_WMI_COUNTRY_BP" = "Tanzania";
+"ISO3780_WMI_COUNTRY_BR" = "Tanzania";
 
 "ISO3780_WMI_COUNTRY_CA" = "Benin";
 "ISO3780_WMI_COUNTRY_CB" = "Benin";
 "ISO3780_WMI_COUNTRY_CC" = "Benin";
 "ISO3780_WMI_COUNTRY_CD" = "Benin";
 "ISO3780_WMI_COUNTRY_CE" = "Benin";
-"ISO3780_WMI_COUNTRY_CF" = "Madagascar";
-"ISO3780_WMI_COUNTRY_CG" = "Madagascar";
-"ISO3780_WMI_COUNTRY_CH" = "Madagascar";
-"ISO3780_WMI_COUNTRY_CJ" = "Madagascar";
-"ISO3780_WMI_COUNTRY_CK" = "Madagascar";
-"ISO3780_WMI_COUNTRY_CL" = "Tunisien";
-"ISO3780_WMI_COUNTRY_CM" = "Tunisien";
-"ISO3780_WMI_COUNTRY_CN" = "Tunisien";
-"ISO3780_WMI_COUNTRY_CP" = "Tunisien";
-"ISO3780_WMI_COUNTRY_CR" = "Tunisien";
+"ISO3780_WMI_COUNTRY_CF" = "Madagaskar";
+"ISO3780_WMI_COUNTRY_CG" = "Madagaskar";
+"ISO3780_WMI_COUNTRY_CH" = "Madagaskar";
+"ISO3780_WMI_COUNTRY_CJ" = "Madagaskar";
+"ISO3780_WMI_COUNTRY_CK" = "Madagaskar";
+"ISO3780_WMI_COUNTRY_CL" = "Tunesien";
+"ISO3780_WMI_COUNTRY_CM" = "Tunesien";
+"ISO3780_WMI_COUNTRY_CN" = "Tunesien";
+"ISO3780_WMI_COUNTRY_CP" = "Tunesien";
+"ISO3780_WMI_COUNTRY_CR" = "Tunesien";
 
 "ISO3780_WMI_COUNTRY_DA" = "Ägypten";
 "ISO3780_WMI_COUNTRY_DB" = "Ägypten";
@@ -184,11 +185,11 @@
 "ISO3780_WMI_COUNTRY_DP" = "Zambien";
 "ISO3780_WMI_COUNTRY_DR" = "Zambien";
 
-"ISO3780_WMI_COUNTRY_EA" = "Ethiopien";
-"ISO3780_WMI_COUNTRY_EB" = "Ethiopien";
-"ISO3780_WMI_COUNTRY_EC" = "Ethiopien";
-"ISO3780_WMI_COUNTRY_ED" = "Ethiopien";
-"ISO3780_WMI_COUNTRY_EE" = "Ethiopien";
+"ISO3780_WMI_COUNTRY_EA" = "Äthiopien";
+"ISO3780_WMI_COUNTRY_EB" = "Äthiopien";
+"ISO3780_WMI_COUNTRY_EC" = "Äthiopien";
+"ISO3780_WMI_COUNTRY_ED" = "Äthiopien";
+"ISO3780_WMI_COUNTRY_EE" = "Äthiopien";
 "ISO3780_WMI_COUNTRY_EF" = "Mozambique";
 "ISO3780_WMI_COUNTRY_EG" = "Mozambique";
 "ISO3780_WMI_COUNTRY_EH" = "Mozambique";
@@ -200,11 +201,11 @@
 "ISO3780_WMI_COUNTRY_FC" = "Ghana";
 "ISO3780_WMI_COUNTRY_FD" = "Ghana";
 "ISO3780_WMI_COUNTRY_FE" = "Ghana";
-"ISO3780_WMI_COUNTRY_FF" = "Nigerien";
-"ISO3780_WMI_COUNTRY_FG" = "Nigerien";
-"ISO3780_WMI_COUNTRY_FH" = "Nigerien";
-"ISO3780_WMI_COUNTRY_FJ" = "Nigerien";
-"ISO3780_WMI_COUNTRY_FK" = "Nigerien";
+"ISO3780_WMI_COUNTRY_FF" = "Nigeria";
+"ISO3780_WMI_COUNTRY_FG" = "Nigeria";
+"ISO3780_WMI_COUNTRY_FH" = "Nigeria";
+"ISO3780_WMI_COUNTRY_FJ" = "Nigeria";
+"ISO3780_WMI_COUNTRY_FK" = "Nigeria";
 
 "ISO3780_WMI_COUNTRY_J" = "Japan";
 
@@ -277,21 +278,21 @@
 "ISO3780_WMI_COUNTRY_NP" = "Turkey";
 "ISO3780_WMI_COUNTRY_NR" = "Turkey";
 
-"ISO3780_WMI_COUNTRY_PA" = "Philippines";
-"ISO3780_WMI_COUNTRY_PB" = "Philippines";
-"ISO3780_WMI_COUNTRY_PC" = "Philippines";
-"ISO3780_WMI_COUNTRY_PD" = "Philippines";
-"ISO3780_WMI_COUNTRY_PE" = "Philippines";
-"ISO3780_WMI_COUNTRY_PF" = "Singapore";
-"ISO3780_WMI_COUNTRY_PG" = "Singapore";
-"ISO3780_WMI_COUNTRY_PH" = "Singapore";
-"ISO3780_WMI_COUNTRY_PJ" = "Singapore";
-"ISO3780_WMI_COUNTRY_PK" = "Singapore";
-"ISO3780_WMI_COUNTRY_PL" = "Malaysien";
-"ISO3780_WMI_COUNTRY_PM" = "Malaysien";
-"ISO3780_WMI_COUNTRY_PN" = "Malaysien";
-"ISO3780_WMI_COUNTRY_PP" = "Malaysien";
-"ISO3780_WMI_COUNTRY_PR" = "Malaysien";
+"ISO3780_WMI_COUNTRY_PA" = "Philippinen";
+"ISO3780_WMI_COUNTRY_PB" = "Philippinen";
+"ISO3780_WMI_COUNTRY_PC" = "Philippinen";
+"ISO3780_WMI_COUNTRY_PD" = "Philippinen";
+"ISO3780_WMI_COUNTRY_PE" = "Philippinen";
+"ISO3780_WMI_COUNTRY_PF" = "Singapur";
+"ISO3780_WMI_COUNTRY_PG" = "Singapur";
+"ISO3780_WMI_COUNTRY_PH" = "Singapur";
+"ISO3780_WMI_COUNTRY_PJ" = "Singapur";
+"ISO3780_WMI_COUNTRY_PK" = "Singapur";
+"ISO3780_WMI_COUNTRY_PL" = "Malaysia";
+"ISO3780_WMI_COUNTRY_PM" = "Malaysia";
+"ISO3780_WMI_COUNTRY_PN" = "Malaysia";
+"ISO3780_WMI_COUNTRY_PP" = "Malaysia";
+"ISO3780_WMI_COUNTRY_PR" = "Malaysia";
 
 "ISO3780_WMI_COUNTRY_KA" = "Sri Lanka";
 "ISO3780_WMI_COUNTRY_KB" = "Sri Lanka";
@@ -449,19 +450,19 @@
 "ISO3780_WMI_COUNTRY_VN" = "Frankreich";
 "ISO3780_WMI_COUNTRY_VP" = "Frankreich";
 "ISO3780_WMI_COUNTRY_VR" = "Frankreich";
-"ISO3780_WMI_COUNTRY_VS" = "Spain";
-"ISO3780_WMI_COUNTRY_VT" = "Spain";
-"ISO3780_WMI_COUNTRY_VU" = "Spain";
-"ISO3780_WMI_COUNTRY_VV" = "Spain";
-"ISO3780_WMI_COUNTRY_VW" = "Spain";
+"ISO3780_WMI_COUNTRY_VS" = "Spanien";
+"ISO3780_WMI_COUNTRY_VT" = "Spanien";
+"ISO3780_WMI_COUNTRY_VU" = "Spanien";
+"ISO3780_WMI_COUNTRY_VV" = "Spanien";
+"ISO3780_WMI_COUNTRY_VW" = "Spanien";
 "ISO3780_WMI_COUNTRY_VX" = "Serbien";
 "ISO3780_WMI_COUNTRY_VY" = "Serbien";
 "ISO3780_WMI_COUNTRY_VZ" = "Serbien";
 "ISO3780_WMI_COUNTRY_V1" = "Serbien";
 "ISO3780_WMI_COUNTRY_V2" = "Serbien";
-"ISO3780_WMI_COUNTRY_V3" = "Croatien";
-"ISO3780_WMI_COUNTRY_V4" = "Croatien";
-"ISO3780_WMI_COUNTRY_V5" = "Croatien";
+"ISO3780_WMI_COUNTRY_V3" = "Kroatien";
+"ISO3780_WMI_COUNTRY_V4" = "Kroatien";
+"ISO3780_WMI_COUNTRY_V5" = "Kroatien";
 "ISO3780_WMI_COUNTRY_V6" = "Estonien";
 "ISO3780_WMI_COUNTRY_V7" = "Estonien";
 "ISO3780_WMI_COUNTRY_V8" = "Estonien";
@@ -850,6 +851,7 @@
 "ISO3780_WMI_MANUFACTURER_3VW" = "Volkswagen";
 
 "ISO3780_WMI_MANUFACTURER_4F" = "Mazda";
+"ISO3780_WMI_MANUFACTURER_4G" = "General Motors";
 "ISO3780_WMI_MANUFACTURER_4J" = "Mercedes-Benz";
 "ISO3780_WMI_MANUFACTURER_4M" = "Mercury";
 "ISO3780_WMI_MANUFACTURER_4S3" = "Subaru";
@@ -858,6 +860,7 @@
 "ISO3780_WMI_MANUFACTURER_4T" = "Toyota";
 "ISO3780_WMI_MANUFACTURER_4US" = "BMW US";
 
+"ISO3780_WMI_MANUFACTURER_5G" = "General Motors";
 "ISO3780_WMI_MANUFACTURER_5FN" = "Honda";
 "ISO3780_WMI_MANUFACTURER_5J6" = "Honda";
 "ISO3780_WMI_MANUFACTURER_5L" = "Lincoln";
@@ -902,9 +905,9 @@
 "OBD2_MONITOR_SPARK_C7" = "Abgasrückführung";
 "OBD2_MONITOR_COMPRESSION_C0" = "NMHC-Katalysator";
 "OBD2_MONITOR_COMPRESSION_C1" = "NOx/SCR-Monitor";
-"OBD2_MONITOR_COMPRESSION_C3" = "Boost Pressure";
-"OBD2_MONITOR_COMPRESSION_C5" = "Exhaust Gas Sensor";
-"OBD2_MONITOR_COMPRESSION_C6" = "PM filter monitoring";
+"OBD2_MONITOR_COMPRESSION_C3" = "Ladedruck";
+"OBD2_MONITOR_COMPRESSION_C5" = "Abgassensor";
+"OBD2_MONITOR_COMPRESSION_C6" = "PM Filter Monitor";
 "OBD2_MONITOR_COMPRESSION_C7" = "EGR und/oder VVT System";
 
 "OBD2_MONITOR_RESULT_UNAVAILABLE" = "Nicht verfügbar";
@@ -912,7 +915,7 @@
 "OBD2_MONITOR_RESULT_FAILED" = "Fehlgeschlagen";
 
 //
-// OBD2 PID 0103 FUEL SYSTEM STATUS
+// OBD2 PID 0103 Kraftstoffsystem STATUS
 //
 "OBD2_FUEL_SYSTEM_STATUS_01" = "Offen, Motor noch in Aufwärmphase";
 "OBD2_FUEL_SYSTEM_STATUS_02" = "Geschlossen, Lambdasonde bestimmt Kraftstoffzusammensetzung";
@@ -921,7 +924,7 @@
 "OBD2_FUEL_SYSTEM_STATUS_10" = "Geschlossen, benutzt mindestens einen O2-Sensor, aber Fehler vom Feedback-System";
 
 //
-// OBD2 PID 0112 COMMANDED SECONDARY AIR STATUS
+// OBD2 PID 0112 COMMANDED Sekundärluft STATUS
 //
 "OBD2_SECONDARY_AIR_STATUS_01" = "Vor dem Katalysator";
 "OBD2_SECONDARY_AIR_STATUS_02" = "Hinter dem Katalysator";
@@ -987,44 +990,314 @@
 "OBD2_FUEL_TYPE_16" = "Hybrid Regenerativ";
 
 //
+// OBD2 PID 06xx STANDARDIZED TEST IDs
+//
+"OBD2_TID_TYPE_VENDOR" = "Herstellerspezifisch TID 0x%02X";
+"OBD2_TID_TYPE_01" = "Fett nach Mager Sensorschwellspannung";
+"OBD2_TID_TYPE_02" = "Mager nach Fett Sensorschwellspannung";
+"OBD2_TID_TYPE_03" = "Niedrigsensorspannung für Berechnung Schaltzeit";
+"OBD2_TID_TYPE_04" = "Hochsensorspannung für Berechnung Schaltzeit";
+"OBD2_TID_TYPE_05" = "Fett nach Mager Sensorschaltzeit";
+"OBD2_TID_TYPE_06" = "Mager nach Fett Sensorschaltzeit";
+"OBD2_TID_TYPE_07" = "Minimum Sensorspannung für Testzyklus";
+"OBD2_TID_TYPE_08" = "Maximum Sensorspannung für Testzyklus";
+"OBD2_TID_TYPE_09" = "Zeit zwischen Sensortransitionen";
+"OBD2_TID_TYPE_0A" = "Sensorperiode";
+"OBD2_TID_TYPE_0B" = "Mittelwert Fehlzündungen früherer Zyklen";
+"OBD2_TID_TYPE_0C" = "Fehlzündungen für Testzyklus";
+
+//
+// OBD2 PID 06xx STANDARDIZED MONITOR IDs (CAN)
+//
+"OBD2_MID_TYPE_01" = "Abgassensor Bank 1 – Sensor 1";
+"OBD2_MID_TYPE_02" = "Abgassensor Bank 1 – Sensor 2";
+"OBD2_MID_TYPE_03" = "Abgassensor Bank 1 – Sensor 3";
+"OBD2_MID_TYPE_04" = "Abgassensor Bank 1 – Sensor 4";
+"OBD2_MID_TYPE_05" = "Abgassensor Bank 2 – Sensor 1";
+"OBD2_MID_TYPE_06" = "Abgassensor Bank 2 – Sensor 2";
+"OBD2_MID_TYPE_07" = "Abgassensor Bank 2 – Sensor 3";
+"OBD2_MID_TYPE_08" = "Abgassensor Bank 2 – Sensor 4";
+"OBD2_MID_TYPE_09" = "Abgassensor Bank 3 – Sensor 1";
+"OBD2_MID_TYPE_0A" = "Abgassensor Bank 3 – Sensor 2";
+"OBD2_MID_TYPE_0B" = "Abgassensor Bank 3 – Sensor 3";
+"OBD2_MID_TYPE_0C" = "Abgassensor Bank 3 – Sensor 4";
+"OBD2_MID_TYPE_0D" = "Abgassensor Bank 4 – Sensor 1";
+"OBD2_MID_TYPE_0E" = "Abgassensor Bank 4 – Sensor 2";
+"OBD2_MID_TYPE_0F" = "Abgassensor Bank 4 – Sensor 3";
+"OBD2_MID_TYPE_10" = "Abgassensor Bank 4 – Sensor 4";
+"OBD2_MID_TYPE_11" = "Abgassensor Bank 1 – Sensor 5";
+"OBD2_MID_TYPE_12" = "Abgassensor Bank 2 – Sensor 5";
+"OBD2_MID_TYPE_13" = "ISO/SAE reserviert 13";
+"OBD2_MID_TYPE_14" = "ISO/SAE reserviert 14";
+"OBD2_MID_TYPE_15" = "ISO/SAE reserviert 15";
+"OBD2_MID_TYPE_16" = "ISO/SAE reserviert 16";
+"OBD2_MID_TYPE_17" = "ISO/SAE reserviert 17";
+"OBD2_MID_TYPE_18" = "ISO/SAE reserviert 18";
+"OBD2_MID_TYPE_19" = "ISO/SAE reserviert 19";
+"OBD2_MID_TYPE_1A" = "ISO/SAE reserviert 1A";
+"OBD2_MID_TYPE_1B" = "ISO/SAE reserviert 1B";
+"OBD2_MID_TYPE_1C" = "ISO/SAE reserviert 1C";
+"OBD2_MID_TYPE_1D" = "ISO/SAE reserviert 1D";
+"OBD2_MID_TYPE_1E" = "ISO/SAE reserviert 1E";
+"OBD2_MID_TYPE_1F" = "ISO/SAE reserviert 1F";
+"OBD2_MID_TYPE_21" = "Katalysator Bank 1";
+"OBD2_MID_TYPE_22" = "Katalysator Bank 2";
+"OBD2_MID_TYPE_23" = "Katalysator Bank 3";
+"OBD2_MID_TYPE_24" = "Katalysator Bank 4";
+"OBD2_MID_TYPE_25" = "ISO/SAE reserviert 25";
+"OBD2_MID_TYPE_26" = "ISO/SAE reserviert 26";
+"OBD2_MID_TYPE_27" = "ISO/SAE reserviert 27";
+"OBD2_MID_TYPE_28" = "ISO/SAE reserviert 28";
+"OBD2_MID_TYPE_29" = "ISO/SAE reserviert 29";
+"OBD2_MID_TYPE_2A" = "ISO/SAE reserviert 2A";
+"OBD2_MID_TYPE_2B" = "ISO/SAE reserviert 2B";
+"OBD2_MID_TYPE_2C" = "ISO/SAE reserviert 2C";
+"OBD2_MID_TYPE_2D" = "ISO/SAE reserviert 2D";
+"OBD2_MID_TYPE_2E" = "ISO/SAE reserviert 2E";
+"OBD2_MID_TYPE_2F" = "ISO/SAE reserviert 2F";
+"OBD2_MID_TYPE_30" = "ISO/SAE reserviert 30";
+"OBD2_MID_TYPE_31" = "EGR Bank 1";
+"OBD2_MID_TYPE_32" = "EGR Bank 2";
+"OBD2_MID_TYPE_33" = "EGR Bank 3";
+"OBD2_MID_TYPE_34" = "EGR Bank 4";
+"OBD2_MID_TYPE_35" = "VVT Bank 1";
+"OBD2_MID_TYPE_36" = "VVT Bank 2";
+"OBD2_MID_TYPE_37" = "VVT Bank 3";
+"OBD2_MID_TYPE_38" = "VVT Bank 4";
+"OBD2_MID_TYPE_39" = "EVAP (Cap Off / 0.150”)";
+"OBD2_MID_TYPE_3A" = "EVAP (0.090“)";
+"OBD2_MID_TYPE_3B" = "EVAP (0.040”)";
+"OBD2_MID_TYPE_3C" = "EVAP (0.020“)";
+"OBD2_MID_TYPE_3D" = "Purge Flow";
+"OBD2_MID_TYPE_3E" = "ISO/SAE reserviert 3E";
+"OBD2_MID_TYPE_3F" = "ISO/SAE reserviert 3F";
+"OBD2_MID_TYPE_41" = "Abgassensor Heizung Bank 1 – Sensor 1";
+"OBD2_MID_TYPE_42" = "Abgassensor Heizung Bank 1 – Sensor 2";
+"OBD2_MID_TYPE_43" = "Abgassensor Heizung Bank 1 – Sensor 3";
+"OBD2_MID_TYPE_44" = "Abgassensor Heizung Bank 1 – Sensor 4";
+"OBD2_MID_TYPE_45" = "Abgassensor Heizung Bank 2 – Sensor 1";
+"OBD2_MID_TYPE_46" = "Abgassensor Heizung Bank 2 – Sensor 2";
+"OBD2_MID_TYPE_47" = "Abgassensor Heizung Bank 2 – Sensor 3";
+"OBD2_MID_TYPE_48" = "Abgassensor Heizung Bank 2 – Sensor 4";
+"OBD2_MID_TYPE_49" = "Abgassensor Heizung Bank 3 – Sensor 1";
+"OBD2_MID_TYPE_4A" = "Abgassensor Heizung Bank 3 – Sensor 2";
+"OBD2_MID_TYPE_4B" = "Abgassensor Heizung Bank 3 – Sensor 3";
+"OBD2_MID_TYPE_4C" = "Abgassensor Heizung Bank 3 – Sensor 4";
+"OBD2_MID_TYPE_4D" = "Abgassensor Heizung Bank 4 – Sensor 1";
+"OBD2_MID_TYPE_4E" = "Abgassensor Heizung Bank 4 – Sensor 2";
+"OBD2_MID_TYPE_4F" = "Abgassensor Heizung Bank 4 – Sensor 3";
+"OBD2_MID_TYPE_50" = "Abgassensor Heizung Bank 4 – Sensor 4";
+"OBD2_MID_TYPE_51" = "Abgassensor Heizung Bank 1 – Sensor 5";
+"OBD2_MID_TYPE_52" = "Abgassensor Heizung Bank 2 – Sensor 5";
+"OBD2_MID_TYPE_53" = "ISO/SAE reserviert 53";
+"OBD2_MID_TYPE_54" = "ISO/SAE reserviert 54";
+"OBD2_MID_TYPE_55" = "ISO/SAE reserviert 55";
+"OBD2_MID_TYPE_56" = "ISO/SAE reserviert 56";
+"OBD2_MID_TYPE_57" = "ISO/SAE reserviert 57";
+"OBD2_MID_TYPE_58" = "ISO/SAE reserviert 58";
+"OBD2_MID_TYPE_59" = "ISO/SAE reserviert 59";
+"OBD2_MID_TYPE_5A" = "ISO/SAE reserviert 5A";
+"OBD2_MID_TYPE_5B" = "ISO/SAE reserviert 5B";
+"OBD2_MID_TYPE_5C" = "ISO/SAE reserviert 5C";
+"OBD2_MID_TYPE_5D" = "ISO/SAE reserviert 5D";
+"OBD2_MID_TYPE_5E" = "ISO/SAE reserviert 5E";
+"OBD2_MID_TYPE_5F" = "ISO/SAE reserviert 5F";
+"OBD2_MID_TYPE_61" = "Beheizter Katalysator Bank 1";
+"OBD2_MID_TYPE_62" = "Beheizter Katalysator Bank 2";
+"OBD2_MID_TYPE_63" = "Beheizter Katalysator Bank 3";
+"OBD2_MID_TYPE_64" = "Beheizter Katalysator Bank 4";
+"OBD2_MID_TYPE_65" = "ISO/SAE reserviert 65";
+"OBD2_MID_TYPE_66" = "ISO/SAE reserviert 66";
+"OBD2_MID_TYPE_67" = "ISO/SAE reserviert 67";
+"OBD2_MID_TYPE_68" = "ISO/SAE reserviert 68";
+"OBD2_MID_TYPE_69" = "ISO/SAE reserviert 69";
+"OBD2_MID_TYPE_6A" = "ISO/SAE reserviert 6A";
+"OBD2_MID_TYPE_6B" = "ISO/SAE reserviert 6B";
+"OBD2_MID_TYPE_6C" = "ISO/SAE reserviert 6C";
+"OBD2_MID_TYPE_6D" = "ISO/SAE reserviert 6D";
+"OBD2_MID_TYPE_6E" = "ISO/SAE reserviert 6E";
+"OBD2_MID_TYPE_6F" = "ISO/SAE reserviert 6F";
+"OBD2_MID_TYPE_70" = "ISO/SAE reserviert 70";
+"OBD2_MID_TYPE_71" = "Sekundärluft Sensor 1";
+"OBD2_MID_TYPE_72" = "Sekundärluft Sensor 2";
+"OBD2_MID_TYPE_73" = "Sekundärluft Sensor 3";
+"OBD2_MID_TYPE_74" = "Sekundärluft Sensor 4";
+"OBD2_MID_TYPE_75" = "ISO/SAE reserviert 75";
+"OBD2_MID_TYPE_76" = "ISO/SAE reserviert 76";
+"OBD2_MID_TYPE_77" = "ISO/SAE reserviert 77";
+"OBD2_MID_TYPE_78" = "ISO/SAE reserviert 78";
+"OBD2_MID_TYPE_79" = "ISO/SAE reserviert 79";
+"OBD2_MID_TYPE_7A" = "ISO/SAE reserviert 7A";
+"OBD2_MID_TYPE_7B" = "ISO/SAE reserviert 7B";
+"OBD2_MID_TYPE_7C" = "ISO/SAE reserviert 7C";
+"OBD2_MID_TYPE_7D" = "ISO/SAE reserviert 7D";
+"OBD2_MID_TYPE_7E" = "ISO/SAE reserviert 7E";
+"OBD2_MID_TYPE_7F" = "ISO/SAE reserviert 7F";
+"OBD2_MID_TYPE_81" = "Kraftstoffsystem Bank 1";
+"OBD2_MID_TYPE_82" = "Kraftstoffsystem Bank 2";
+"OBD2_MID_TYPE_83" = "Kraftstoffsystem Bank 3";
+"OBD2_MID_TYPE_84" = "Kraftstoffsystem Bank 4";
+"OBD2_MID_TYPE_85" = "Ladedruckkontrolle Bank 1";
+"OBD2_MID_TYPE_86" = "Ladedruckkontrolle Bank 2";
+"OBD2_MID_TYPE_87" = "ISO/SAE reserviert 87";
+"OBD2_MID_TYPE_88" = "ISO/SAE reserviert 88";
+"OBD2_MID_TYPE_89" = "ISO/SAE reserviert 89";
+"OBD2_MID_TYPE_8A" = "ISO/SAE reserviert 8A";
+"OBD2_MID_TYPE_8B" = "ISO/SAE reserviert 8B";
+"OBD2_MID_TYPE_8C" = "ISO/SAE reserviert 8C";
+"OBD2_MID_TYPE_8D" = "ISO/SAE reserviert 8D";
+"OBD2_MID_TYPE_8E" = "ISO/SAE reserviert 8E";
+"OBD2_MID_TYPE_8F" = "ISO/SAE reserviert 8F";
+"OBD2_MID_TYPE_90" = "NOx Adsorber Bank 1";
+"OBD2_MID_TYPE_91" = "NOx Adsorber Bank 2";
+"OBD2_MID_TYPE_92" = "ISO/SAE reserviert 92";
+"OBD2_MID_TYPE_93" = "ISO/SAE reserviert 93";
+"OBD2_MID_TYPE_94" = "ISO/SAE reserviert 94";
+"OBD2_MID_TYPE_95" = "ISO/SAE reserviert 95";
+"OBD2_MID_TYPE_96" = "ISO/SAE reserviert 96";
+"OBD2_MID_TYPE_97" = "ISO/SAE reserviert 97";
+"OBD2_MID_TYPE_98" = "NOx/SCR Katalysator Bank 1";
+"OBD2_MID_TYPE_99" = "NOx/SCR Katalysator Bank 2";
+"OBD2_MID_TYPE_9A" = "ISO/SAE reserviert 9A";
+"OBD2_MID_TYPE_9B" = "ISO/SAE reserviert 9B";
+"OBD2_MID_TYPE_9C" = "ISO/SAE reserviert 9C";
+"OBD2_MID_TYPE_9D" = "ISO/SAE reserviert 9D";
+"OBD2_MID_TYPE_9E" = "ISO/SAE reserviert 9E";
+"OBD2_MID_TYPE_9F" = "ISO/SAE reserviert 9F";
+"OBD2_MID_TYPE_A1" = "Fehlzündung Allgemein";
+"OBD2_MID_TYPE_A2" = "Fehlzündung Zylinder 1 Daten";
+"OBD2_MID_TYPE_A3" = "Fehlzündung Zylinder 2 Daten";
+"OBD2_MID_TYPE_A4" = "Fehlzündung Zylinder 3 Daten";
+"OBD2_MID_TYPE_A5" = "Fehlzündung Zylinder 4 Daten";
+"OBD2_MID_TYPE_A6" = "Fehlzündung Zylinder 5 Daten";
+"OBD2_MID_TYPE_A7" = "Fehlzündung Zylinder 6 Daten";
+"OBD2_MID_TYPE_A8" = "Fehlzündung Zylinder 7 Daten";
+"OBD2_MID_TYPE_A9" = "Fehlzündung Zylinder 8 Daten";
+"OBD2_MID_TYPE_AA" = "Fehlzündung Zylinder 9 Daten";
+"OBD2_MID_TYPE_AB" = "Fehlzündung Zylinder 10 Daten";
+"OBD2_MID_TYPE_AC" = "Fehlzündung Zylinder 11 Daten";
+"OBD2_MID_TYPE_AD" = "Fehlzündung Zylinder 12 Daten";
+"OBD2_MID_TYPE_AE" = "Fehlzündung Zylinder 13 Daten";
+"OBD2_MID_TYPE_AF" = "Fehlzündung Zylinder 14 Daten";
+"OBD2_MID_TYPE_B0" = "Fehlzündung Zylinder 15 Daten";
+"OBD2_MID_TYPE_B1" = "Fehlzündung Zylinder 16 Daten";
+"OBD2_MID_TYPE_B2" = "PM Filter Bank 1";
+"OBD2_MID_TYPE_B3" = "PM Filter Bank 2";
+"OBD2_MID_TYPE_B4" = "ISO/SAE reserviert B4";
+"OBD2_MID_TYPE_B5" = "ISO/SAE reserviert B5";
+"OBD2_MID_TYPE_B6" = "ISO/SAE reserviert B6";
+"OBD2_MID_TYPE_B7" = "ISO/SAE reserviert B7";
+"OBD2_MID_TYPE_B8" = "ISO/SAE reserviert B8";
+"OBD2_MID_TYPE_B9" = "ISO/SAE reserviert B9";
+"OBD2_MID_TYPE_BA" = "ISO/SAE reserviert BA";
+"OBD2_MID_TYPE_BB" = "ISO/SAE reserviert BB";
+"OBD2_MID_TYPE_BC" = "ISO/SAE reserviert BC";
+"OBD2_MID_TYPE_BD" = "ISO/SAE reserviert BD";
+"OBD2_MID_TYPE_BE" = "ISO/SAE reserviert BE";
+"OBD2_MID_TYPE_BF" = "ISO/SAE reserviert BF";
+"OBD2_MID_TYPE_C1" = "ISO/SAE reserviert C1";
+"OBD2_MID_TYPE_C2" = "ISO/SAE reserviert C2";
+"OBD2_MID_TYPE_C3" = "ISO/SAE reserviert C3";
+"OBD2_MID_TYPE_C4" = "ISO/SAE reserviert C4";
+"OBD2_MID_TYPE_C5" = "ISO/SAE reserviert C5";
+"OBD2_MID_TYPE_C6" = "ISO/SAE reserviert C6";
+"OBD2_MID_TYPE_C7" = "ISO/SAE reserviert C7";
+"OBD2_MID_TYPE_C8" = "ISO/SAE reserviert C8";
+"OBD2_MID_TYPE_C9" = "ISO/SAE reserviert C9";
+"OBD2_MID_TYPE_CA" = "ISO/SAE reserviert CA";
+"OBD2_MID_TYPE_CB" = "ISO/SAE reserviert CB";
+"OBD2_MID_TYPE_CC" = "ISO/SAE reserviert CC";
+"OBD2_MID_TYPE_CD" = "ISO/SAE reserviert CD";
+"OBD2_MID_TYPE_CE" = "ISO/SAE reserviert CE";
+"OBD2_MID_TYPE_CF" = "ISO/SAE reserviert CF";
+"OBD2_MID_TYPE_D0" = "ISO/SAE reserviert D0";
+"OBD2_MID_TYPE_D1" = "ISO/SAE reserviert D1";
+"OBD2_MID_TYPE_D2" = "ISO/SAE reserviert D2";
+"OBD2_MID_TYPE_D3" = "ISO/SAE reserviert D3";
+"OBD2_MID_TYPE_D4" = "ISO/SAE reserviert D4";
+"OBD2_MID_TYPE_D5" = "ISO/SAE reserviert D5";
+"OBD2_MID_TYPE_D6" = "ISO/SAE reserviert D6";
+"OBD2_MID_TYPE_D7" = "ISO/SAE reserviert D7";
+"OBD2_MID_TYPE_D8" = "ISO/SAE reserviert D8";
+"OBD2_MID_TYPE_D9" = "ISO/SAE reserviert D9";
+"OBD2_MID_TYPE_DA" = "ISO/SAE reserviert DA";
+"OBD2_MID_TYPE_DB" = "ISO/SAE reserviert DB";
+"OBD2_MID_TYPE_DC" = "ISO/SAE reserviert DC";
+"OBD2_MID_TYPE_DD" = "ISO/SAE reserviert DD";
+"OBD2_MID_TYPE_DE" = "ISO/SAE reserviert DE";
+"OBD2_MID_TYPE_DF" = "ISO/SAE reserviert DF";
+"OBD2_MID_TYPE_E1" = "Herstellerspezifisch E1";
+"OBD2_MID_TYPE_E2" = "Herstellerspezifisch E2";
+"OBD2_MID_TYPE_E3" = "Herstellerspezifisch E3";
+"OBD2_MID_TYPE_E4" = "Herstellerspezifisch E4";
+"OBD2_MID_TYPE_E5" = "Herstellerspezifisch E5";
+"OBD2_MID_TYPE_E6" = "Herstellerspezifisch E6";
+"OBD2_MID_TYPE_E7" = "Herstellerspezifisch E7";
+"OBD2_MID_TYPE_E8" = "Herstellerspezifisch E8";
+"OBD2_MID_TYPE_E9" = "Herstellerspezifisch E9";
+"OBD2_MID_TYPE_EA" = "Herstellerspezifisch EA";
+"OBD2_MID_TYPE_EB" = "Herstellerspezifisch EB";
+"OBD2_MID_TYPE_EC" = "Herstellerspezifisch EC";
+"OBD2_MID_TYPE_ED" = "Herstellerspezifisch ED";
+"OBD2_MID_TYPE_EE" = "Herstellerspezifisch EE";
+"OBD2_MID_TYPE_EF" = "Herstellerspezifisch EF";
+"OBD2_MID_TYPE_F0" = "Herstellerspezifisch F0";
+"OBD2_MID_TYPE_F1" = "Herstellerspezifisch F1";
+"OBD2_MID_TYPE_F2" = "Herstellerspezifisch F2";
+"OBD2_MID_TYPE_F3" = "Herstellerspezifisch F3";
+"OBD2_MID_TYPE_F4" = "Herstellerspezifisch F4";
+"OBD2_MID_TYPE_F5" = "Herstellerspezifisch F5";
+"OBD2_MID_TYPE_F6" = "Herstellerspezifisch F6";
+"OBD2_MID_TYPE_F7" = "Herstellerspezifisch F7";
+"OBD2_MID_TYPE_F8" = "Herstellerspezifisch F8";
+"OBD2_MID_TYPE_F9" = "Herstellerspezifisch F9";
+"OBD2_MID_TYPE_FA" = "Herstellerspezifisch FA";
+"OBD2_MID_TYPE_FB" = "Herstellerspezifisch FB";
+"OBD2_MID_TYPE_FC" = "Herstellerspezifisch FC";
+"OBD2_MID_TYPE_FD" = "Herstellerspezifisch FD";
+"OBD2_MID_TYPE_FE" = "Herstellerspezifisch FE";
+"OBD2_MID_TYPE_FF" = "Herstellerspezifisch FF";
+
+
+//
 // OBD2 PID 0907 / 090B PERFORMANCE TRACKING MNEMONIC
 //
-"OBD2_PERFORMANCE_TRACKING_OBDCOND" = "– Anzahl Probleme –";
-"OBD2_PERFORMANCE_TRACKING_IGNCNTR" = "– Anzahl Zyklen –";
-"OBD2_PERFORMANCE_TRACKING_CATCOMP1" = "Katalysator Bank 1";
-"OBD2_PERFORMANCE_TRACKING_CATCOND1" = "Katalysator Bank 1 Fehler";
-"OBD2_PERFORMANCE_TRACKING_CATCOMP2" = "Katalysator Bank 2";
-"OBD2_PERFORMANCE_TRACKING_CATCOND2" = "Katalysator Bank 2 Fehler";
-"OBD2_PERFORMANCE_TRACKING_O2SCOMP1" = "Lambdasonde Bank 1";
-"OBD2_PERFORMANCE_TRACKING_O2SCOND1" = "Lambdasonde Bank 1 Fehler";
-"OBD2_PERFORMANCE_TRACKING_O2SCOMP2" = "Lambdasonde Bank 2";
-"OBD2_PERFORMANCE_TRACKING_O2SCOND2" = "Lambdasonde Bank 2 Fehler";
-"OBD2_PERFORMANCE_TRACKING_EGRCOMP" = "Abgasrückführung";
-"OBD2_PERFORMANCE_TRACKING_EGRCOND" = "Abgasrückführung Fehler";
-"OBD2_PERFORMANCE_TRACKING_AIRCOMP" = "Sekundärluft";
-"OBD2_PERFORMANCE_TRACKING_AIRCOND" = "Sekundärluft Fehler";
-"OBD2_PERFORMANCE_TRACKING_EVAPCOMP" = "Kraftstoffverdunstungssystem";
-"OBD2_PERFORMANCE_TRACKING_EVAPCOND" = "Kraftstoffverdunstungssystem Fehler";
-"OBD2_PERFORMANCE_TRACKING_SO2SCOMP1" = "Sekundärlambdasonde Bank 1";
-"OBD2_PERFORMANCE_TRACKING_SO2SCOND1" = "Sekundärlambdasonde Bank 1 Fehler";
-"OBD2_PERFORMANCE_TRACKING_SO2SCOMP2" = "Sekundärlambdasonde Bank 2";
-"OBD2_PERFORMANCE_TRACKING_SO2SCOND2" = "Sekundärlambdasonde Bank 2 Fehler";
-"OBD2_PERFORMANCE_TRACKING_HCCATCOMP" = "NMHC-Katalysator";
-"OBD2_PERFORMANCE_TRACKING_HCCATCOND" = "NMHC-Katalysator Fehler";
-"OBD2_PERFORMANCE_TRACKING_NCATCOMP" = "NOx/SCR-Katalysator";
-"OBD2_PERFORMANCE_TRACKING_NCATCOND" = "NOx/SCR-Katalysator Fehler";
-"OBD2_PERFORMANCE_TRACKING_NADSCOMP" = "NOx-Anreicherung";
-"OBD2_PERFORMANCE_TRACKING_NADSCOND" = "NOx-Anreicherung Fehler";
-"OBD2_PERFORMANCE_TRACKING_PMCOMP" = "Rußpartikelwerte";
-"OBD2_PERFORMANCE_TRACKING_PMCOND" = "Rußpartikelwerte Fehler";
-"OBD2_PERFORMANCE_TRACKING_EGSCOMP" = "Abgasdetektor";
-"OBD2_PERFORMANCE_TRACKING_EGSCOND" = "Abgasdetektor Fehler";
-"OBD2_PERFORMANCE_TRACKING_EGRCOMP" = "EGR und/oder VVT";
-"OBD2_PERFORMANCE_TRACKING_EGRCOND" = "EGR und/oder VVT Fehler";
-"OBD2_PERFORMANCE_TRACKING_BPCOMP" = "Turbodruck";
-"OBD2_PERFORMANCE_TRACKING_BPCOND" = "Turbodruck Fehler";
-"OBD2_PERFORMANCE_TRACKING_FUELCOMP" = "Kraftstoffsystem";
-"OBD2_PERFORMANCE_TRACKING_FUELCOND" = "Kraftstoffsystem Fehler";
+"OBD2_PERFORMANCE_TRACKING_OBDCOND" = "Erfolgreiche Messläufe";
+"OBD2_PERFORMANCE_TRACKING_IGNCNTR" = "Zündungszähler";
+"OBD2_PERFORMANCE_TRACKING_CATCOMP1" = "Katalysator Bank 1 Messläufe";
+"OBD2_PERFORMANCE_TRACKING_CATCOND1" = "Katalysator Bank 1 Testbedingungen";
+"OBD2_PERFORMANCE_TRACKING_CATCOMP2" = "Katalysator Bank 2 Messläufe";
+"OBD2_PERFORMANCE_TRACKING_CATCOND2" = "Katalysator Bank 2 Testbedingungen";
+"OBD2_PERFORMANCE_TRACKING_O2SCOMP1" = "Lambdasonde Bank 1 Messläufe";
+"OBD2_PERFORMANCE_TRACKING_O2SCOND1" = "Lambdasonde Bank 1 Testbedingungen";
+"OBD2_PERFORMANCE_TRACKING_O2SCOMP2" = "Lambdasonde Bank 2 Messläufe";
+"OBD2_PERFORMANCE_TRACKING_O2SCOND2" = "Lambdasonde Bank 2 Testbedingungen";
+"OBD2_PERFORMANCE_TRACKING_EGRCOMP" = "Abgasrückführung Messläufe";
+"OBD2_PERFORMANCE_TRACKING_EGRCOND" = "Abgasrückführung Testbedingungen";
+"OBD2_PERFORMANCE_TRACKING_AIRCOMP" = "Sekundärluft Messläufe";
+"OBD2_PERFORMANCE_TRACKING_AIRCOND" = "Sekundärluft Testbedingungen";
+"OBD2_PERFORMANCE_TRACKING_EVAPCOMP" = "Kraftstoffverdunstungssystem Messläufe";
+"OBD2_PERFORMANCE_TRACKING_EVAPCOND" = "Kraftstoffverdunstungssystem Testbedingungen";
+"OBD2_PERFORMANCE_TRACKING_SO2SCOMP1" = "Sekundärlambdasonde Bank 1 Messläufe";
+"OBD2_PERFORMANCE_TRACKING_SO2SCOND1" = "Sekundärlambdasonde Bank 1 Testbedingungen";
+"OBD2_PERFORMANCE_TRACKING_SO2SCOMP2" = "Sekundärlambdasonde Bank 2 Messläufe";
+"OBD2_PERFORMANCE_TRACKING_SO2SCOND2" = "Sekundärlambdasonde Bank 2 Testbedingungen";
+"OBD2_PERFORMANCE_TRACKING_HCCATCOMP" = "NMHC-Katalysator Messläufe";
+"OBD2_PERFORMANCE_TRACKING_HCCATCOND" = "NMHC-Katalysator Testbedingungen";
+"OBD2_PERFORMANCE_TRACKING_NCATCOMP" = "NOx/SCR-Katalysator Messläufe";
+"OBD2_PERFORMANCE_TRACKING_NCATCOND" = "NOx/SCR-Katalysator Testbedingungen";
+"OBD2_PERFORMANCE_TRACKING_NADSCOMP" = "NOx-Anreicherung Messläufe";
+"OBD2_PERFORMANCE_TRACKING_NADSCOND" = "NOx-Anreicherung Testbedingungen";
+"OBD2_PERFORMANCE_TRACKING_PMCOMP" = "Rußpartikelwerte Messläufe";
+"OBD2_PERFORMANCE_TRACKING_PMCOND" = "Rußpartikelwerte Testbedingungen";
+"OBD2_PERFORMANCE_TRACKING_EGSCOMP" = "Abgasdetektor Messläufe";
+"OBD2_PERFORMANCE_TRACKING_EGSCOND" = "Abgasdetektor Testbedingungen";
+"OBD2_PERFORMANCE_TRACKING_EGRCOMP" = "EGR und/oder VVT Messläufe";
+"OBD2_PERFORMANCE_TRACKING_EGRCOND" = "EGR und/oder VVT Testbedingungen";
+"OBD2_PERFORMANCE_TRACKING_BPCOMP" = "Turbodruck Messläufe";
+"OBD2_PERFORMANCE_TRACKING_BPCOND" = "Turbodruck Testbedingungen";
+"OBD2_PERFORMANCE_TRACKING_FUELCOMP" = "Kraftstoffsystem Messläufe";
+"OBD2_PERFORMANCE_TRACKING_FUELCOND" = "Kraftstoffsystem Testbedingungen";
 
 //
 // OBD2 STANDARD DTCs (CATEGORIES)

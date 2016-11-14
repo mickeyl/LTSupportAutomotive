@@ -347,7 +347,7 @@
                 {
                     NSUInteger bitnumber = part * offsetPerPart + number;
                     md[@(1 + bitnumber)] = @(supported);
-                    LOG( @"Adapter supports command %02X%02X", _mode, bitnumber );
+                    LOG( @"Adapter supports command %02X%02X", _mode, 1 + bitnumber );
                 }
             }
         }
@@ -589,6 +589,7 @@
 
 @end
 
+
 @implementation LTOBD2PID_OXYGEN_SENSORS_INFO_2
 {
     NSUInteger _sensor;
@@ -653,6 +654,7 @@
 }
 
 @end
+
 
 @implementation LTOBD2PID_OXYGEN_SENSORS_INFO_3
 {
@@ -719,8 +721,83 @@
 
 @end
 
+@implementation LTOBD2PIDPerformanceTracking
+
+-(NSArray<LTOBD2PerformanceTrackingResult*>*)countersForMnemonics:(NSArray<NSString*>*)mnemonics
+{
+    NSMutableArray<LTOBD2PerformanceTrackingResult*>* ma = [NSMutableArray array];
+    
+    if ( self.isCAN )
+    {
+        NSArray<NSNumber*>* bytes = [self anyResponseWithMinimumLength:1];
+        if ( !bytes.count )
+        {
+            return nil;
+        }
+        
+        NSUInteger numberOfValues = MIN( bytes[0].unsignedIntegerValue, mnemonics.count );
+        for ( NSUInteger i = 0; i < numberOfValues; ++i )
+        {
+            if ( 1 + 2 * i + 1 > bytes.count )
+            {
+                break;
+            }
+            
+            NSString* mnemonic = mnemonics[i];
+            
+            uint A = bytes[1 + 2 * i + 0].unsignedIntValue;
+            uint B = bytes[1 + 2 * i + 1].unsignedIntValue;
+            uint value = A * 256 + B;
+            
+            LTOBD2PerformanceTrackingResult* result = [LTOBD2PerformanceTrackingResult resultWithMnemonic:mnemonic count:value];
+            if ( result )
+            {
+                [ma addObject:result];
+            }
+        }
+    }
+    else
+    {
+        NSUInteger resultPairLength = 4;
+        
+        NSArray<NSNumber*>* bytes = [self anyResponseWithMinimumLength:resultPairLength];
+        if ( !bytes.count )
+        {
+            return nil;
+        }
+        
+        NSUInteger numberOfPairs = MIN( bytes.count / resultPairLength, mnemonics.count );
+        for ( NSUInteger i = 0; i < numberOfPairs; ++i )
+        {
+            NSString* mnemonic = mnemonics[i * 2 + 0];
+            uint A = bytes[4 * i + 0].unsignedIntValue;
+            uint B = bytes[4 * i + 1].unsignedIntValue;
+            uint value = A * 256 + B;
+            LTOBD2PerformanceTrackingResult* result = [LTOBD2PerformanceTrackingResult resultWithMnemonic:mnemonic count:value];
+            if ( result )
+            {
+                [ma addObject:result];
+            }
+            mnemonic = mnemonics[i * 2 + 1];
+            A = bytes[4 * i + 2].unsignedIntValue;
+            B = bytes[4 * i + 3].unsignedIntValue;
+            value = A * 256 + B;
+            result = [LTOBD2PerformanceTrackingResult resultWithMnemonic:mnemonic count:value];
+            if ( result )
+            {
+                [ma addObject:result];
+            }
+        }
+    }
+    
+    return [NSArray arrayWithArray:ma];
+}
+
+@end
+
+
 #pragma mark -
-#pragma mark Mode 1 & Mode 2
+#pragma mark Mode 01 & Mode 02
 
 @implementation LTOBD2PID_SUPPORTED_COMMANDS1_00
 
@@ -1588,37 +1665,113 @@
 @end
 
 #pragma mark -
-#pragma mark Mode 3 – Show stored Diagnostic Trouble Codes
+#pragma mark Mode 03 – Show stored Diagnostic Trouble Codes
 
 @implementation LTOBD2PID_STORED_DTC_03
 @end
 
 #pragma mark -
-#pragma mark Mode 4 – Clear Diagnostic Trouble Codes and stored values
+#pragma mark Mode 04 – Clear Diagnostic Trouble Codes and stored values
 
 @implementation LTOBD2PID_CLEAR_STORED_DTC_04
 @end
 
 #pragma mark -
-#pragma mark Mode 5 – Oxygen Sensor Component Monitoring (not for CAN)
+#pragma mark Mode 05 – Oxygen Sensor Component Monitoring (not for CAN)
 
 @implementation LTOBD2PID_SUPPORTED_PIDS_MODE_5_0500
 @end
 
 #pragma mark -
-#pragma mark Mode 6 – Test Results Component Monitoring
+#pragma mark Mode 06 – Test Results Component Monitoring
 
-@implementation LTOBD2PID_SUPPORTED_PIDS_MODE_6_0600
+@implementation LTOBD2PID_MODE_6_TEST_RESULTS_06
+{
+    NSUInteger _mid;
+}
+
+static const NSUInteger LTOBD2PID_MODE_6_PAYLOAD_LENGTH_NON_CAN = 5;
+static const NSUInteger LTOBD2PID_MODE_6_PAYLOAD_LENGTH_CAN     = 9;
+
++(instancetype)pidForMid:(NSUInteger)mid
+{
+    NSAssert( mid < 0xFF, @"Mid only makes sense when < 0xFF" );
+    NSString* string = [NSString stringWithFormat:@"06%02X", (uint)mid];
+    
+    LTOBD2PID_MODE_6_TEST_RESULTS_06* obj = [[self alloc] initWithString:string];
+    obj->_mid = mid;
+    return obj;
+}
+
+-(NSArray<LTOBD2Mode6TestResult*>*)testResults
+{
+    NSUInteger resultResponseLength = self.isCAN ? LTOBD2PID_MODE_6_PAYLOAD_LENGTH_CAN : LTOBD2PID_MODE_6_PAYLOAD_LENGTH_NON_CAN;
+    NSArray<NSNumber*>* bytes = [self anyResponseWithMinimumLength:resultResponseLength]; // at least one must be present
+    
+    if ( !bytes.count )
+    {
+        return nil;
+    }
+
+    NSMutableArray<LTOBD2Mode6TestResult*>* ma = [NSMutableArray array];
+
+    NSUInteger remaining = bytes.count;
+    NSUInteger i = 0;
+    
+    while ( i < bytes.count )
+    {
+        NSRange range = NSMakeRange( i, MIN( resultResponseLength, remaining ) );
+        NSArray<NSNumber*>* subarray = [bytes subarrayWithRange:range];
+        
+        if ( subarray.count != resultResponseLength )
+        {
+            LOG( @"Ignoring short answer (or filler bytes)" );
+            break;
+        }
+
+        LTOBD2Mode6TestResult* testResult = [LTOBD2Mode6TestResult resultWithMid:_mid bytes:subarray can:self.isCAN];
+        [ma addObject:testResult];
+        
+        remaining -= range.length;
+        i += range.length;
+    }
+
+    return [NSArray arrayWithArray:ma];
+}
+
+-(NSString*)purpose
+{
+    NSString* localizedString = @"N/A";
+    
+    if ( self.isCAN )
+    {
+        NSString* key = [NSString stringWithFormat:@"OBD2_MID_TYPE_%02X", (uint)_mid];
+        localizedString = LTStringLookupWithPlaceholder(key, key);
+    }
+    else
+    {
+        NSString* formatstring = LTStringLookupWithPlaceholder(@"OBD2_TID_TYPE_VENDOR", @"Vendor Specific %02X");
+        NSString* placeholder = [NSString stringWithFormat:formatstring, _mid];
+    
+        NSString* key = [NSString stringWithFormat:@"OBD2_TID_TYPE_%02X", (uint)_mid];
+        localizedString = LTStringLookupWithPlaceholder(key, placeholder);
+    }
+    return localizedString;
+}
+
 @end
 
 #pragma mark -
-#pragma mark Mode 7 – Pending Diagnostic Trouble Codes
+#pragma mark Mode 07 – Pending Diagnostic Trouble Codes
 
 @implementation LTOBD2PID_PENDING_DTC_07
 @end
 
 #pragma mark -
-#pragma mark Mode 9 – Vehicle Information
+#pragma mark Mode 08 – Interactive Tests
+
+#pragma mark -
+#pragma mark Mode 09 – Vehicle Information
 
 @implementation LTOBD2PID_VIN_CODE_0902
 
@@ -1655,7 +1808,7 @@
 
 @end
 
-@implementation LTOBD2PID_SPARK_IGNITION_PERFORMANCE_TRACKING_0907
+@implementation LTOBD2PID_SPARK_IGNITION_PERFORMANCE_TRACKING_0908
 
 -(NSArray<LTOBD2PerformanceTrackingResult*>*)counters
 {
@@ -1682,42 +1835,9 @@
                                       @"SO2SCOND2",
                                       ];
     
-#if 0
-    NSMutableArray<LTOBD2PerformanceTrackingResult*>* ma = [NSMutableArray array];
-    [mnemonics enumerateObjectsUsingBlock:^(NSString * _Nonnull mnemonic, NSUInteger idx, BOOL * _Nonnull stop) {
-        [ma addObject:[LTOBD2PerformanceTrackingResult resultWithMnemonic:mnemonic count:arc4random() % 65535]];
-    }];
-#else
-    NSArray<NSNumber*>* bytes = [self anyResponseWithMinimumLength:mnemonics.count * 2];
-    if ( !bytes.count )
-    {
-        return nil;
-    }
-    
-    NSMutableArray<LTOBD2PerformanceTrackingResult*>* ma = [NSMutableArray array];
-    [mnemonics enumerateObjectsUsingBlock:^(NSString * _Nonnull mnemonic, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        uint A = [bytes objectAtIndex:idx * 2 + 0].unsignedIntValue;
-        uint B = [bytes objectAtIndex:idx * 2 + 1].unsignedIntValue;
-        uint value = A * 256 + B;
-        LTOBD2PerformanceTrackingResult* result = [LTOBD2PerformanceTrackingResult resultWithMnemonic:mnemonic count:value];
-        if ( result )
-        {
-            [ma addObject:result];
-        }
-    }];
-#endif    
-    // this makes more sense, since all even values are actually the monitoring complete counters and the odd values are problem conditions
-    [ma exchangeObjectAtIndex:0 withObjectAtIndex:1];
-    return [NSArray arrayWithArray:ma];
+    return [self countersForMnemonics:mnemonics];
 }
 
-@end
-
-#pragma mark -
-#pragma mark Mode A – Permanent DTC
-
-@implementation LTOBD2PID_PERMANENT_DTC_0A
 @end
 
 @implementation LTOBD2PID_COMPRESSION_IGNITION_PERFORMANCE_TRACKING_090B
@@ -1744,30 +1864,127 @@
                                       @"FUELCOMP",
                                       @"FUELCOND",
                                       ];
-    
-    NSArray<NSNumber*>* bytes = [self anyResponseWithMinimumLength:mnemonics.count * 2];
-    if ( !bytes.count )
-    {
-        return nil;
-    }
-    
-    NSMutableArray<LTOBD2PerformanceTrackingResult*>* ma = [NSMutableArray array];
-    [mnemonics enumerateObjectsUsingBlock:^(NSString * _Nonnull mnemonic, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        uint A = [bytes objectAtIndex:idx * 2 + 0].unsignedIntValue;
-        uint B = [bytes objectAtIndex:idx * 2 + 1].unsignedIntValue;
-        uint value = A * 256 + B;
-        LTOBD2PerformanceTrackingResult* result = [LTOBD2PerformanceTrackingResult resultWithMnemonic:mnemonic count:value];
-        if ( result )
-        {
-            [ma addObject:result];
-        }
-    }];
-    
-    // this makes more sense, since all even values are actually the monitoring complete counters and the odd values are problem conditions
-    [ma exchangeObjectAtIndex:0 withObjectAtIndex:1];
-    
-    return [NSArray arrayWithArray:ma];
+
+    return [self countersForMnemonics:mnemonics];
 }
 
 @end
+
+#pragma mark -
+#pragma mark Mode A – Permanent DTC
+
+@implementation LTOBD2PID_PERMANENT_DTC_0A
+@end
+
+#pragma mark -
+#pragma mark Mode 10 – Start Diagnostic Session
+
+#pragma mark -
+#pragma mark Mode 11 – ECU Reset
+
+#pragma mark -
+#pragma mark Mode 12 – Read Freeze Frame Data
+
+#pragma mark -
+#pragma mark Mode 13 – Read Diagnostic Trouble Codes
+
+#pragma mark -
+#pragma mark Mode 14 – Clear Diagnostic Information
+
+#pragma mark -
+#pragma mark Mode 17 – Read Status Of Diagnostic Trouble Codes
+
+#pragma mark -
+#pragma mark Mode 18 – Read Diagnostic Trouble Codes By Status
+
+#pragma mark -
+#pragma mark Mode 1A – Read ECU Id
+
+#pragma mark -
+#pragma mark Mode 20 – Stop Diagnostic Session
+
+#pragma mark -
+#pragma mark Mode 21 – Read Data By Local Id
+
+#pragma mark -
+#pragma mark Mode 22 – Read Data By Common Id
+
+#pragma mark -
+#pragma mark Mode 23 – Read Memory By Address
+
+#pragma mark -
+#pragma mark Mode 25 – Stop Repeated Data Transmission
+
+#pragma mark -
+#pragma mark Mode 26 – Set Data Rates
+
+#pragma mark -
+#pragma mark Mode 27 – Security Access
+
+#pragma mark -
+#pragma mark Mode 2C – Dynamically Define Local Id
+
+#pragma mark -
+#pragma mark Mode 2E – Write Data By Common Id
+
+#pragma mark -
+#pragma mark Mode 2F – Input Output Control By Common Id
+
+#pragma mark -
+#pragma mark Mode 30 – Input Output Control By Local Id
+
+#pragma mark -
+#pragma mark Mode 31 – Start Routine By Local ID
+
+#pragma mark -
+#pragma mark Mode 32 – Stop Routine By Local ID
+
+#pragma mark -
+#pragma mark Mode 33 – Request Routine Results By Local Id
+
+#pragma mark -
+#pragma mark Mode 34 – Request Download
+
+#pragma mark -
+#pragma mark Mode 35 – Request Upload
+
+#pragma mark -
+#pragma mark Mode 36 – Transfer data
+
+#pragma mark -
+#pragma mark Mode 37 – Request transfer exit
+
+#pragma mark -
+#pragma mark Mode 38 – Start Routine By Address
+
+#pragma mark -
+#pragma mark Mode 39 – Stop Routine By Address
+
+#pragma mark -
+#pragma mark Mode 3A – Request Routine Results By Address
+
+#pragma mark -
+#pragma mark Mode 3B – Write Data By Local Id
+
+#pragma mark -
+#pragma mark Mode 3D – Write Memory By Address
+
+#pragma mark -
+#pragma mark Mode 3E – Tester Present
+
+@implementation LTOBD2PID_TESTER_PRESENT_3E
+
+@end
+
+#pragma mark -
+#pragma mark Mode 81 – Start Communication
+
+#pragma mark -
+#pragma mark Mode 82 – Stop Communication
+
+#pragma mark -
+#pragma mark Mode 83 – Access Timing Parameters
+
+#pragma mark -
+#pragma mark Mode 85 – Start Programming
+

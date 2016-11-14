@@ -10,7 +10,7 @@
 
 #import "LTSupportAutomotive.h"
 
-#define DEBUG_THIS_FILE
+//#define DEBUG_THIS_FILE
 
 #ifdef DEBUG_THIS_FILE
 #define XLOG LOG
@@ -50,7 +50,7 @@ static NSString* RESPONSE_FINAL_NODATA = @"NO DATA";
     _startDate = [NSDate date];
 }
 
--(void)didCompleteResponse:(NSArray<NSString*>*)lines protocol:(LTOBD2Protocol*)protocol
+-(void)didCompleteResponse:(NSArray<NSString*>*)lines protocol:(LTOBD2Protocol*)protocol protocolType:(OBD2VehicleProtocol)protocolType
 {
     NSTimeInterval completionTime = -[_startDate timeIntervalSinceNow];
     [_command didCompleteResponse:lines completionTime:completionTime];
@@ -60,7 +60,7 @@ static NSString* RESPONSE_FINAL_NODATA = @"NO DATA";
     {
         if ( ! [lines.firstObject isEqualToString:RESPONSE_FINAL_NODATA] )
         {
-            [_command didCookResponse:[protocol decode:lines originatingCommand:_command.commandString]];
+            [_command didCookResponse:[protocol decode:lines originatingCommand:_command.commandString] withProtocolType:protocolType];
         }
     }
     
@@ -376,7 +376,7 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
     
     LTOBD2AdapterInternalCommand* internalCommand = _commandQueue.firstObject;
     [_commandQueue removeObjectAtIndex:0];
-    [internalCommand didCompleteResponse:lines protocol:_adapterProtocol];
+    [internalCommand didCompleteResponse:lines protocol:_adapterProtocol protocolType:_vehicleProtocol];
     _hasPendingAnswer = NO;
     [self processCommandQueue];
 }

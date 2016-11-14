@@ -6,7 +6,8 @@
 
 #import "LTOBD2PID.h"
 
-/*
+/*** PROTOCOL EXAMPLES
+ 
  0100 single frame answer
  
  48 6B 10 41 00 B8 7B 30 10 77
@@ -19,7 +20,7 @@
  48 6B 10 49 02 04 31 39 32 31 DF  - 
  48 6B 10 49 02 05 32 33 34 35 E1
 
- */
+***/
 
 @implementation LTOBD2ProtocolISO9141_2
 
@@ -63,7 +64,22 @@
         NSString* headerPrefix = [NSString stringWithFormat:@"%02X %02X %02X", format, target, source];
         BOOL isMultiFrame = [self isMultiFrameWithPrefix:headerPrefix lines:lines]; // slow, should be cached?
         NSUInteger multiFrameCorrective = isMultiFrame ? 1 : 0;
-        
+
+        // <Horrible Hack for Mode 6 which is sending multiline answers without multiline header indication>
+        if ( bytesInLine.count > headerLength )
+        {
+            uint sid = bytesInLine[headerLength].unsignedIntValue & ~0x40;
+            if ( sid == 0x06 && bytesInLine.count > headerLength + 1 )
+            {
+                uint pid = bytesInLine[headerLength+1].unsignedIntValue;
+                if ( pid > 0x00 && pid % 0x20 )
+                {
+                    multiFrameCorrective = 0;
+                }
+            }
+        }
+        // </Horrible Hack for Mode 6 which is sending multiline answers without multiline header indication>
+
         NSUInteger payloadIndex = headerLength + numberOfBytesInCommand + multiFrameCorrective;
         NSUInteger payloadLength = bytesInLine.count - payloadIndex - 1; // last byte is checksum
         NSRange payloadRange = NSMakeRange(payloadIndex, payloadLength);

@@ -9,6 +9,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class LTOBD2DTC;
 @class LTOBD2MonitorResult;
 @class LTOBD2PerformanceTrackingResult;
+@class LTOBD2Mode6TestResult;
 
 typedef enum : NSUInteger {
     LTIgnitionTypeUnknown,
@@ -115,8 +116,17 @@ typedef enum : NSUInteger {
 
 @end
 
+@interface LTOBD2PIDPerformanceTracking : LTOBD2PID
+
++(instancetype)pidForMode1 NS_UNAVAILABLE;
++(instancetype)pidForFreezeFrameDTC:(LTOBD2DTC *)freezeFrameDTC NS_UNAVAILABLE;
+
+@property(nonatomic,readonly) NSArray<LTOBD2PerformanceTrackingResult*>* counters;
+
+@end
+
 #pragma mark -
-#pragma mark Mode 1 & Mode 2
+#pragma mark Mode 01 & Mode 02
 
 @interface LTOBD2PID_SUPPORTED_COMMANDS1_00 : LTOBD2PID
 
@@ -629,7 +639,7 @@ typedef enum : NSUInteger {
 @end
 
 #pragma mark -
-#pragma mark Mode 3 – Show stored Diagnostic Trouble Codes
+#pragma mark Mode 03 – Show stored Diagnostic Trouble Codes
 
 @interface LTOBD2PID_STORED_DTC_03 : LTOBD2PIDStoredDTC
 
@@ -639,7 +649,7 @@ typedef enum : NSUInteger {
 @end
 
 #pragma mark -
-#pragma mark Mode 4 – Clear Diagnostic Trouble Codes and stored values
+#pragma mark Mode 04 – Clear Diagnostic Trouble Codes and stored values
 
 @interface LTOBD2PID_CLEAR_STORED_DTC_04 : LTOBD2PID
 
@@ -649,7 +659,7 @@ typedef enum : NSUInteger {
 @end
 
 #pragma mark -
-#pragma mark Mode 5 – Oxygen Sensor Component Monitoring (not for CAN)
+#pragma mark Mode 05 – Oxygen Sensor Component Monitoring (not for CAN)
 
 @interface LTOBD2PID_SUPPORTED_PIDS_MODE_5_0500 : LTOBD2PID
 
@@ -659,17 +669,22 @@ typedef enum : NSUInteger {
 @end
 
 #pragma mark -
-#pragma mark Mode 6 – Test Results Component Monitoring
+#pragma mark Mode 06 – Test Results Component Monitoring
 
-@interface LTOBD2PID_SUPPORTED_PIDS_MODE_6_0600 : LTOBD2PID
+@interface LTOBD2PID_MODE_6_TEST_RESULTS_06 : LTOBD2PID
 
 +(instancetype)pidForMode1 NS_UNAVAILABLE;
 +(instancetype)pidForFreezeFrameDTC:(LTOBD2DTC *)freezeFrameDTC NS_UNAVAILABLE;
++(instancetype)pid NS_UNAVAILABLE;
+
++(instancetype)pidForMid:(NSUInteger)mid;
+
+@property(nonatomic,readonly) NSArray<LTOBD2Mode6TestResult*>* testResults;
 
 @end
 
 #pragma mark -
-#pragma mark Mode 7 – Pending Diagnostic Trouble Codes
+#pragma mark Mode 07 – Pending Diagnostic Trouble Codes
 
 @interface LTOBD2PID_PENDING_DTC_07 : LTOBD2PIDStoredDTC
 
@@ -679,7 +694,10 @@ typedef enum : NSUInteger {
 @end
 
 #pragma mark -
-#pragma mark Mode 9 – Vehicle Information
+#pragma mark Mode 08 – Interactive Test
+
+#pragma mark -
+#pragma mark Mode 09 – Vehicle Information
 
 @interface LTOBD2PID_VIN_CODE_0902 : LTOBD2PID
 
@@ -702,13 +720,7 @@ typedef enum : NSUInteger {
 
 @end
 
-@interface LTOBD2PID_SPARK_IGNITION_PERFORMANCE_TRACKING_0907 : LTOBD2PID
-
-+(instancetype)pidForMode1 NS_UNAVAILABLE;
-+(instancetype)pidForFreezeFrameDTC:(LTOBD2DTC *)freezeFrameDTC NS_UNAVAILABLE;
-
-@property(nonatomic,readonly) NSArray<LTOBD2PerformanceTrackingResult*>* counters;
-
+@interface LTOBD2PID_SPARK_IGNITION_PERFORMANCE_TRACKING_0908 : LTOBD2PIDPerformanceTracking
 @end
 
 @interface LTOBD2PID_ECU_NAME_090A : LTOBD2PID
@@ -720,17 +732,11 @@ typedef enum : NSUInteger {
 
 @end
 
-@interface LTOBD2PID_COMPRESSION_IGNITION_PERFORMANCE_TRACKING_090B : LTOBD2PID
-
-+(instancetype)pidForMode1 NS_UNAVAILABLE;
-+(instancetype)pidForFreezeFrameDTC:(LTOBD2DTC *)freezeFrameDTC NS_UNAVAILABLE;
-
-@property(nonatomic,readonly) NSArray<LTOBD2PerformanceTrackingResult*>* counters;
-
+@interface LTOBD2PID_COMPRESSION_IGNITION_PERFORMANCE_TRACKING_090B : LTOBD2PIDPerformanceTracking
 @end
 
 #pragma mark -
-#pragma mark Mode A – Permanent DTC
+#pragma mark Mode 0A – Permanent DTC
 
 @interface LTOBD2PID_PERMANENT_DTC_0A : LTOBD2PIDStoredDTC
 
@@ -738,5 +744,121 @@ typedef enum : NSUInteger {
 +(instancetype)pidForFreezeFrameDTC:(LTOBD2DTC *)freezeFrameDTC NS_UNAVAILABLE;
 
 @end
+
+#pragma mark -
+#pragma mark Mode 10 – Start Diagnostic Session
+
+#pragma mark -
+#pragma mark Mode 11 – ECU Reset
+
+#pragma mark -
+#pragma mark Mode 12 – Read Freeze Frame Data
+
+#pragma mark -
+#pragma mark Mode 13 – Read Diagnostic Trouble Codes
+
+#pragma mark -
+#pragma mark Mode 14 – Clear Diagnostic Information
+
+#pragma mark -
+#pragma mark Mode 17 – Read Status Of Diagnostic Trouble Codes
+
+#pragma mark -
+#pragma mark Mode 18 – Read Diagnostic Trouble Codes By Status
+
+#pragma mark -
+#pragma mark Mode 1A – Read ECU Id
+
+#pragma mark -
+#pragma mark Mode 20 – Stop Diagnostic Session
+
+#pragma mark -
+#pragma mark Mode 21 – Read Data By Local Id
+
+#pragma mark -
+#pragma mark Mode 22 – Read Data By Common Id
+
+#pragma mark -
+#pragma mark Mode 23 – Read Memory By Address
+
+#pragma mark -
+#pragma mark Mode 25 – Stop Repeated Data Transmission
+
+#pragma mark -
+#pragma mark Mode 26 – Set Data Rates
+
+#pragma mark -
+#pragma mark Mode 27 – Security Access
+
+#pragma mark -
+#pragma mark Mode 2C – Dynamically Define Local Id
+
+#pragma mark -
+#pragma mark Mode 2E – Write Data By Common Id
+
+#pragma mark -
+#pragma mark Mode 2F – Input Output Control By Common Id
+
+#pragma mark -
+#pragma mark Mode 30 – Input Output Control By Local Id
+
+#pragma mark -
+#pragma mark Mode 31 – Start Routine By Local ID
+
+#pragma mark -
+#pragma mark Mode 32 – Stop Routine By Local ID
+
+#pragma mark -
+#pragma mark Mode 33 – Request Routine Results By Local Id
+
+#pragma mark -
+#pragma mark Mode 34 – Request Download
+
+#pragma mark -
+#pragma mark Mode 35 – Request Upload
+
+#pragma mark -
+#pragma mark Mode 36 – Transfer data
+
+#pragma mark -
+#pragma mark Mode 37 – Request transfer exit
+
+#pragma mark -
+#pragma mark Mode 38 – Start Routine By Address
+
+#pragma mark -
+#pragma mark Mode 39 – Stop Routine By Address
+
+#pragma mark -
+#pragma mark Mode 3A – Request Routine Results By Address
+
+#pragma mark -
+#pragma mark Mode 3B – Write Data By Local Id
+
+#pragma mark -
+#pragma mark Mode 3D – Write Memory By Address
+
+#pragma mark -
+#pragma mark Mode 3E – Tester Present
+
+@interface LTOBD2PID_TESTER_PRESENT_3E : LTOBD2PID
+
++(instancetype)pidForMode1 NS_UNAVAILABLE;
++(instancetype)pidForFreezeFrameDTC:(LTOBD2DTC*)freezeFrameDTC NS_UNAVAILABLE;
+
+@end
+
+#pragma mark -
+#pragma mark Mode 81 – Start Communication
+
+#pragma mark -
+#pragma mark Mode 82 – Stop Communication
+
+#pragma mark -
+#pragma mark Mode 83 – Access Timing Parameters
+
+#pragma mark -
+#pragma mark Mode 85 – Start Programming
+
 
 NS_ASSUME_NONNULL_END

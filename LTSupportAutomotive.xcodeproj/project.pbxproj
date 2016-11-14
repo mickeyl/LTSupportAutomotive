@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70B0B2731DDA05DB00D30EDC /* LTOBD2Mode6TestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B0B2711DDA05DB00D30EDC /* LTOBD2Mode6TestResult.m */; };
+		70B0B2741DDA05DB00D30EDC /* LTOBD2Mode6TestResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 70B0B2721DDA05DB00D30EDC /* LTOBD2Mode6TestResult.h */; };
 		70DFA8441D9A6D55004ECF98 /* LTSupportAutomotive.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DFA8421D9A6D55004ECF98 /* LTSupportAutomotive.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70DFA8711D9A6DDB004ECF98 /* LTBTLEReadCharacteristicStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DFA84A1D9A6DDB004ECF98 /* LTBTLEReadCharacteristicStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70DFA8721D9A6DDB004ECF98 /* LTBTLEReadCharacteristicStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DFA84B1D9A6DDB004ECF98 /* LTBTLEReadCharacteristicStream.m */; };
@@ -51,6 +53,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		70B0B2711DDA05DB00D30EDC /* LTOBD2Mode6TestResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTOBD2Mode6TestResult.m; sourceTree = "<group>"; };
+		70B0B2721DDA05DB00D30EDC /* LTOBD2Mode6TestResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTOBD2Mode6TestResult.h; sourceTree = "<group>"; };
 		70DFA83F1D9A6D55004ECF98 /* LTSupportAutomotive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LTSupportAutomotive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70DFA8421D9A6D55004ECF98 /* LTSupportAutomotive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTSupportAutomotive.h; sourceTree = "<group>"; };
 		70DFA8431D9A6D55004ECF98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = LTSupportAutomotive/Info.plist; sourceTree = "<group>"; };
@@ -233,6 +237,8 @@
 				70DFA8561D9A6DDB004ECF98 /* LTOBD2O2Sensor.m */,
 				70DFA8571D9A6DDB004ECF98 /* LTOBD2PerformanceTrackingResult.h */,
 				70DFA8581D9A6DDB004ECF98 /* LTOBD2PerformanceTrackingResult.m */,
+				70B0B2721DDA05DB00D30EDC /* LTOBD2Mode6TestResult.h */,
+				70B0B2711DDA05DB00D30EDC /* LTOBD2Mode6TestResult.m */,
 			);
 			name = Auxilliary;
 			sourceTree = "<group>";
@@ -256,6 +262,7 @@
 				70DFA8761D9A6DDB004ECF98 /* LTOBD2Command.h in Headers */,
 				70DFA8711D9A6DDB004ECF98 /* LTBTLEReadCharacteristicStream.h in Headers */,
 				70DFA8811D9A6DDB004ECF98 /* LTOBD2Protocol.h in Headers */,
+				70B0B2741DDA05DB00D30EDC /* LTOBD2Mode6TestResult.h in Headers */,
 				70DFA8961D9A6DDB004ECF98 /* LTOBD2CaptureFile.h in Headers */,
 				70DFA8731D9A6DDB004ECF98 /* LTBTLESerialTransporter.h in Headers */,
 				70DFA88A1D9A6DDB004ECF98 /* LTVIN.h in Headers */,
@@ -348,6 +355,7 @@
 				70DFA8721D9A6DDB004ECF98 /* LTBTLEReadCharacteristicStream.m in Sources */,
 				70DFA8751D9A6DDB004ECF98 /* LTBTLEWriteCharacteristicStream.m in Sources */,
 				70DFA88E1D9A6DDB004ECF98 /* LTOBD2AdapterELM327.m in Sources */,
+				70B0B2731DDA05DB00D30EDC /* LTOBD2Mode6TestResult.m in Sources */,
 				70DFA88F1D9A6DDB004ECF98 /* LTBTLESerialTransporter.m in Sources */,
 				70DFA8821D9A6DDB004ECF98 /* LTOBD2Protocol.m in Sources */,
 				70DFA8881D9A6DDB004ECF98 /* LTOBD2ProtocolSAEJ1850.m in Sources */,

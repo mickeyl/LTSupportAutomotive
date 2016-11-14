@@ -102,6 +102,21 @@
     return _cookedResponse.count > 0;
 }
 
+-(BOOL)isCAN
+{
+    switch ( _protocol )
+    {
+        case OBD2VehicleProtocolCAN_11B_250K:
+        case OBD2VehicleProtocolCAN_11B_500K:
+        case OBD2VehicleProtocolCAN_29B_250K:
+        case OBD2VehicleProtocolCAN_29B_500K:
+            return YES;
+            
+        default:
+            return NO;
+    }
+}
+
 -(NSString*)formattedResponse
 {
     if ( !self.cookedResponse )
@@ -130,8 +145,10 @@
     _completionTime = completionTime;
 }
 
--(void)didCookResponse:(NSDictionary<NSString*,LTOBD2ProtocolResult*>*)responseDictionary
+-(void)didCookResponse:(NSDictionary<NSString*,LTOBD2ProtocolResult*>*)responseDictionary withProtocolType:(OBD2VehicleProtocol)protocol
 {
+    _protocol = protocol;
+    
     NSMutableDictionary<NSString*,NSArray<NSNumber*>*>* positiveResponses = [NSMutableDictionary dictionary];
     NSMutableDictionary<NSString*,NSNumber*>* negativeResponses = [NSMutableDictionary dictionary];
     

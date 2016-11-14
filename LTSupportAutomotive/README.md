@@ -32,7 +32,7 @@ If anyone wants to make this *cocoapods* or *carthage* aware, feel free to suppl
 
 # Apps using this library #
 
-* [OBD2 Expert](https://itunes.apple.com/de/app/cargo-objects-street-assistant/id1142156521?mt=8) (yours truly)
+* [OBD2 Expert](https://itunes.apple.com/de/app/obd2-expert/id1142156521?mt=8) (yours truly)
 * [Cargo Objects Street Assistant](https://itunes.apple.com/de/app/cargo-objects-street-assistant/id1092020114?mt=8) (LAWA-Solutions GmbH)
 
 Please drop us a note, if you are using this library as well.
@@ -55,10 +55,10 @@ I have tested this library myself with the following adapters:
 While this library can already be used for a lot of things, I'd like to see improvements in a bunch of areas, such as:
 
 * Translations (I only have DE and EN atm.),
-* Implementation of missing standardized PIDs,
+* Implementation of some of the missing standardized PIDs,
 * Addition of vendor-specific DTCs,
 * Implementation of vendor-specific PIDs,
-* Implementation of non-PID/direct communication with ECUs.
+* Implementation of non-PID/direct communication with ECUs using lower-level CAN protocols.
 
 # How to contribute #
 

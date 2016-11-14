@@ -21,12 +21,12 @@ static NSDictionary<NSString*,NSString*>* LTOBD2DTCEcuDictionary;
     }
     
     LTOBD2DTCEcuDictionary = @{
-                                         @"10": @"ECU #1 ECM",
-                                         @"17": @"ECU #2 TCM",
-                                         @"1E": @"ECU #3 ABS",
-                                         @"7E8": @"ECU #1 ECM",
-                                         @"7E9": @"ECU #2 TCM",
-                                         @"7EA": @"ECU #3 ABS",
+                                         @"10": @"ECU #1",
+                                         @"17": @"ECU #2",
+                                         @"1E": @"ECU #3",
+                                         @"7E8": @"ECU #1",
+                                         @"7E9": @"ECU #2",
+                                         @"7EA": @"ECU #3",
                                          };
 }
 

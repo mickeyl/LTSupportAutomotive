@@ -6,22 +6,29 @@
 
 #import "LTSupportAutomotive.h"
 
-/** Protocol examples
+/*** PROTOCOL EXAMPLES
  
- 07:
+ 07 (single frame)
  7E8 06 47 02 01 10 01 48
  
- 0902:
+ 0902 (multiframe)
  7E8 10 14 49 02 01 57 44 58
  7E8 21 2D 53 49 4D 30 30 31
  
- 04: (successful)
+ 04 (successful)
  7E8 01 44
  
- 04: (unsuccessful)
+ 0601 (multiframe)
+ 7E8 10 37 46 01 01 0A 0E 66
+ 7E8 21 0E 66 0E 66 01 02 0A
+ 7E8 22 0E 66 0E 66 0E 66 01
+ 7E8 23 07 0A 00 00 00 00 0C
+ 7E8 24 D8 01 08 0A 1D 70 13
+ 7E8 25 18 22 90 01 09 10 00
+ 7E8 26 78 00 78 05 F0 01 0A
+ 7E8 27 10 00 00 00 00 00 00
  
- 
-**/
+***/
 
 @implementation LTOBD2ProtocolISO15765_4
 {
@@ -91,7 +98,22 @@
         uint pci = bytesInLine[addressIndex + 1].unsignedIntValue;
         uint frametype = ( pci & 0b11110000 ) >> 4;
         __unused uint length = ( pci & 0b00001111 );
-
+        
+        // <Clunky workaround for mode 06 behavior START>
+        if ( bytesInLine.count > headerLength + 1 )
+        {
+            uint sid = bytesInLine[headerLength+1].unsignedIntValue & ~0x40;
+            if ( sid == 0x06 && bytesInLine.count > headerLength + 2 )
+            {
+                uint pid = bytesInLine[headerLength+2].unsignedIntValue;
+                if ( pid > 0x00 && pid % 0x20 )
+                {
+                    numberOfBytesInCommand--;
+                }
+            }
+        }
+        // <Clunky workaround for mode 06 behavior STOP>
+        
         BOOL isSingleFrame = ( frametype == 0x00 );
         BOOL isFirstFrameOfMultiple = ( frametype == 0x01 );
         __unused BOOL isConsecutiveFrame = ( frametype == 0x02 );

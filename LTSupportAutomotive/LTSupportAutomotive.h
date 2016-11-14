@@ -23,6 +23,7 @@ FOUNDATION_EXPORT const unsigned char LTSupportAutomotiveVersionString[];
 #import <LTSupportAutomotive/LTOBD2O2Sensor.h>
 #import <LTSupportAutomotive/LTOBD2MonitorResult.h>
 #import <LTSupportAutomotive/LTOBD2PerformanceTrackingResult.h>
+#import <LTSupportAutomotive/LTOBD2Mode6TestResult.h>
 #import <LTSupportAutomotive/LTOBD2CaptureFile.h>
 
 // aux (should go into a seperate library)

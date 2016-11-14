@@ -4,6 +4,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "LTOBD2Adapter.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class LTOBD2ProtocolResult;
@@ -25,14 +27,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,readonly) NSTimeInterval completionTime;
 
 @property(nonatomic,readonly) NSString* commandString;
+@property(nonatomic,readonly) OBD2VehicleProtocol protocol;
 @property(nonatomic,readonly) NSDictionary<NSString*,NSArray<NSNumber*>*>* cookedResponse;
 @property(nonatomic,readonly) NSDictionary<NSString*,NSNumber*>* failureResponse;
 @property(nonatomic,readonly,getter=gotAnswer) BOOL answer;
 @property(nonatomic,readonly,getter=gotValidAnswer) BOOL validAnswer;
+@property(nonatomic,readonly,getter=isCAN) BOOL CAN;
 @property(nonatomic,readonly) NSString* formattedResponse;
 
 -(void)didCompleteResponse:(NSArray<NSString*>*)lines completionTime:(NSTimeInterval)completionTime;
--(void)didCookResponse:(NSDictionary<NSString*,LTOBD2ProtocolResult*>*)responseDictionary;
+-(void)didCookResponse:(NSDictionary<NSString*,LTOBD2ProtocolResult*>*)responseDictionary withProtocolType:(OBD2VehicleProtocol)protocol;
 -(void)invalidateResponse;
 
 @end
