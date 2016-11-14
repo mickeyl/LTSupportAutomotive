@@ -1,11 +1,11 @@
 //
-//  Copyright (c) Dr. Michael Lauer Information Technology. All rights reserviert.
+//  Copyright (c) Dr. Michael Lauer Information Technology. All rights reserved.
 //
 
 //
 // GENERIC
 //
-"OBD2_NO_Daten" = "Keine Daten";
+"OBD2_NO_DATA" = "Keine Daten";
 "OBD2_ON" = "An";
 "OBD2_OFF" = "Aus";
 "OBD2_DTC" = "Fehler";
@@ -30,10 +30,10 @@
 "FUEL_TANK_LEVEL" = "Tankfüllstand";
 "AMBIENT_TEMP" = "Außentemperatur";
 "ABSOLUTE_BAROMETRIC_PRESSURE" = "Außendruck";
-"Katalysator_TEMP_B1S1" = "KAT-Temperatur an B1S1";
-"Katalysator_TEMP_B2S1" = "KAT-Temperatur an B2S1";
-"Katalysator_TEMP_B1S2" = "KAT-Temperatur an B1S2";
-"Katalysator_TEMP_B2S2" = "KAT-Temperatur an B2S2";
+"CATALYST_TEMP_B1S1" = "KAT-Temperatur an B1S1";
+"CATALYST_TEMP_B2S1" = "KAT-Temperatur an B2S1";
+"CATALYST_TEMP_B1S2" = "KAT-Temperatur an B1S2";
+"CATALYST_TEMP_B2S2" = "KAT-Temperatur an B2S2";
 "CONTROL_MODULE_VOLTAGE" = "Spannung";
 "THROTTLE" = "Drosselklappe";
 "RELATIVE_ACCELERATOR_PEDAL_POSITION" = "Gaspedal (relativ)";
@@ -915,7 +915,7 @@
 "OBD2_MONITOR_RESULT_FAILED" = "Fehlgeschlagen";
 
 //
-// OBD2 PID 0103 Kraftstoffsystem STATUS
+// OBD2 PID 0103 FUEL SYSTEM STATUS
 //
 "OBD2_FUEL_SYSTEM_STATUS_01" = "Offen, Motor noch in Aufwärmphase";
 "OBD2_FUEL_SYSTEM_STATUS_02" = "Geschlossen, Lambdasonde bestimmt Kraftstoffzusammensetzung";
@@ -924,7 +924,7 @@
 "OBD2_FUEL_SYSTEM_STATUS_10" = "Geschlossen, benutzt mindestens einen O2-Sensor, aber Fehler vom Feedback-System";
 
 //
-// OBD2 PID 0112 COMMANDED Sekundärluft STATUS
+// OBD2 PID 0112 COMMANDED SECONDARY AIR STATUS
 //
 "OBD2_SECONDARY_AIR_STATUS_01" = "Vor dem Katalysator";
 "OBD2_SECONDARY_AIR_STATUS_02" = "Hinter dem Katalysator";
