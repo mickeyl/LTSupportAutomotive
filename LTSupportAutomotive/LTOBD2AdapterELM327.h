@@ -29,6 +29,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface LTOBD2CommandELM327_TRY_PROTOCOL : LTOBD2Command
+
++(instancetype)commandForAutoProtocol:(OBD2VehicleProtocol)protocol;
++(instancetype)commandForProtocol:(OBD2VehicleProtocol)protocol;
+
+@end
+
+@interface LTOBD2CommandELM327_SET_PROTOCOL : LTOBD2Command
+
++(instancetype)commandForAutoProtocol:(OBD2VehicleProtocol)protocol;
++(instancetype)commandForProtocol:(OBD2VehicleProtocol)protocol;
+
+@end
+
 @interface LTOBD2CommandELM327_DESCRIBE_PROTOCOL : LTOBD2Command
 
 +(instancetype)command;

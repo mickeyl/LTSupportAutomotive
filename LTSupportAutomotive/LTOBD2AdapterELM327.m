@@ -43,11 +43,12 @@ static NSString* RESPONSE_SEARCHING_TRANSIENT = @"SEARCHING...";
 {
     // send initialization sequence, make sure the last command is one that is supposed to return 'OK'
     NSArray<NSString*>* init0 = @[
+                                  @"ATD",      // set defaults
                                   @"ATZ",      // reset all settings
+                                  @"ATSP0",    // start negotiating with automatic protocol
                                   @"ATE0",     // echo off
                                   @"ATL1",     // linefeed on
                                   @"ATH1",     // CAN headers on
-                                  @"ATSP0",    // start negotiating with automatic protocol
                                   @"ATI",      // identify yourself
                                   @"ATS1",     // spaces on
                                   ];
@@ -83,30 +84,16 @@ static NSString* RESPONSE_SEARCHING_TRANSIENT = @"SEARCHING...";
                         }
                         
                         [self transmitRawString:@"0100" responseHandler:^(NSArray<NSString *> * _Nullable response) {
-                            
-                            [self transmitRawString:@"ATDPN" responseHandler:^(NSArray<NSString *> * _Nullable response) {
-                                
-                                OBD2VehicleProtocol protocol = OBD2VehicleProtocolUnknown;
-                                NSString* answer = response.lastObject;
-                                
-                                if ( answer.length == 1 )
-                                {
-                                    NSUInteger value = answer.intValue;
-                                    if ( value > OBD2VehicleProtocolAUTO && value < OBD2VehicleProtocolMAX )
-                                    {
-                                        protocol = value;
-                                    }
-                                }
-                                else if ( answer.length == 2 )
-                                {
-                                    NSUInteger value = [answer substringFromIndex:1].intValue;
-                                    if ( value > OBD2VehicleProtocolAUTO && value < OBD2VehicleProtocolMAX )
-                                    {
-                                        protocol = value;
-                                    }
-                                }
-                                [self didRecognizeProtocol:protocol];
-                            }];
+
+                            if ( [self.class isValidPidResponse:response] )
+                            {
+                                [self initDoneIdentifyProtocol];
+                            }
+                            else
+                            {
+                                LOG( @"Did not get a valid response, trying slow initialization path..." );
+                                [self trySlowInitializationWithProtocol:OBD2VehicleProtocolJ_1850PWM];
+                            }
 
                         }];
                         
@@ -149,7 +136,65 @@ static NSString* RESPONSE_SEARCHING_TRANSIENT = @"SEARCHING...";
     }
 }
 
+#pragma mark -
+#pragma mark Helpers
+
+-(void)initDoneIdentifyProtocol
+{
+    [self transmitRawString:@"ATDPN" responseHandler:^(NSArray<NSString *> * _Nullable response) {
+
+        OBD2VehicleProtocol protocol = OBD2VehicleProtocolUnknown;
+        NSString* answer = response.lastObject;
+
+        if ( answer.length == 1 )
+        {
+            NSUInteger value = answer.intValue;
+            if ( value > OBD2VehicleProtocolAUTO && value < OBD2VehicleProtocolMAX )
+            {
+                protocol = value;
+            }
+        }
+        else if ( answer.length == 2 )
+        {
+            NSUInteger value = [answer substringFromIndex:1].intValue;
+            if ( value > OBD2VehicleProtocolAUTO && value < OBD2VehicleProtocolMAX )
+            {
+                protocol = value;
+            }
+        }
+        [self didRecognizeProtocol:protocol];
+    }];
+}
+
+-(void)trySlowInitializationWithProtocol:(OBD2VehicleProtocol)protocol
+{
+    if ( protocol == OBD2VehicleProtocolMAX )
+    {
+        [self advanceAdapterStateTo:OBD2AdapterStateError];
+    }
+
+    LTOBD2CommandELM327_TRY_PROTOCOL* tryProtocol = [LTOBD2CommandELM327_TRY_PROTOCOL commandForProtocol:protocol];
+    LTOBD2Command* test0100 = [LTOBD2Command commandWithRawString:@"0100"];
+    [self transmitMultipleCommands:@[ tryProtocol, test0100 ] responseHandler:^(LTOBD2Command * _Nonnull command) {
+
+        if ( command == test0100 )
+        {
+            if ( [self.class isValidPidResponse:test0100.rawResponse] )
+            {
+                [self initDoneIdentifyProtocol];
+            }
+            else
+            {
+                [self trySlowInitializationWithProtocol:protocol + 1];
+            }
+        }
+
+    }];
+}
+
 @end
+
+
 
 #pragma mark -
 #pragma mark Non-initialization ELM327 AT commands
@@ -172,6 +217,8 @@ static NSString* RESPONSE_SEARCHING_TRANSIENT = @"SEARCHING...";
 }
 
 @end
+
+
 
 @implementation LTOBD2CommandELM327_READ_VOLTAGE
 
@@ -196,6 +243,8 @@ static NSString* RESPONSE_SEARCHING_TRANSIENT = @"SEARCHING...";
 }
 
 @end
+
+
 
 @implementation LTOBD2CommandELM327_IGNITION_STATUS
 
@@ -226,6 +275,44 @@ static NSString* RESPONSE_SEARCHING_TRANSIENT = @"SEARCHING...";
 
 @end
 
+
+
+@implementation LTOBD2CommandELM327_TRY_PROTOCOL
+
++(instancetype)commandForProtocol:(OBD2VehicleProtocol)protocol
+{
+    NSString* string = [NSString stringWithFormat:@"ATTP%u", (uint)protocol];
+    return [self commandWithRawString:string];
+}
+
++(instancetype)commandForAutoProtocol:(OBD2VehicleProtocol)protocol
+{
+    NSString* string = [NSString stringWithFormat:@"ATTPA%u", (uint)protocol];
+    return [self commandWithRawString:string];
+}
+
+@end
+
+
+
+@implementation LTOBD2CommandELM327_SET_PROTOCOL
+
++(instancetype)commandForProtocol:(OBD2VehicleProtocol)protocol
+{
+    NSString* string = [NSString stringWithFormat:@"ATSP%u", (uint)protocol];
+    return [self commandWithRawString:string];
+}
+
++(instancetype)commandForAutoProtocol:(OBD2VehicleProtocol)protocol
+{
+    NSString* string = [NSString stringWithFormat:@"ATSPA%u", (uint)protocol];
+    return [self commandWithRawString:string];
+}
+
+@end
+
+
+
 @implementation LTOBD2CommandELM327_DESCRIBE_PROTOCOL
 
 +(instancetype)command
@@ -253,6 +340,8 @@ static NSString* RESPONSE_SEARCHING_TRANSIENT = @"SEARCHING...";
 }
 
 @end
+
+
 
 @implementation LTOBD2CommandELM327_DESCRIBE_PROTOCOL_NUMERIC
 

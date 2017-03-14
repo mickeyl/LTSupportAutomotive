@@ -436,6 +436,16 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
 }
 
 #pragma mark -
+#pragma mark Aux
+
++(BOOL)isValidPidResponse:(NSArray<NSString*>*)lines
+{
+    NSCharacterSet* invalidCharactersSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789ABCDEF "].invertedSet;
+    NSRange range = [lines.lastObject rangeOfCharacterFromSet:invalidCharactersSet];
+    return range.location == NSNotFound;
+}
+
+#pragma mark -
 #pragma mark Debugging
 
 -(void)startLoggingCommunicationTo:(NSString*)path
@@ -445,7 +455,7 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
         return;
     }
     
-    [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
+    [[NSFileManager defaultManager] createFileAtPath:path contents:[NSData new] attributes:nil];
     _logFile = [NSFileHandle fileHandleForWritingAtPath:path];
 }
 

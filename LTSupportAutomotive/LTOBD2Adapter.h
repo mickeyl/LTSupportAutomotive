@@ -89,6 +89,9 @@ extern NSString* const LTOBD2AdapterDidReceive;
 -(void)startLoggingCommunicationTo:(NSString*)path;
 -(void)registerDebugOverrideForCommand:(NSString*)command result:(NSArray<NSString*>*)lines;
 
+// auxillary
++(BOOL)isValidPidResponse:(NSArray<NSString*>*)lines;
+
 @end
 
 NS_ASSUME_NONNULL_END
