@@ -21,6 +21,8 @@ static NSString* RESPONSE_LINEFEED_RN = @"\r\n";
 static NSString* RESPONSE_LINEFEED_RR = @"\r\r";
 static NSString* RESPONSE_SEARCHING_TRANSIENT = @"SEARCHING...";
 
+//TODO: We have dedicated command classes for most of the commands, should better use them instead of transmitting raw commands
+
 @implementation LTOBD2AdapterELM327
 {
     NSString* _version;
@@ -45,6 +47,7 @@ static NSString* RESPONSE_SEARCHING_TRANSIENT = @"SEARCHING...";
     NSArray<NSString*>* init0 = @[
                                   @"ATD",      // set defaults
                                   @"ATZ",      // reset all settings
+                                  @"ATRV",     // read voltage
                                   @"ATSP0",    // start negotiating with automatic protocol
                                   @"ATE0",     // echo off
                                   @"ATL1",     // linefeed on
@@ -171,6 +174,7 @@ static NSString* RESPONSE_SEARCHING_TRANSIENT = @"SEARCHING...";
     if ( protocol == OBD2VehicleProtocolMAX )
     {
         [self advanceAdapterStateTo:OBD2AdapterStateError];
+        return;
     }
 
     LTOBD2CommandELM327_TRY_PROTOCOL* tryProtocol = [LTOBD2CommandELM327_TRY_PROTOCOL commandForProtocol:protocol];
