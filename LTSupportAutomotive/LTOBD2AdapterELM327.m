@@ -45,15 +45,16 @@ static NSString* RESPONSE_SEARCHING_TRANSIENT = @"SEARCHING...";
 {
     // send initialization sequence, make sure the last command is one that is supposed to return 'OK'
     NSArray<NSString*>* init0 = @[
-                                  @"ATD",      // set defaults
-                                  @"ATZ",      // reset all settings
-                                  @"ATRV",     // read voltage
-                                  @"ATSP0",    // start negotiating with automatic protocol
-                                  @"ATE0",     // echo off
-                                  @"ATL1",     // linefeed on
-                                  @"ATH1",     // CAN headers on
-                                  @"ATI",      // identify yourself
-                                  @"ATS1",     // spaces on
+                                  @"ATD",       // set defaults
+                                  @"ATZ",       // reset all settings
+                                  @"ATSTFF",    // set answer timing to maximum (in order to work with slower cars)
+                                  @"ATRV",      // read voltage
+                                  @"ATSP0",     // start negotiating with automatic protocol
+                                  @"ATE0",      // echo off
+                                  @"ATL1",      // linefeed on
+                                  @"ATH1",      // CAN headers on
+                                  @"ATI",       // identify yourself
+                                  @"ATS1",      // spaces on
                                   ];
     
     [init0 enumerateObjectsUsingBlock:^(NSString * _Nonnull string, NSUInteger idx, BOOL * _Nonnull stop) {
