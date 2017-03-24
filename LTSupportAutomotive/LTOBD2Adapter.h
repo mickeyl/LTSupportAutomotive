@@ -59,6 +59,9 @@ extern NSString* const LTOBD2AdapterDidReceive;
 
 @property(strong,nonatomic,readonly) NSArray<LTOBD2ECU*>* visibleECUs;
 
+// configuration
+@property(assign,nonatomic,readwrite) NSTimeInterval nextCommandDelay;
+
 // lifecycle
 +(nullable instancetype)adapterWithInputStream:(NSInputStream*)inputStream outputStream:(NSOutputStream*)outputStream;
 -(nullable instancetype)initWithInputStream:(NSInputStream*)inputStream outputStream:(NSOutputStream*)outputStream NS_DESIGNATED_INITIALIZER;

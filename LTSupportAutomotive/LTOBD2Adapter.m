@@ -378,6 +378,11 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
     [_commandQueue removeObjectAtIndex:0];
     [internalCommand didCompleteResponse:lines protocol:_adapterProtocol protocolType:_vehicleProtocol];
     _hasPendingAnswer = NO;
+
+    if ( _nextCommandDelay )
+    {
+        [NSThread sleepForTimeInterval:_nextCommandDelay];
+    }
     [self processCommandQueue];
 }
 
