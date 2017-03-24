@@ -9,6 +9,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LTOBD2AdapterELM327 : LTOBD2Adapter
+
++(NSString*)identifyWithResponseToResetCommand:(NSString*)response;
+
 @end
 
 @interface LTOBD2CommandELM327_IDENTIFY : LTOBD2Command

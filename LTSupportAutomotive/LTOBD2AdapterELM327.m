@@ -29,6 +29,35 @@ static NSString* RESPONSE_SEARCHING_TRANSIENT = @"SEARCHING...";
 }
 
 #pragma mark -
+#pragma mark Identification
+
++(NSString*)identifyWithResponseToResetCommand:(NSString*)response
+{
+    __block NSString* identification;
+
+    NSArray<NSString*>* potentialResponseTerminators = @[ RESPONSE_TERMINATION_RR, RESPONSE_TERMINATION_RN ];
+    [potentialResponseTerminators enumerateObjectsUsingBlock:^(NSString * _Nonnull responseTerminator, NSUInteger idx, BOOL * _Nonnull stop) {
+
+        if ( [response hasSuffix:responseTerminator] )
+        {
+            *stop = YES;
+            NSString* lineTerminator = [responseTerminator substringWithRange:NSMakeRange(0, responseTerminator.length - 1)];
+            NSString* stringWithoutResponseTerminator = [response stringByReplacingOccurrencesOfString:responseTerminator withString:@""];
+            NSMutableArray<NSString*>* ma = [NSMutableArray array];
+            [[stringWithoutResponseTerminator componentsSeparatedByString:lineTerminator] enumerateObjectsUsingBlock:^(NSString * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ( line.length >= 4 )
+                {
+                    [ma addObject:line];
+                }
+            }];
+            identification = [ma.lastObject stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        }
+    }];
+
+    return identification;
+}
+
+#pragma mark -
 #pragma mark LTOBD2Adapter Overrides
 
 -(NSString*)friendlyAdapterType
