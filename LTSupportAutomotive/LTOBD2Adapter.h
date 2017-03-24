@@ -51,7 +51,7 @@ extern NSString* const LTOBD2AdapterDidReceive;
 
 @property(assign,nonatomic,readonly) OBD2AdapterState adapterState;
 @property(nonatomic,readonly) NSString* friendlyAdapterState;
-@property(assign,nonatomic,readwrite) OBD2VehicleProtocol vehicleProtocol;
+@property(assign,nonatomic,readonly) OBD2VehicleProtocol vehicleProtocol;
 @property(nonatomic,readonly) NSString* friendlyVehicleProtocol;
 
 @property(nonatomic,readonly) NSString* friendlyAdapterType;
