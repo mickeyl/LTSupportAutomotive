@@ -34,7 +34,7 @@ FOUNDATION_EXPORT const unsigned char LTSupportAutomotiveVersionString[];
 NS_ASSUME_NONNULL_BEGIN
 
 // global helpers
-NSString* LTStringLookupOrNil( NSString* key );
+NSString* _Nullable LTStringLookupOrNil( NSString* key );
 NSString* LTStringLookupWithPlaceholder( NSString* key, NSString* placeholder );
 void MyNSLog(const char *file, int lineNumber, const char *functionName, NSString *format, ...);
 NSString* LTDataToString( NSData* d );
