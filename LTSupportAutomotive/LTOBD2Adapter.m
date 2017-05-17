@@ -443,11 +443,23 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
 #pragma mark -
 #pragma mark Aux
 
-+(BOOL)isValidPidResponse:(NSArray<NSString*>*)lines
++(BOOL)isValidPidLine:(NSString*)line
 {
     NSCharacterSet* invalidCharactersSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789ABCDEF "].invertedSet;
-    NSRange range = [lines.lastObject rangeOfCharacterFromSet:invalidCharactersSet];
+    NSRange range = [line rangeOfCharacterFromSet:invalidCharactersSet];
     return range.location == NSNotFound;
+}
+
++(BOOL)isValidPidResponse:(NSArray<NSString*>*)lines
+{
+    for ( NSString* line in lines )
+    {
+        if ( ! [self isValidPidLine:line] )
+        {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 #pragma mark -

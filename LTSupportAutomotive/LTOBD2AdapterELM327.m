@@ -17,9 +17,6 @@
 static NSString* RESPONSE_CHIP_IDENTIFICATION = @"ELM327";
 static NSString* RESPONSE_TERMINATION_RN = @"\r\n>";
 static NSString* RESPONSE_TERMINATION_RR = @"\r\r>";
-static NSString* RESPONSE_LINEFEED_RN = @"\r\n";
-static NSString* RESPONSE_LINEFEED_RR = @"\r\r";
-static NSString* RESPONSE_SEARCHING_TRANSIENT = @"SEARCHING...";
 
 //TODO: We have dedicated command classes for most of the commands, should better use them instead of transmitting raw commands
 
@@ -76,7 +73,7 @@ static NSString* RESPONSE_SEARCHING_TRANSIENT = @"SEARCHING...";
     NSArray<NSString*>* init0 = @[
                                   @"ATD",       // set defaults
                                   @"ATZ",       // reset all settings
-                                  @"ATSTFF",    // set answer timing to maximum (in order to work with slower cars)
+                                  /* @"ATSTFF",    // set answer timing to maximum (in order to work with slower cars) */
                                   @"ATRV",      // read voltage
                                   @"ATSP0",     // start negotiating with automatic protocol
                                   @"ATE0",      // echo off
@@ -117,7 +114,6 @@ static NSString* RESPONSE_SEARCHING_TRANSIENT = @"SEARCHING...";
                         }
                         
                         [self transmitRawString:@"0100" responseHandler:^(NSArray<NSString *> * _Nullable response) {
-
                             if ( [self.class isValidPidResponse:response] )
                             {
                                 [self initDoneIdentifyProtocol];
@@ -145,27 +141,41 @@ static NSString* RESPONSE_SEARCHING_TRANSIENT = @"SEARCHING...";
 -(void)receivedData:(NSData*)data receiveBuffer:(NSMutableData*)receiveBuffer
 {
     [super receivedData:data receiveBuffer:receiveBuffer];
-    
+
     [receiveBuffer appendData:data];
-    
+
     XLOG( @"Received data: %@, buffer now %@", LTDataToString( data ), LTDataToString( receiveBuffer ) );
     NSString* receivedString = [[NSString alloc] initWithData:receiveBuffer encoding:NSUTF8StringEncoding];
-    
-    if ( [receivedString hasSuffix:RESPONSE_TERMINATION_RR] )
+
+    // A note about our parsing strategy here:
+    // ----------------------------------------
+    // 1. We strip the terminator away before iterating through "lines"
+    // 2. Empty lines are thrown away
+    // 3. We always let the last line (which is supposed to contain either a valid PID or a terminal response, such as OK, NO DATA, STOPPED, etc.) pass
+    // 4. Lines (except the last one) that are not valid PID lines (allowed are all hex characters and spaces) are thrown away
+
+    if ( [receivedString hasSuffix:RESPONSE_TERMINATION_RR] || [receivedString hasSuffix:RESPONSE_TERMINATION_RN] )
     {
-        NSString* responseString = [receivedString substringToIndex:receivedString.length-RESPONSE_TERMINATION_RR.length];
-        NSString* cleanedString = [responseString stringByReplacingOccurrencesOfString:RESPONSE_SEARCHING_TRANSIENT withString:@""];
-        NSString* strippedResponseString = [cleanedString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        NSArray<NSString*>* lines = [strippedResponseString componentsSeparatedByString:RESPONSE_LINEFEED_RR];
-        [self responseCompleted:lines];
-    }
-    else if ( [receivedString hasSuffix:RESPONSE_TERMINATION_RN] )
-    {
-        NSString* responseString = [receivedString substringToIndex:receivedString.length-RESPONSE_TERMINATION_RN.length];
-        NSString* cleanedString = [responseString stringByReplacingOccurrencesOfString:RESPONSE_SEARCHING_TRANSIENT withString:@""];
-        NSString* strippedResponseString = [cleanedString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        NSArray<NSString*>* lines = [strippedResponseString componentsSeparatedByString:RESPONSE_LINEFEED_RN];
-        [self responseCompleted:lines];
+        NSString* receivedStringWithoutTermination = [receivedString substringToIndex:receivedString.length - RESPONSE_TERMINATION_RR.length];
+
+        NSMutableArray<NSString*>* ma = [NSMutableArray array];
+        __block NSInteger idx = -1;
+        [receivedStringWithoutTermination enumerateLinesUsingBlock:^(NSString * _Nonnull line, BOOL * _Nonnull stop) {
+
+            idx++;
+            if ( line.length < 1 )
+            {
+                return;
+            }
+            if ( idx < ma.count && ! [LTOBD2Adapter isValidPidLine:line] )
+            {
+                return;
+            }
+            [ma addObject:line];
+
+        }];
+
+        [self responseCompleted:ma];
     }
 }
 
