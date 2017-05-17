@@ -452,14 +452,7 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
 
 +(BOOL)isValidPidResponse:(NSArray<NSString*>*)lines
 {
-    for ( NSString* line in lines )
-    {
-        if ( ! [self isValidPidLine:line] )
-        {
-            return NO;
-        }
-    }
-    return YES;
+    return [self isValidPidLine:lines.lastObject];
 }
 
 #pragma mark -

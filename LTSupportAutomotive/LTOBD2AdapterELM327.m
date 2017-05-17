@@ -73,7 +73,7 @@ static NSString* RESPONSE_TERMINATION_RR = @"\r\r>";
     NSArray<NSString*>* init0 = @[
                                   @"ATD",       // set defaults
                                   @"ATZ",       // reset all settings
-                                  /* @"ATSTFF",    // set answer timing to maximum (in order to work with slower cars) */
+                                  self.nextCommandDelay ? @"ATSTFF" : @"ATE0", // set answer timing to maximum (in order to work with slower cars)
                                   @"ATRV",      // read voltage
                                   @"ATSP0",     // start negotiating with automatic protocol
                                   @"ATE0",      // echo off
