@@ -6,6 +6,8 @@
 
 #import "LTSupportAutomotive.h"
 
+//#define DEBUG_THIS_FILE
+
 #ifdef DEBUG_THIS_FILE
     #define XLOG LOG
 #else
@@ -146,6 +148,23 @@ static NSString* RESPONSE_TERMINATION_RR = @"\r\r>";
 
     XLOG( @"Received data: %@, buffer now %@", LTDataToString( data ), LTDataToString( receiveBuffer ) );
     NSString* receivedString = [[NSString alloc] initWithData:receiveBuffer encoding:NSUTF8StringEncoding];
+    // A note about "clone wars" here...: Some cheap ELM327-clones inject invalid characters into the answer.
+    // If they're non-UTF8, then we need to iterate through the bytes manually and ignore the offenders.
+    if ( !receivedString )
+    {
+        XLOG( @"Non-UTF8 characters in string. Inspecting and skipping..." );
+        NSMutableString* ms = [NSMutableString stringWithCapacity:receiveBuffer.length];
+        uint8_t* bytes = (uint8_t*)[data bytes];
+        for ( NSUInteger i = 0; i < receiveBuffer.length; ++i )
+        {
+            uint8_t byte = bytes[i];
+            if ( byte > 11 && byte < 128 )
+            {
+                [ms appendFormat:@"%c", byte];
+            }
+        }
+        receivedString = ms;
+    }
 
     // A note about our parsing strategy here:
     // ----------------------------------------
