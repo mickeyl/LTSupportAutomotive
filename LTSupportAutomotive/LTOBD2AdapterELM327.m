@@ -297,12 +297,15 @@ static NSString* RESPONSE_TERMINATION_RR = @"\r\r>";
 
 -(NSString*)formattedResponse
 {
-    if ( ! [self.rawResponse.firstObject hasSuffix:@"V"] )
+    // Most adapters return a string like "12.2V" here, but some are omitting the 'V',
+    // hence we better grab the value, do a sanity check, and then format the string.
+    double voltage = [self.rawResponse.firstObject doubleValue];
+    if ( voltage < 1 || voltage > 100 )
     {
         return OBD2_NO_DATA;
     }
-    
-    return [self.rawResponse.firstObject stringByReplacingOccurrencesOfString:@"V" withString:UTF8_NARROW_NOBREAK_SPACE @"V"];
+    NSString* response = [NSString stringWithFormat:@"%.1f" UTF8_NARROW_NOBREAK_SPACE "V", voltage];
+    return response;
 }
 
 @end
