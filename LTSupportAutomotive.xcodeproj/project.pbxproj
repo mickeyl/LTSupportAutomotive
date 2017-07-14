@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		70B0B2731DDA05DB00D30EDC /* LTOBD2Mode6TestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B0B2711DDA05DB00D30EDC /* LTOBD2Mode6TestResult.m */; };
-		70B0B2741DDA05DB00D30EDC /* LTOBD2Mode6TestResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 70B0B2721DDA05DB00D30EDC /* LTOBD2Mode6TestResult.h */; };
+		70B0B2741DDA05DB00D30EDC /* LTOBD2Mode6TestResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 70B0B2721DDA05DB00D30EDC /* LTOBD2Mode6TestResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70DFA8441D9A6D55004ECF98 /* LTSupportAutomotive.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DFA8421D9A6D55004ECF98 /* LTSupportAutomotive.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70DFA8711D9A6DDB004ECF98 /* LTBTLEReadCharacteristicStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DFA84A1D9A6DDB004ECF98 /* LTBTLEReadCharacteristicStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70DFA8721D9A6DDB004ECF98 /* LTBTLEReadCharacteristicStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DFA84B1D9A6DDB004ECF98 /* LTBTLEReadCharacteristicStream.m */; };
