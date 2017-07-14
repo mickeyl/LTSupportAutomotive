@@ -59,6 +59,7 @@ While this library can already be used for a lot of things, I'd like to see impr
 * Addition of vendor-specific DTCs,
 * Implementation of vendor-specific PIDs,
 * Implementation of non-PID/direct communication with ECUs using lower-level CAN protocols.
+* Being able to use J2534 PassThrough adapters (these are also available for trucks w/ 24V bord systems)
 
 # How to contribute #
 
@@ -66,7 +67,7 @@ Please fork and open a pull-request. I'd also like to know about success stories
 
 # License #
 
-Copyright (c) 2016 Dr. Michael 'Mickey' Lauer
+Copyright (c) 2016-2017 Dr. Michael 'Mickey' Lauer
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
