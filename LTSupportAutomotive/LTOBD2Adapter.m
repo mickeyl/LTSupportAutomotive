@@ -370,7 +370,7 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
     
     if ( !_hasPendingAnswer )
     {
-        LOG( @"Warning: Received command without pending answer (perhaps in reaction to a cancelPendingCommands?)!" );
+        WARN( @" Received command without pending answer (perhaps in reaction to a cancelPendingCommands?)!" );
         return;
     }
     

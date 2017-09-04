@@ -314,7 +314,7 @@ static NSDictionary<NSNumber*,OBD2Mode6UnitAndScalingObject*>* MODE_6_UNIT_AND_S
     {
         if ( bytes[0].unsignedIntValue != _mid )
         {
-            LOG( @"Warning: inconsistent values for mid %lu != %lu", _mid, bytes[0].unsignedIntValue );
+            WARN( @" inconsistent values for mid %lu != %lu", _mid, bytes[0].unsignedIntValue );
         }
         
         _tid = bytes[1].unsignedIntValue;

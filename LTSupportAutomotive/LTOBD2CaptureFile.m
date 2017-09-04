@@ -178,7 +178,7 @@ static NSDateFormatter* dateFormatter;
     {
         if ( ! [aDecoder containsValueForKey:property ] )
         {
-            LOG( @"WARNING: Property %@ not found in serialized archive for class %@", property, NSStringFromClass(self.class) );
+            WARN( @" Property %@ not found in serialized archive for class %@", property, NSStringFromClass(self.class) );
         }
         else
         {

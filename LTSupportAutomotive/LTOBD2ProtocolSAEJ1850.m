@@ -38,7 +38,7 @@
         NSArray<NSNumber*>* bytesInLine = [self hexStringToArrayOfNumbers:line];
         if ( bytesInLine.count < 3 )
         {
-            LOG( @"Warning: Invalid or short line '%@' found", line );
+            WARN( @" Invalid or short line '%@' found", line );
             continue;
         }
         
