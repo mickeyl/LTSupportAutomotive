@@ -49,3 +49,7 @@ NS_ASSUME_NONNULL_END
 #ifndef UTF8_NARROW_NOBREAK_SPACE
     #define UTF8_NARROW_NOBREAK_SPACE @"\u202F"
 #endif
+
+#ifndef WARN
+#define WARN LOG
+#endif
