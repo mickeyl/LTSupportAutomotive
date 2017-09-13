@@ -204,12 +204,16 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
 
 -(void)disconnect
 {
-    [_heartbeatTimer invalidate], _heartbeatTimer = nil;
+    [_heartbeatTimer invalidate];
+    _heartbeatTimer = nil;
     
-    [_inputStream close], _inputStream = nil;
-    [_outputStream close], _outputStream = nil;
+    [_inputStream close];
+    _inputStream = nil;
+    [_outputStream close];
+    _outputStream = nil;
     
-    [_logFile closeFile], _logFile = nil;
+    [_logFile closeFile];
+    _logFile = nil;
 }
 
 #pragma mark -
