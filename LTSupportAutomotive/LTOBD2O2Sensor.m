@@ -146,7 +146,7 @@
 {
     if ( _info1.gotValidAnswer )
     {
-        return [NSString stringWithFormat:@"%.3f V", _info1.voltage];
+        return [NSString stringWithFormat:@"%.3f" UTF8_NARROW_NOBREAK_SPACE "V", _info1.voltage];
     }
     
     if ( _info2.gotValidAnswer )
@@ -166,17 +166,17 @@
 {
     if ( _info1.gotValidAnswer )
     {
-        return [NSString stringWithFormat:@"%.1f %%", _info1.shortTermFuelTrim];
+        return [NSString stringWithFormat:@"%.1f" UTF8_NARROW_NOBREAK_SPACE "%%", _info1.shortTermFuelTrim];
     }
     
     if ( _info2.gotValidAnswer )
     {
-        return [NSString stringWithFormat:@"%.3f V", _info2.voltage];
+        return [NSString stringWithFormat:@"%.3f" UTF8_NARROW_NOBREAK_SPACE "V", _info2.voltage];
     }
     
     if ( _info3.gotValidAnswer )
     {
-        return [NSString stringWithFormat:@"%.3f mA", _info3.current];
+        return [NSString stringWithFormat:@"%.3f" UTF8_NARROW_NOBREAK_SPACE "mA", _info3.current];
     }
     
     return nil;
@@ -196,7 +196,7 @@
 {
     if ( _info2.gotValidAnswer && _info3.gotValidAnswer )
     {
-        return [NSString stringWithFormat:@"%.3f mA", _info3.current];
+        return [NSString stringWithFormat:@"%.3f" UTF8_NARROW_NOBREAK_SPACE "mA", _info3.current];
     }
     
     return nil;
