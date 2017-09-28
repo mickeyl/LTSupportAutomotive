@@ -289,11 +289,11 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
     {
         return;
     }
-#ifdef XLOG
+#ifdef DEBUG_THIS_FILE
     NSString* oldState = [self friendlyAdapterState];
 #endif
     _adapterState = nextState;
-#ifdef XLOG
+#ifdef DEBUG_THIS_FILE
     NSString* newState = [self friendlyAdapterState];
 #endif
     
