@@ -7,6 +7,7 @@
 #import "LTSupportAutomotive.h"
 
 #define OBD2_NO_DATA LTStringLookupWithPlaceholder(@"OBD2_NO_DATA", @"N/A")
+#define OBD2_UNKNOWN LTStringLookupWithPlaceholder(@"OBD2_UNKNOWN", @"???")
 
 @implementation LTOBD2PID
 
@@ -127,7 +128,8 @@
     }
     uint value = responseFromAnyECU[0].unsignedIntValue;
     NSString* key = [NSString stringWithFormat:formatString, value];
-    return LTStringLookupWithPlaceholder( key, key );
+    NSString* placeholder = [NSString stringWithFormat:@"%@ (%02X)", OBD2_UNKNOWN, value];
+    return LTStringLookupWithPlaceholder( key, placeholder );
 }
 
 -(NSString*)dtcCodeForA:(uint)A B:(uint)B

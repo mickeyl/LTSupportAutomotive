@@ -6,6 +6,7 @@
 // GENERIC
 //
 "OBD2_NO_DATA" = "No data";
+"OBD2_UNKNOWN" = "Unknown";
 "OBD2_ON" = "On";
 "OBD2_OFF" = "Off";
 "OBD2_DTC" = "DTC";
