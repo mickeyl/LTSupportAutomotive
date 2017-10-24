@@ -40,16 +40,16 @@ static NSString* RESPONSE_TERMINATION_RR = @"\r\r>";
         if ( [response hasSuffix:responseTerminator] )
         {
             *stop = YES;
-            NSString* lineTerminator = [responseTerminator substringWithRange:NSMakeRange(0, responseTerminator.length - 1)];
             NSString* stringWithoutResponseTerminator = [response stringByReplacingOccurrencesOfString:responseTerminator withString:@""];
-            NSMutableArray<NSString*>* ma = [NSMutableArray array];
-            [[stringWithoutResponseTerminator componentsSeparatedByString:lineTerminator] enumerateObjectsUsingBlock:^(NSString * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
-                if ( line.length >= 4 )
+            [stringWithoutResponseTerminator enumerateLinesUsingBlock:^(NSString * _Nonnull line, BOOL * _Nonnull stop) {
+
+                if ( line.length > 5 )
                 {
-                    [ma addObject:line];
+                    identification = line;
                 }
+
             }];
-            identification = [ma.lastObject stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            identification = [identification stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         }
     }];
 
