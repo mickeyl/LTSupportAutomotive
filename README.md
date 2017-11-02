@@ -22,9 +22,20 @@ Represents a bridge between one or two BTLE characteristics and NSStream subclas
 
 # How to use LTSupportAutomotive #
 
-The recommended way (for now) is to include LTSupportAutomotive as an Xcode subproject and link `LTSupportAutomotive.framework` to your executable.
+### CococaPods ###
 
-If anyone wants to make this *cocoapods* or *carthage* aware, feel free to supply a pull request. I'm not using these package managers myself.
+Add this framework to your podfile:
+```
+pod 'LTSupportAutomotive', '~> 1.0'
+```
+
+### Carthage ###
+
+If anyone wants to make this *carthage* aware, feel free to supply a pull request. I'm not using this package manager myself.
+
+### As Xcode subproject ###
+
+You can also include LTSupportAutomotive as an Xcode subproject and link `LTSupportAutomotive.framework` to your executable.
 
 # Examples #
 
