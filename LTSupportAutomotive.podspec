@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/mickeyl/LTSupportAutomotive"
   s.license          = { :type => "MIT" }
   s.authors          = { "Dr. Michael Lauer" => "mickey@vanille.de" }
-  s.source           = { :git => "https://github.com/mickeyl/LTSupportAutomotive.git", :branch => "master" }
+  s.source           = { :git => "https://github.com/mickeyl/LTSupportAutomotive.git", :tag => "1.0.0" }
 
   s.platform     = :ios, "9.0"
   s.requires_arc = true
