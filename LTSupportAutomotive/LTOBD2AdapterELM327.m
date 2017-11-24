@@ -143,28 +143,28 @@ static NSString* RESPONSE_TERMINATION_RR = @"\r\r>";
 -(void)receivedData:(NSData*)data receiveBuffer:(NSMutableData*)receiveBuffer
 {
     [super receivedData:data receiveBuffer:receiveBuffer];
+    XLOG( @"Received data: %@", LTDataToString( data ) );
 
-    [receiveBuffer appendData:data];
-
-    XLOG( @"Received data: %@, buffer now %@", LTDataToString( data ), LTDataToString( receiveBuffer ) );
-    NSString* receivedString = [[NSString alloc] initWithData:receiveBuffer encoding:NSUTF8StringEncoding];
-    // A note about "clone wars" here...: Some cheap ELM327-clones inject invalid characters into the answer.
-    // If they're non-UTF8, then we need to iterate through the bytes manually and ignore the offenders.
-    if ( !receivedString )
+    NSMutableData* md = [NSMutableData data];
+    // A note about "clone wars" here...: Some cheap ELM327-clones inject invalid characters into the answer,
+    // hence we need to filter the data before appending to the receive buffer.
+    uint8_t* bytes = (uint8_t*)[data bytes];
+    for ( NSUInteger i = 0; i < data.length; ++i )
     {
-        XLOG( @"Non-UTF8 characters in string. Inspecting and skipping..." );
-        NSMutableString* ms = [NSMutableString stringWithCapacity:receiveBuffer.length];
-        uint8_t* bytes = (uint8_t*)[data bytes];
-        for ( NSUInteger i = 0; i < receiveBuffer.length; ++i )
+        uint8_t byte = bytes[i];
+        if ( byte > 0x09 && byte < 0x80 )
         {
-            uint8_t byte = bytes[i];
-            if ( byte > 11 && byte < 128 )
-            {
-                [ms appendFormat:@"%c", byte];
-            }
+            [md appendBytes:&byte length:1];
         }
-        receivedString = ms;
+        else
+        {
+            XLOG( @"Warning: Skipping invalid character 0x%02X in response...", byte );
+        }
     }
+    NSData* filteredData = [NSData dataWithData:md];
+    [receiveBuffer appendData:filteredData];
+
+    NSString* receivedString = [[NSString alloc] initWithData:receiveBuffer encoding:NSUTF8StringEncoding];
 
     // A note about our parsing strategy here:
     // ----------------------------------------
