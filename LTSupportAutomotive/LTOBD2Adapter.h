@@ -82,6 +82,7 @@ extern NSString* const LTOBD2AdapterDidReceive;
 -(void)cancelPendingCommands;
 
 // for subclasses
+-(NSString*)commandTerminationSequence;
 -(void)advanceAdapterStateTo:(OBD2AdapterState)nextCommand;
 -(void)receivedData:(NSData*)data receiveBuffer:(NSMutableData*)receiveBuffer;
 -(BOOL)sendCommand:(LTOBD2Command*)command;

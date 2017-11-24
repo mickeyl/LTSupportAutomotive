@@ -18,7 +18,8 @@
 #define XLOG(...)
 #endif
 
-static NSString* RESPONSE_FINAL_NODATA = @"NO DATA";
+static NSString* const RESPONSE_FINAL_NODATA = @"NO DATA";
+static NSString* const COMMAND_TERMINATION_SEQUENCE = @"\r"; // CR (0x0D)
 
 #pragma mark -
 #pragma mark InternalCommand Helper class
@@ -283,6 +284,12 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
 #pragma mark -
 #pragma mark API for subclasses
 
+-(NSString*)commandTerminationSequence
+{
+    return COMMAND_TERMINATION_SEQUENCE;
+}
+
+
 -(void)advanceAdapterStateTo:(OBD2AdapterState)nextState
 {
     if ( _adapterState == nextState )
@@ -342,9 +349,9 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
     }
     //// <DEBUGGING>
     
-    if ( ! [string hasSuffix:@"\r\n"] )
+    if ( ! [string hasSuffix:self.commandTerminationSequence] )
     {
-        string = [string stringByAppendingString:@"\r\n"];
+        string = [string stringByAppendingString:self.commandTerminationSequence];
     }
     NSData* data = [string dataUsingEncoding:NSUTF8StringEncoding];
     NSInteger numWritten = [_outputStream write:data.bytes maxLength:data.length];
