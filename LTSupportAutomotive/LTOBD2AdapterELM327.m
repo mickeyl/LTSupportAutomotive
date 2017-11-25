@@ -92,9 +92,9 @@ static NSString* RESPONSE_TERMINATION_RR = @"\r\r>";
             if ( [string isEqualToString:@"ATI"] )
             {
                 _version = response.lastObject;
-                if ( ! [_version hasPrefix:RESPONSE_CHIP_IDENTIFICATION] )
+                if ( [_version isEqualToString:@"NO DATA"] || ![_version containsString:@" "] )
                 {
-                    LOG( @"Did not find expected ELM327 identification response. Got %@ instead", _version );
+                    WARN( @"Did not find expected ELM327 identification response. Got %@ instead", _version );
                     [self advanceAdapterStateTo:OBD2AdapterStateError];
                     return;
                 }
