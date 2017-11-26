@@ -39,6 +39,7 @@ static NSString* RESPONSE_TERMINATION_RR = @"\r\r>";
 
         if ( [response hasSuffix:responseTerminator] )
         {
+            identification = @""; // indicates that we got a valid response terminator, even if there was not valid identification string (e.g. ?)
             *stop = YES;
             NSString* stringWithoutResponseTerminator = [response stringByReplacingOccurrencesOfString:responseTerminator withString:@""];
             [stringWithoutResponseTerminator enumerateLinesUsingBlock:^(NSString * _Nonnull line, BOOL * _Nonnull stop) {
