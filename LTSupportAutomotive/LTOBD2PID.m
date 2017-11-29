@@ -275,8 +275,8 @@
                  @0
                  ];
     }
-    //NOTE: PIDs 0900, 0920, and the like seem to have an additional 'numberOfMessages' byte before the 4 data byte.
-    //NOTE: We account for that by only using the last 4 bytes.
+    // NOTE: PIDs 0900, 0920, and the like seem to have an additional 'numberOfMessages' byte before the 4 data byte.
+    // NOTE: We account for that by only using the last 4 bytes.
     return @[
              [bytes objectAtIndex:bytes.count - 4],
              [bytes objectAtIndex:bytes.count - 3],
