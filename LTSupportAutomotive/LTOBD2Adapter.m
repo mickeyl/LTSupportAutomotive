@@ -366,13 +366,17 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
     return YES;
 }
 
--(void)inputHasBytesAvailable
+-(void)inputReadBytes:(NSData*)data
 {
-    uint8_t buffer[1024];
-    NSInteger numRead = [_inputStream read:buffer maxLength:sizeof(buffer)];
-    NSData* data = [NSData dataWithBytes:buffer length:numRead];
-    [self receivedData:data receiveBuffer:_receiveBuffer];
-    [_logFile writeData:data];
+    if ( _hasPendingAnswer )
+    {
+        [self receivedData:data receiveBuffer:_receiveBuffer];
+        [_logFile writeData:data];
+    }
+    else
+    {
+        WARN( @"Ignoring unsolicited data: %@", data );
+    }
 }
 
 -(void)responseCompleted:(NSArray<NSString*>*)lines
@@ -511,10 +515,14 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
         {
             case NSStreamEventHasBytesAvailable:
             {
-                if ( _hasPendingAnswer )
+                uint8_t buffer[1024];
+                NSInteger numRead = [_inputStream read:(uint8_t*)&buffer maxLength:sizeof(buffer)];
+                if ( numRead > 0 )
                 {
-                    [self inputHasBytesAvailable];
+                    NSData* data = [NSData dataWithBytes:&buffer length:numRead];
+                    [self inputReadBytes:data];
                 }
+                // NOTE: Reading 0 bytes from an NSInputStream will automatically trigger an NSStreamEventEndEncountered
                 break;
             }
                 
