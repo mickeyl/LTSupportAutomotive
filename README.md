@@ -43,34 +43,34 @@ You can also include LTSupportAutomotive as an Xcode subproject and link `LTSupp
 
 # Apps using this library #
 
-* [OBD2 Expert](https://itunes.apple.com/de/app/obd2-expert/id1142156521?mt=8) (yours truly)
+* [OBD2 Expert](https://itunes.apple.com/de/app/cargo-objects-street-assistant/id1142156521?mt=8) (yours truly)
 * [Cargo Objects Street Assistant](https://itunes.apple.com/de/app/cargo-objects-street-assistant/id1092020114?mt=8) (LAWA-Solutions GmbH)
 
 Please drop us a note, if you are using this library as well.
 
 # Supported Hardware #
 
-This software should work with most ELM327-compatible hardware (including the behemoth of available *clones*).
+This software should work with most ELM327-compatible hardware (including the behemoth of available *clones*). In general I recommend the Bluetooth 4.0 devices, since they seems to have a much better quality compared to the WiFi adapters. Moreover, they're much more convenient as you don't have to switch the WiFi network.
 
-I have tested this library myself with the following adapters:
+I have tested this library myself with the following adapters (Note that none of these contain a *real* ELM327):
 
-### BTLE (aka BLE or BluetoothSmart) ###
+### BTLE (aka BLE, BluetoothSmart, or BT 4.0) ###
 * Carista Bluetooth OBD2
 * LELink Bluetooth Low Energy
 
 ### WiFi ###
 * NAVISKAUTO WIFI WLAN ELM327
+* EXZA® SUPER Mini WiFi WLAN OBD 2 
 
 # TODO #
 
 While this library can already be used for a lot of things, I'd like to see improvements in a bunch of areas, such as:
 
 * Translations (I only have DE and EN atm.),
-* Implementation of some of the missing standardized PIDs,
+* Implementation of missing standardized PIDs,
 * Addition of vendor-specific DTCs,
 * Implementation of vendor-specific PIDs,
-* Implementation of non-PID/direct communication with ECUs using lower-level CAN protocols.
-* Being able to use J2534 PassThrough adapters (these are also available for trucks w/ 24V bord systems)
+* Implementation of non-PID/direct communication with ECUs.
 
 # How to contribute #
 
