@@ -16,10 +16,6 @@
 
 #define OBD2_NO_DATA LTStringLookupWithPlaceholder(@"OBD2_NO_DATA", @"N/A")
 
-static NSString* RESPONSE_CHIP_IDENTIFICATION = @"ELM327";
-static NSString* RESPONSE_TERMINATION_RN = @"\r\n>";
-static NSString* RESPONSE_TERMINATION_RR = @"\r\r>";
-
 //TODO: We have dedicated command classes for most of the commands, should better use them instead of transmitting raw commands
 
 @implementation LTOBD2AdapterELM327
@@ -34,26 +30,30 @@ static NSString* RESPONSE_TERMINATION_RR = @"\r\r>";
 {
     __block NSString* identification;
 
-    NSArray<NSString*>* potentialResponseTerminators = @[ RESPONSE_TERMINATION_RR, RESPONSE_TERMINATION_RN ];
-    [potentialResponseTerminators enumerateObjectsUsingBlock:^(NSString * _Nonnull responseTerminator, NSUInteger idx, BOOL * _Nonnull stop) {
+    if ( response.length < 2 )
+    {
+        return nil;
+    }
+    unichar lastCharacter = [response characterAtIndex:response.length - 1];
+    unichar crlfCharacter = [response characterAtIndex:response.length - 2];
+    if ( lastCharacter != '>' )
+    {
+        return nil;
+    }
+    if ( crlfCharacter != '\r' && crlfCharacter != '\n' )
+    {
+        return nil;
+    }
 
-        if ( [response hasSuffix:responseTerminator] )
+    identification = @""; // indicates that we got a valid response terminator, even if there was not valid identification string (e.g. '?')
+    NSString* stringWithoutResponseTerminator = [response substringToIndex:response.length - 1];
+    [stringWithoutResponseTerminator enumerateLinesUsingBlock:^(NSString * _Nonnull line, BOOL * _Nonnull stop) {
+        if ( line.length > 5 )
         {
-            identification = @""; // indicates that we got a valid response terminator, even if there was not valid identification string (e.g. ?)
-            *stop = YES;
-            NSString* stringWithoutResponseTerminator = [response stringByReplacingOccurrencesOfString:responseTerminator withString:@""];
-            [stringWithoutResponseTerminator enumerateLinesUsingBlock:^(NSString * _Nonnull line, BOOL * _Nonnull stop) {
-
-                if ( line.length > 5 )
-                {
-                    identification = line;
-                }
-
-            }];
-            identification = [identification stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            identification = line;
         }
     }];
-
+    identification = [identification stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     return identification;
 }
 
@@ -169,34 +169,50 @@ static NSString* RESPONSE_TERMINATION_RR = @"\r\r>";
 
     // A note about our parsing strategy here:
     // ----------------------------------------
+    // 0. We check whether the last two characters are a valid ELM327-like prompt, such as <someCRLFcharacter> and '>'
     // 1. We strip the terminator away before iterating through "lines"
     // 2. Empty lines are thrown away
     // 3. We always let the last line (which is supposed to contain either a valid PID or a terminal response, such as OK, NO DATA, STOPPED, etc.) pass
     // 4. Lines (except the last one) that are not valid PID lines (allowed are all hex characters and spaces) are thrown away
 
-    if ( [receivedString hasSuffix:RESPONSE_TERMINATION_RR] || [receivedString hasSuffix:RESPONSE_TERMINATION_RN] )
+    if ( receivedString.length < 2 )
     {
-        NSString* receivedStringWithoutTermination = [receivedString substringToIndex:receivedString.length - RESPONSE_TERMINATION_RR.length];
-
-        NSMutableArray<NSString*>* ma = [NSMutableArray array];
-        __block NSInteger idx = -1;
-        [receivedStringWithoutTermination enumerateLinesUsingBlock:^(NSString * _Nonnull line, BOOL * _Nonnull stop) {
-
-            idx++;
-            if ( line.length < 1 )
-            {
-                return;
-            }
-            if ( idx < ma.count && ! [LTOBD2Adapter isValidPidLine:line] )
-            {
-                return;
-            }
-            [ma addObject:line];
-
-        }];
-
-        [self responseCompleted:ma];
+        return;
     }
+
+    unichar lastCharacter = [receivedString characterAtIndex:receivedString.length - 1];
+    unichar crlfCharacter = [receivedString characterAtIndex:receivedString.length - 2];
+    if ( lastCharacter != '>' )
+    {
+        return;
+    }
+    if ( crlfCharacter != '\r' && crlfCharacter != '\n' )
+    {
+        return;
+    }
+
+    NSMutableCharacterSet* whitespaceNewlineAndPrompt = [NSMutableCharacterSet whitespaceAndNewlineCharacterSet];
+    [whitespaceNewlineAndPrompt addCharactersInString:@">"];
+    NSString* receivedStringWithoutTermination = [receivedString stringByTrimmingCharactersInSet:whitespaceNewlineAndPrompt];
+
+    NSMutableArray<NSString*>* ma = [NSMutableArray array];
+    __block NSInteger idx = -1;
+    [receivedStringWithoutTermination enumerateLinesUsingBlock:^(NSString * _Nonnull line, BOOL * _Nonnull stop) {
+
+        idx++;
+        if ( line.length < 1 )
+        {
+            return;
+        }
+        if ( idx < ma.count && ! [LTOBD2Adapter isValidPidLine:line] )
+        {
+            return;
+        }
+        [ma addObject:line];
+
+    }];
+
+    [self responseCompleted:ma];
 }
 
 #pragma mark -
