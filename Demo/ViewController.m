@@ -41,7 +41,7 @@ static const CGFloat animationDuration = 0.15;
     [super viewDidLoad];
     
     NSMutableArray* serviceUUIDs = [NSMutableArray array];
-    [@[ @"FFF0", @"FFE0", @"BEEF" ] enumerateObjectsUsingBlock:^(NSString* _Nonnull uuid, NSUInteger idx, BOOL * _Nonnull stop) {
+    [@[ @"FFF0", @"FFE0", @"BEEF" , @"E7810A71-73AE-499D-8C15-FAA9AEF0C3F2"] enumerateObjectsUsingBlock:^(NSString* _Nonnull uuid, NSUInteger idx, BOOL * _Nonnull stop) {
         [serviceUUIDs addObject:[CBUUID UUIDWithString:uuid]];
     }];
     
