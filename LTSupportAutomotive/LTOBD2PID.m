@@ -160,11 +160,16 @@
             [ms appendString:@"U"];
             break;
     }
-    
-    [ms appendFormat:@"%c", 0x30 + ( ( A & 0b00110000 ) >> 4 )];
-    [ms appendFormat:@"%c", 0x30 + ( ( A & 0b00001111 ) )];
-    [ms appendFormat:@"%c", 0x30 + ( ( B & 0b11110000 ) >> 4 )];
-    [ms appendFormat:@"%c", 0x30 + ( ( B & 0b00001111 ) )];
+	
+	uint aUpperNibble = ( A & 0b00110000 ) >> 4;
+	uint aLowerNibble = ( A & 0b00001111 );
+	uint bUpperNibble = ( B & 0b11110000 ) >> 4;
+	uint bLowerNibble = ( B & 0b00001111 );
+	
+    [ms appendFormat:@"%c", (aUpperNibble < 10 ? 0x30 : 0x37) + aUpperNibble];
+    [ms appendFormat:@"%c", (aLowerNibble < 10 ? 0x30 : 0x37) + aLowerNibble];
+    [ms appendFormat:@"%c", (bUpperNibble < 10 ? 0x30 : 0x37) + bUpperNibble];
+    [ms appendFormat:@"%c", (bLowerNibble < 10 ? 0x30 : 0x37) + bLowerNibble];
     
     return [NSString stringWithString:ms];
 }
