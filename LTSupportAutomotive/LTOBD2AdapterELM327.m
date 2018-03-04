@@ -117,7 +117,7 @@
                         }
                         
                         [self transmitRawString:@"0100" responseHandler:^(NSArray<NSString *> * _Nullable response) {
-                            if ( [self.class isValidPidResponse:response] )
+                            if ( [self isValidPidResponse:response] )
                             {
                                 [self initDoneIdentifyProtocol];
                             }
@@ -204,7 +204,7 @@
         {
             return;
         }
-        if ( idx < ma.count && ! [LTOBD2Adapter isValidPidLine:line] )
+        if ( idx < ma.count && ! [self isValidPidLine:line] )
         {
             return;
         }
@@ -259,7 +259,7 @@
 
         if ( command == test0100 )
         {
-            if ( [self.class isValidPidResponse:test0100.rawResponse] )
+            if ( [self isValidPidResponse:test0100.rawResponse] )
             {
                 [self initDoneIdentifyProtocol];
             }
