@@ -458,14 +458,25 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
 #pragma mark -
 #pragma mark Aux
 
-+(BOOL)isValidPidLine:(NSString*)line
+-(BOOL)isValidPidLine:(NSString*)line
 {
+    // NOTE: During adapter<->vehicle protocol negotiation phase,
+    // an adapter might return a "contaminated" PID line, e.g.:
+    // "SEARCHING...\r...48 6B 1A 41 00 88 18"
+    // To facilitate compatibility with such adapters, we are ignoring leading dots.
+    // Note that after a successful connection has been made, this is no longer acceptable.
+    if ( _adapterState > OBD2AdapterStateDiscovering && _adapterState < OBD2AdapterStateConnected )
+    {
+        NSCharacterSet* dotCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@"."];
+        line = [line stringByTrimmingCharactersInSet:dotCharacterSet];
+    }
+
     NSCharacterSet* invalidCharactersSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789ABCDEF "].invertedSet;
     NSRange range = [line rangeOfCharacterFromSet:invalidCharactersSet];
     return range.location == NSNotFound;
 }
 
-+(BOOL)isValidPidResponse:(NSArray<NSString*>*)lines
+-(BOOL)isValidPidResponse:(NSArray<NSString*>*)lines
 {
     return [self isValidPidLine:lines.lastObject];
 }
