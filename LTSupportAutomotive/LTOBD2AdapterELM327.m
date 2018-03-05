@@ -72,20 +72,27 @@
 
 -(void)sendInitializationSequence
 {
-    // send initialization sequence, make sure the last command is one that is supposed to return 'OK'
-    NSArray<NSString*>* init0 = @[
-                                  @"ATD",       // set defaults
-                                  @"ATZ",       // reset all settings
-                                  self.nextCommandDelay ? @"ATSTFF" : @"ATE0", // set answer timing to maximum (in order to work with slower cars)
-                                  @"ATRV",      // read voltage
-                                  @"ATSP0",     // start negotiating with automatic protocol
-                                  @"ATE0",      // echo off
-                                  @"ATL1",      // linefeed on
-                                  @"ATH1",      // CAN headers on
-                                  @"ATI",       // identify yourself
-                                  @"ATS1",      // spaces on
-                                  ];
-    
+    NSMutableArray<NSString*>* init0 = [NSMutableArray array];
+    [init0 addObjectsFromArray:@[
+                                 @"ATD",       // set defaults
+                                 @"ATZ",       // reset all settings
+                                 @"ATE0",      // echo off
+                                 @"ATL0",      // line feeds off
+                                 @"ATS1",      // spaces on (only during init)
+                                 ]];
+    if ( self.nextCommandDelay )
+    {
+        [init0 addObject:@"ATSTFF"];           // set answer timing to maximum (in order to work with slower cars)
+    }
+    [init0 addObjectsFromArray:@[
+                                 @"ATRV",      // read voltage
+                                 @"ATSP0",     // start negotiating with automatic protocol
+                                 @"ATH1",      // CAN headers on
+                                 @"ATI",       // identify yourself
+                                 @"ATS0",      // spaces off
+                                 ]];
+    // send initialization sequence, make sure the last command will return 'OK'
+
     [init0 enumerateObjectsUsingBlock:^(NSString * _Nonnull string, NSUInteger idx, BOOL * _Nonnull stop) {
         
         [self transmitRawString:string responseHandler:^(NSArray<NSString*>* _Nullable response) {
