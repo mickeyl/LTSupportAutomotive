@@ -76,7 +76,31 @@
 
 -(NSArray<NSNumber*>*)hexStringToArrayOfNumbers:(NSString*)string
 {
-    //TODO: Support strings without spaces as well?
+    // Normalize string input to contain spaces. This transforms an input string like
+    // "7E80641010007E500" to "7E8 06 41 01 00 07 E5 00".
+    if ( ! [string containsString:@" "] )
+    {
+        NSMutableString* output = string.mutableCopy;
+        for ( NSUInteger i = string.length - 1; i > 0; --i )
+        {
+            if ( string.length % 2 == 0 )
+            {
+                if ( i % 2 == 0 )
+                {
+                    [output insertString:@" " atIndex:i];
+                }
+            }
+            else
+            {
+                if ( i != 1 && i % 2 == 1 )
+                {
+                    [output insertString:@" " atIndex:i];
+                }
+            }
+        }
+        string = output;
+    }
+
     NSMutableArray<NSNumber*>* ma = [NSMutableArray array];
     NSArray<NSString*>* hexValues = [string componentsSeparatedByString:@" "];
     [hexValues enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
