@@ -11,6 +11,8 @@
 
 NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialTransporterDidUpdateSignalStrength";
 
+//#define DEBUG_THIS_FILE
+
 #ifdef DEBUG_THIS_FILE
     #define XLOG LOG
 #else
@@ -59,7 +61,7 @@ NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialT
     _dispatchQueue = dispatch_queue_create( [NSStringFromClass(self.class) UTF8String], DISPATCH_QUEUE_SERIAL );
     _possibleAdapters = [NSMutableArray array];
     
-    XLOG( @"Created w/ identifier %@, service %@", _identifier, _serviceUUID );
+    XLOG( @"Created w/ identifier %@, services %@", _identifier, _serviceUUIDs );
     
     return self;
 }
