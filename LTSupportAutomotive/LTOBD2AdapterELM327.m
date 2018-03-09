@@ -6,7 +6,7 @@
 
 #import "LTSupportAutomotive.h"
 
-//#define DEBUG_THIS_FILE
+#define DEBUG_THIS_FILE
 
 #ifdef DEBUG_THIS_FILE
     #define XLOG LOG
@@ -48,7 +48,7 @@
     identification = @""; // indicates that we got a valid response terminator, even if there was not valid identification string (e.g. '?')
     NSString* stringWithoutResponseTerminator = [response substringToIndex:response.length - 1];
     [stringWithoutResponseTerminator enumerateLinesUsingBlock:^(NSString * _Nonnull line, BOOL * _Nonnull stop) {
-        if ( line.length > 5 )
+        if ( line.length > 1 )
         {
             identification = line;
         }
