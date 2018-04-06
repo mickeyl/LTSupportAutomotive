@@ -57,6 +57,7 @@ I have tested this library myself with the following adapters (Note that none of
 ### BTLE (aka BLE, BluetoothSmart, or BT 4.0) ###
 * Carista Bluetooth OBD2
 * LELink Bluetooth Low Energy
+* VGate iCar Pro BLE4.0 Dual
 
 ### WiFi ###
 * NAVISKAUTO WIFI WLAN ELM327
