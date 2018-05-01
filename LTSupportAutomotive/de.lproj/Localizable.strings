@@ -1295,8 +1295,8 @@
 "OBD2_PERFORMANCE_TRACKING_EGSCOND" = "Abgasdetektor Testbedingungen";
 "OBD2_PERFORMANCE_TRACKING_EGRCOMP" = "EGR und/oder VVT Messläufe";
 "OBD2_PERFORMANCE_TRACKING_EGRCOND" = "EGR und/oder VVT Testbedingungen";
-"OBD2_PERFORMANCE_TRACKING_BPCOMP" = "Turbodruck Messläufe";
-"OBD2_PERFORMANCE_TRACKING_BPCOND" = "Turbodruck Testbedingungen";
+"OBD2_PERFORMANCE_TRACKING_BPCOMP" = "Ladedruck Messläufe";
+"OBD2_PERFORMANCE_TRACKING_BPCOND" = "Ladedruck Testbedingungen";
 "OBD2_PERFORMANCE_TRACKING_FUELCOMP" = "Kraftstoffsystem Messläufe";
 "OBD2_PERFORMANCE_TRACKING_FUELCOND" = "Kraftstoffsystem Testbedingungen";
 
