@@ -455,9 +455,9 @@
 			productReference = 70234EAE20D5253200657B54 /* LTSupportAutomotive.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		70234EB020D5253F00657B54 /* MacSupportAutomotive copy */ = {
+		70234EB020D5253F00657B54 /* MacSupportAutomotive */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 70234EE020D5253F00657B54 /* Build configuration list for PBXNativeTarget "MacSupportAutomotive copy" */;
+			buildConfigurationList = 70234EE020D5253F00657B54 /* Build configuration list for PBXNativeTarget "MacSupportAutomotive" */;
 			buildPhases = (
 				70234EB120D5253F00657B54 /* Sources */,
 				70234EC720D5253F00657B54 /* Frameworks */,
@@ -468,7 +468,7 @@
 			);
 			dependencies = (
 			);
-			name = "MacSupportAutomotive copy";
+			name = MacSupportAutomotive;
 			productName = LTSupportAutomotive;
 			productReference = 70234EE320D5253F00657B54 /* LTSupportAutomotive.framework */;
 			productType = "com.apple.product-type.framework";
@@ -529,7 +529,7 @@
 			targets = (
 				70DFA83E1D9A6D55004ECF98 /* LTSupportAutomotive */,
 				70234E7B20D5253200657B54 /* WatchSupportAutomotive */,
-				70234EB020D5253F00657B54 /* MacSupportAutomotive copy */,
+				70234EB020D5253F00657B54 /* MacSupportAutomotive */,
 			);
 		};
 /* End PBXProject section */
@@ -905,7 +905,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		70234EE020D5253F00657B54 /* Build configuration list for PBXNativeTarget "MacSupportAutomotive copy" */ = {
+		70234EE020D5253F00657B54 /* Build configuration list for PBXNativeTarget "MacSupportAutomotive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				70234EE120D5253F00657B54 /* Debug */,
