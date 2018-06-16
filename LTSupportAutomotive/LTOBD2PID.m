@@ -354,11 +354,11 @@
                 {
                     NSUInteger bitnumber = part * offsetPerPart + number;
                     md[@(1 + bitnumber)] = @(supported);
-                    LOG( @"Adapter supports command %02X%02X", _mode, 1 + bitnumber );
+                    LOG( @"Adapter supports command %02X%02X", self->_mode, 1 + bitnumber );
                 }
             }
         }
-        _supported = [NSDictionary dictionaryWithDictionary:md];
+        self->_supported = [NSDictionary dictionaryWithDictionary:md];
         if ( completionBlock )
         {
             completionBlock();

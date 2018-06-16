@@ -601,7 +601,7 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
     if ( _adapterProtocol.heartbeatCommand )
     {
         dispatch_async( dispatch_get_main_queue(), ^{
-            _heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:4.5 target:self selector:@selector(sendHeartbeatCommand:) userInfo:nil repeats:YES];
+            self->_heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:4.5 target:self selector:@selector(sendHeartbeatCommand:) userInfo:nil repeats:YES];
         } );
     }
 }
