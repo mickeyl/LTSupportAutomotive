@@ -54,8 +54,8 @@ static const CGFloat animationDuration = 0.15;
             return;
         }
         
-        _obd2Adapter = [LTOBD2AdapterELM327 adapterWithInputStream:inputStream outputStream:outputStream];
-        [_obd2Adapter connect];
+        self->_obd2Adapter = [LTOBD2AdapterELM327 adapterWithInputStream:inputStream outputStream:outputStream];
+        [self->_obd2Adapter connect];
     }];
     
     [_transporter startUpdatingSignalStrengthWithInterval:1.0];
@@ -224,10 +224,10 @@ static const CGFloat animationDuration = 0.15;
             LTOBD2PID_MONITOR_STATUS_SINCE_DTC_CLEARED_01* pid = [LTOBD2PID_MONITOR_STATUS_SINCE_DTC_CLEARED_01 pidForMode1];
             [_obd2Adapter transmitCommand:pid responseHandler:^(LTOBD2Command * _Nonnull command) {
                 
-                _monitors = pid.monitorResults;
+                self->_monitors = pid.monitorResults;
                 
                 dispatch_async( dispatch_get_main_queue(), ^{
-                    [_tableView reloadData];
+                    [self->_tableView reloadData];
                 } );
                 
             }];
@@ -251,10 +251,10 @@ static const CGFloat animationDuration = 0.15;
             [_obd2Adapter transmitCommand:dtcPid responseHandler:^(LTOBD2Command * _Nonnull command) {
                 
                 LOG( @"DTC = %@", dtcPid.formattedResponse );
-                _dtcs = dtcPid.troubleCodes;
+                self->_dtcs = dtcPid.troubleCodes;
                 
                 dispatch_async( dispatch_get_main_queue(), ^{
-                    [_tableView reloadData];
+                    [self->_tableView reloadData];
                 } );
             }];
         }
@@ -280,9 +280,9 @@ static const CGFloat animationDuration = 0.15;
     
         dispatch_async( dispatch_get_main_queue(), ^{
 
-            _rpmLabel.text = rpm.formattedResponse;
-            _speedLabel.text = speed.formattedResponse;
-            _tempLabel.text = temp.formattedResponse;
+            self->_rpmLabel.text = rpm.formattedResponse;
+            self->_speedLabel.text = speed.formattedResponse;
+            self->_tempLabel.text = temp.formattedResponse;
 
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self updateSensorData];
@@ -300,23 +300,23 @@ static const CGFloat animationDuration = 0.15;
 {
     dispatch_async( dispatch_get_main_queue(), ^{
 
-        _adapterStatusLabel.text = _obd2Adapter.friendlyAdapterState;
+        self->_adapterStatusLabel.text = self->_obd2Adapter.friendlyAdapterState;
         
-        if ( _obd2Adapter.adapterState == OBD2AdapterStateConnected )
+        if ( self->_obd2Adapter.adapterState == OBD2AdapterStateConnected )
         {
-            _tableView.dataSource = self;
-            _tableView.delegate = self;
-            [_tableView reloadData];
+            self->_tableView.dataSource = self;
+            self->_tableView.delegate = self;
+            [self->_tableView reloadData];
             
             [self updateSensorData];
         }
         
-        if ( _obd2Adapter.adapterState == OBD2AdapterStateUnsupportedProtocol )
+        if ( self->_obd2Adapter.adapterState == OBD2AdapterStateUnsupportedProtocol )
         {
             dispatch_async( dispatch_get_main_queue(), ^{
 
-                NSString* message = [NSString stringWithFormat:@"Adapter ready, but vehicle uses an unsupported protocol – %@", _obd2Adapter.friendlyVehicleProtocol];
-                _adapterStatusLabel.text = message;
+                NSString* message = [NSString stringWithFormat:@"Adapter ready, but vehicle uses an unsupported protocol – %@", self->_obd2Adapter.friendlyVehicleProtocol];
+                self->_adapterStatusLabel.text = message;
                 
             } );
         }
@@ -326,7 +326,7 @@ static const CGFloat animationDuration = 0.15;
 -(void)onAdapterDidSendBytes:(NSNotification*)notification
 {
     dispatch_async( dispatch_get_main_queue(), ^{
-        if ( _outgoingBytesNotification.layer.animationKeys.count )
+        if ( self->_outgoingBytesNotification.layer.animationKeys.count )
         {
             LOG( @"OUT Ani in progress..." );
             return;
@@ -334,9 +334,9 @@ static const CGFloat animationDuration = 0.15;
         
         
         [UIView animateWithDuration:animationDuration delay:0.0 options:0 animations:^{
-            _outgoingBytesNotification.alpha = 0.75;
+            self->_outgoingBytesNotification.alpha = 0.75;
         } completion:^(BOOL finished) {
-            _outgoingBytesNotification.alpha = 0.3;
+            self->_outgoingBytesNotification.alpha = 0.3;
         }];
     } );
 }
@@ -344,16 +344,16 @@ static const CGFloat animationDuration = 0.15;
 -(void)onAdapterDidReceiveBytes:(NSNotification*)notification
 {
     dispatch_async( dispatch_get_main_queue(), ^{
-        if ( _incomingBytesNotification.layer.animationKeys.count )
+        if ( self->_incomingBytesNotification.layer.animationKeys.count )
         {
             LOG( @"IN Ani in progress..." );
             return;
         }
         
         [UIView animateWithDuration:animationDuration delay:0.0 options:0 animations:^{
-            _incomingBytesNotification.alpha = 0.75;
+            self->_incomingBytesNotification.alpha = 0.75;
         } completion:^(BOOL finished) {
-            _incomingBytesNotification.alpha = 0.3;
+            self->_incomingBytesNotification.alpha = 0.3;
         }];
     } );
 }
@@ -361,7 +361,7 @@ static const CGFloat animationDuration = 0.15;
 -(void)onTransporterDidUpdateSignalStrength:(NSNotification*)notification
 {
     dispatch_async( dispatch_get_main_queue(), ^{
-        _rssiLabel.text = [NSString stringWithFormat:@"-%.0f dbM", _transporter.signalStrength.floatValue];
+        self->_rssiLabel.text = [NSString stringWithFormat:@"-%.0f dbM", self->_transporter.signalStrength.floatValue];
     } );
 }
 

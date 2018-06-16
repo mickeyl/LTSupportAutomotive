@@ -18,6 +18,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		70234EE920D528CA00657B54 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70A13C1F1D9A70F600B15BE7 /* LTSupportAutomotive.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 70234EAE20D5253200657B54;
+			remoteInfo = WatchSupportAutomotive;
+		};
+		70234EEB20D528CA00657B54 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70A13C1F1D9A70F600B15BE7 /* LTSupportAutomotive.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 70234EE320D5253F00657B54;
+			remoteInfo = "MacSupportAutomotive copy";
+		};
 		70A13C231D9A70F600B15BE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 70A13C1F1D9A70F600B15BE7 /* LTSupportAutomotive.xcodeproj */;
@@ -78,6 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				70A13C241D9A70F600B15BE7 /* LTSupportAutomotive.framework */,
+				70234EEA20D528CA00657B54 /* LTSupportAutomotive.framework */,
+				70234EEC20D528CA00657B54 /* LTSupportAutomotive.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -151,7 +167,7 @@
 		70F3521E1D9A70A100F27FFB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Dr. Lauer Information Technology";
 				TargetAttributes = {
 					70F352251D9A70A100F27FFB = {
@@ -186,6 +202,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		70234EEA20D528CA00657B54 /* LTSupportAutomotive.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LTSupportAutomotive.framework;
+			remoteRef = 70234EE920D528CA00657B54 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70234EEC20D528CA00657B54 /* LTSupportAutomotive.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LTSupportAutomotive.framework;
+			remoteRef = 70234EEB20D528CA00657B54 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		70A13C241D9A70F600B15BE7 /* LTSupportAutomotive.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -262,6 +292,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -269,6 +300,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -317,6 +349,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -324,6 +357,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
