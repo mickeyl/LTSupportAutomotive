@@ -63,6 +63,9 @@ I have tested this library myself with the following adapters (Note that none of
 * NAVISKAUTO WIFI WLAN ELM327
 * EXZA® SUPER Mini WiFi WLAN OBD 2
 
+### USB ###
+* OBDLINK SX SCANTOOL
+
 # Enhancements #
 
 While this library can already be used for a lot of things, I'd like to see improvements in a bunch of areas, such as:
