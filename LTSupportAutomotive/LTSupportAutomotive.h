@@ -53,3 +53,8 @@ NS_ASSUME_NONNULL_END
 #ifndef WARN
 #define WARN LOG
 #endif
+
+#ifndef ERROR
+#define ERROR LOG
+#endif
+

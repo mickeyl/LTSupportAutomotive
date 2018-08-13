@@ -44,6 +44,7 @@ typedef void(^LTOBD2CommandResponseHandler)(LTOBD2Command* command);
 typedef void(^LTOBD2RawResponseHandler)(NSArray<NSString*>* _Nullable response);
 
 extern NSString* const LTOBD2AdapterDidUpdateState;
+extern NSString* const LTOBD2AdapterDidOpenStream;
 extern NSString* const LTOBD2AdapterDidSend;
 extern NSString* const LTOBD2AdapterDidReceive;
 

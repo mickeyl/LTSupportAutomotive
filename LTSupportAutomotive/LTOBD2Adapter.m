@@ -82,6 +82,7 @@ static NSString* const COMMAND_TERMINATION_SEQUENCE = @"\r"; // CR (0x0D)
 #pragma mark LTOBD2Adapter
 
 NSString* const LTOBD2AdapterDidUpdateState = @"LTOBD2AdapterDidUpdateState";
+NSString* const LTOBD2AdapterDidOpenStream = @"LTOBD2AdapterDidOpenStream";
 NSString* const LTOBD2AdapterDidSend = @"LTOBD2AdapterDidSend";
 NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
 
@@ -519,6 +520,11 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
 -(void)stream:(NSStream*)stream handleEvent:(NSStreamEvent)eventCode
 {
     XLOG( @"stream %@ handleEvent: %u", stream, (uint)eventCode );
+
+    if ( eventCode == NSStreamEventOpenCompleted )
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:LTOBD2AdapterDidOpenStream object:stream];
+    }
     
     if ( stream == _inputStream )
     {
@@ -545,6 +551,7 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
                 
             case NSStreamEventErrorOccurred:
             {
+                ERROR( @"stream %@ error %@", stream, stream.streamError );
                 [self advanceAdapterStateTo:OBD2AdapterStateError];
                 break;
             }
