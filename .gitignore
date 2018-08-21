@@ -9,5 +9,6 @@ AntiCrack-InfoScanner-Result.h
 ._*
 .smbdelete*
 project.xcworkspace
+xcshareddata
 xcuserdata
 DerivedData
