@@ -10,6 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(nullable instancetype)initToCharacteristic:(CBCharacteristic*)characteristic;
 -(void)characteristicDidWriteValue;
+-(void)dealloc;
 
 @end
 
