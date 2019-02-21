@@ -118,4 +118,8 @@
     return YES;
 }
 
+-(void)dealloc {
+    _delegate = nil;
+}
+
 @end
