@@ -388,21 +388,31 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:LTOBD2AdapterDidReceive object:self];
     
-    if ( !_hasPendingAnswer )
-    {
-        WARN( @" Received command without pending answer (perhaps in reaction to a cancelPendingCommands?)!" );
-        return;
-    }
-    
-    LTOBD2AdapterInternalCommand* internalCommand = _commandQueue.firstObject;
-    [_commandQueue removeObjectAtIndex:0];
-    [internalCommand didCompleteResponse:lines protocol:_adapterProtocol protocolType:_vehicleProtocol];
-    _hasPendingAnswer = NO;
+    dispatch_async( _dispatchQueue, ^{
+        
+        if ( !self->_hasPendingAnswer )
+        {
+            WARN( @" Received command without pending answer (perhaps in reaction to a cancelPendingCommands?)!" );
+            return;
+        }
+        
+        if ( self->_commandQueue.count == 0 ) {
+            WARN( @" Received command without pending answer (perhaps in reaction to a cancelPendingCommands?)! : CommandCount 0" );
+            return;
+        }
+        
+        LTOBD2AdapterInternalCommand* internalCommand = self->_commandQueue.firstObject;
+        if ( self->_commandQueue.count > 0 ) {
+            [self->_commandQueue removeObjectAtIndex:0];
+        }
+        [internalCommand didCompleteResponse:lines protocol:self->_adapterProtocol protocolType:self->_vehicleProtocol];
+        self->_hasPendingAnswer = NO;
 
-    if ( _nextCommandDelay )
-    {
-        [NSThread sleepForTimeInterval:_nextCommandDelay];
-    }
+        if ( self->_nextCommandDelay )
+        {
+            [NSThread sleepForTimeInterval:self->_nextCommandDelay];
+        }
+    });
     [self processCommandQueue];
 }
 
