@@ -268,18 +268,22 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
 
 -(void)cancelPendingCommands
 {
-    // This cancels all but the first command in order to prevent sending a new command while
-    // the response to an active command is still pending. OBD2 adapters usually can't cope with
-    // that and emit a 'STOPPED' response in that case.
-    if ( _hasPendingAnswer )
-    {
-        NSRange allButTheFirst = NSMakeRange( 1, _commandQueue.count - 1 );
-        [_commandQueue removeObjectsInRange:allButTheFirst];
-    }
-    else
-    {
-        [_commandQueue removeAllObjects];
-    }
+     dispatch_async( _dispatchQueue, ^{
+        // This cancels all but the first command in order to prevent sending a new command while
+        // the response to an active command is still pending. OBD2 adapters usually can't cope with
+        // that and emit a 'STOPPED' response in that case.
+        if ( self->_hasPendingAnswer )
+        {
+            if ( self->_commandQueue.count > 0 ) {
+                NSRange allButTheFirst = NSMakeRange( 1, self->_commandQueue.count - 1 );
+                [self->_commandQueue removeObjectsInRange:allButTheFirst];
+            }
+        }
+        else
+        {
+            [self->_commandQueue removeAllObjects];
+        }
+    });
 }
 
 #pragma mark -
