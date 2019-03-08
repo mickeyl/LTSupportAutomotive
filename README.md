@@ -50,18 +50,21 @@ Please drop us a note, if you are using this library as well.
 
 # Supported Hardware #
 
-This software should work with most ELM327-compatible hardware (including the behemoth of available *clones*). In general, I recommend the Bluetooth 4.0 devices, since they seems to have a much better quality compared to the WiFi adapters. Moreover, they're much more convenient as you don't have to switch the WiFi network. Note that since iOS is lacking the Bluetooth `rfcomm` protocol, this library will **not** work with Bluetooth 3.0 adapters.
+This software should work with most ELM327-compatible hardware (including the behemoth of available *clones*). In general, I recommend the Bluetooth 4.0 devices, since they seems to have a much better quality compared to the WiFi adapters.
+Moreover, they're much more convenient as you don't have to switch the WiFi network. Note that since iOS is lacking public SDK access to *Bluetooth classic* (in particular the Bluetooth `rfcomm` protocol), iOS devices will **not** work with Bluetooth 3.0 adapters.
 
 I have tested this library myself with the following adapters (Note that none of these contain a *real* ELM327):
 
 ### BTLE (aka BLE, BluetoothSmart, or BT 4.0) ###
 * Carista Bluetooth OBD2
+* FIXD OBD-II Scan Tool (2nd Gen)
 * LELink Bluetooth Low Energy
 * VGate iCar Pro BLE4.0 Dual
 
 ### WiFi ###
 * NAVISKAUTO WIFI WLAN ELM327
 * EXZA® SUPER Mini WiFi WLAN OBD 2
+* OBDLINK MX (w/ STN11xx)
 
 ### USB ###
 * OBDLINK SX SCANTOOL
@@ -70,11 +73,11 @@ I have tested this library myself with the following adapters (Note that none of
 
 While this library can already be used for a lot of things, I'd like to see improvements in a bunch of areas, such as:
 
-* Translations (I only have DE and EN atm.),
+* Translations (I only have DE, FR, and EN atm.),
 * Implementation of missing standardized PIDs,
 * Addition of vendor-specific DTCs,
 * Implementation of vendor-specific PIDs,
-* Implementation of non-PID/direct communication with ECUs.
+* Implementation of *direct* (non-PID-based) communication with ECUs.
 
 # How to contribute #
 
@@ -87,7 +90,7 @@ Please fork and open a pull-request. I'd also like to know about success stories
 
 # License #
 
-Copyright (c) 2016-2018 Dr. Michael 'Mickey' Lauer
+Copyright (c) 2016-2019 Dr. Michael 'Mickey' Lauer
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
