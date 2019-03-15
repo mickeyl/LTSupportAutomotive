@@ -125,7 +125,7 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
     _outputStream = outputStream;
     _outputStream.delegate = self;
     _commandQueue = [NSMutableArray array];
-    _dispatchQueue = dispatch_queue_create( [self.description cStringUsingEncoding:NSUTF8StringEncoding], DISPATCH_QUEUE_SERIAL );
+    _dispatchQueue = LTSupportAutomotive_backgroundQueue();
     
     _adapterState = OBD2AdapterStateUnknown;
     
