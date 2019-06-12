@@ -133,8 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				70A13C1F1D9A70F600B15BE7 /* LTSupportAutomotive.xcodeproj */,
-				70F352281D9A70A100F27FFB /* Demo */,
-				70F4D4A92121810400323778 /* macOS_Demo */,
+				70F352281D9A70A100F27FFB /* iOS */,
+				70F4D4A92121810400323778 /* macOS */,
 				70F352271D9A70A100F27FFB /* Products */,
 				70F4D4BE2121817700323778 /* Frameworks */,
 			);
@@ -149,7 +149,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		70F352281D9A70A100F27FFB /* Demo */ = {
+		70F352281D9A70A100F27FFB /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				70F3522C1D9A70A100F27FFB /* AppDelegate.h */,
@@ -162,7 +162,7 @@
 				70F3523A1D9A70A100F27FFB /* Info.plist */,
 				70F352291D9A70A100F27FFB /* Supporting Files */,
 			);
-			path = Demo;
+			path = iOS;
 			sourceTree = "<group>";
 		};
 		70F352291D9A70A100F27FFB /* Supporting Files */ = {
@@ -173,7 +173,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		70F4D4A92121810400323778 /* macOS_Demo */ = {
+		70F4D4A92121810400323778 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
 				70F4D4AA2121810400323778 /* AppDelegate.h */,
@@ -186,7 +186,7 @@
 				70F4D4B62121810600323778 /* main.m */,
 				70F4D4B82121810600323778 /* macOS_Demo.entitlements */,
 			);
-			path = macOS_Demo;
+			path = macOS;
 			sourceTree = "<group>";
 		};
 		70F4D4BE2121817700323778 /* Frameworks */ = {
@@ -242,7 +242,7 @@
 		70F3521E1D9A70A100F27FFB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Dr. Lauer Information Technology";
 				TargetAttributes = {
 					70F352251D9A70A100F27FFB = {
@@ -264,7 +264,7 @@
 			};
 			buildConfigurationList = 70F352211D9A70A100F27FFB /* Build configuration list for PBXProject "Demo" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -401,6 +401,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -446,6 +447,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -458,6 +460,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -497,6 +500,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -510,7 +514,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = NANNL9SK66;
-				INFOPLIST_FILE = Demo/Info.plist;
+				INFOPLIST_FILE = iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.vanille.LTSupportAutomotive.iOS-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -522,7 +526,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = NANNL9SK66;
-				INFOPLIST_FILE = Demo/Info.plist;
+				INFOPLIST_FILE = iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.vanille.LTSupportAutomotive.iOS-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -541,6 +545,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = NANNL9SK66;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = macOS_Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -565,6 +570,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = NANNL9SK66;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = macOS_Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

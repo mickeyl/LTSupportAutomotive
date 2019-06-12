@@ -24,7 +24,8 @@ static const CGFloat animationDuration = 0.15;
 {
     LTBTLESerialTransporter* _transporter;
     LTOBD2Adapter* _obd2Adapter;
-    
+
+    NSArray<CBUUID*>* _serviceUUIDs;
     NSArray<LTOBD2PID*>* _pids;
     NSArray<LTOBD2MonitorResult*>* _monitors;
     NSArray<LTOBD2DTC*>* _dtcs;
@@ -39,76 +40,85 @@ static const CGFloat animationDuration = 0.15;
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSMutableArray* serviceUUIDs = [NSMutableArray array];
+
+    NSMutableArray<CBUUID*>* ma = [NSMutableArray array];
     [@[ @"FFF0", @"FFE0", @"BEEF" , @"E7810A71-73AE-499D-8C15-FAA9AEF0C3F2"] enumerateObjectsUsingBlock:^(NSString* _Nonnull uuid, NSUInteger idx, BOOL * _Nonnull stop) {
-        [serviceUUIDs addObject:[CBUUID UUIDWithString:uuid]];
+        [ma addObject:[CBUUID UUIDWithString:uuid]];
     }];
-    
-    _transporter = [LTBTLESerialTransporter transporterWithIdentifier:nil serviceUUIDs:serviceUUIDs];
-    [_transporter connectWithBlock:^(NSInputStream * _Nullable inputStream, NSOutputStream * _Nullable outputStream) {
-        
-        if ( !inputStream )
-        {
-            LOG( @"Could not connect to OBD2 adapter" );
-            return;
-        }
-        
-        self->_obd2Adapter = [LTOBD2AdapterELM327 adapterWithInputStream:inputStream outputStream:outputStream];
-        [self->_obd2Adapter connect];
-    }];
-    
-    [_transporter startUpdatingSignalStrengthWithInterval:1.0];
-    
+    _serviceUUIDs = [NSArray arrayWithArray:ma];
+
     UISegmentedControl* sc = [[UISegmentedControl alloc] initWithItems:@[ @"Current", @"Monitors", @"DTC" ]];
     sc.selectedSegmentIndex = _selectedPage = 0;
     [sc addTarget:self action:@selector(onSegmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
     self.navigationItem.titleView = sc;
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(onRefreshClicked:)];
-    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(onRefreshClicked:)];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAdapterChangedState:) name:LTOBD2AdapterDidUpdateState object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onTransporterDidUpdateSignalStrength:) name:LTBTLESerialTransporterDidUpdateSignalStrength object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAdapterDidSendBytes:) name:LTOBD2AdapterDidSend object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAdapterDidReceiveBytes:) name:LTOBD2AdapterDidReceive object:nil];
-    
+
+    [self connect];
+}
+
+-(void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
+#pragma mark -
+#pragma mark Helpers
+
+-(void)connect
+{
     NSMutableArray<LTOBD2PID*>* ma = @[
-                                                 
-                                                 [LTOBD2CommandELM327_IDENTIFY command],
-                                                 [LTOBD2CommandELM327_IGNITION_STATUS command],
-                                                 [LTOBD2CommandELM327_READ_VOLTAGE command],
-                                                 [LTOBD2CommandELM327_DESCRIBE_PROTOCOL command],
-                                                 
-                                                 [LTOBD2PID_VIN_CODE_0902 pid],
-                                                 [LTOBD2PID_FUEL_SYSTEM_STATUS_03 pidForMode1],
-                                                 [LTOBD2PID_OBD_STANDARDS_1C pidForMode1],
-                                                 [LTOBD2PID_FUEL_TYPE_51 pidForMode1],
-                                                 
-                                                 [LTOBD2PID_ENGINE_LOAD_04 pidForMode1],
-                                                 [LTOBD2PID_COOLANT_TEMP_05 pidForMode1],
-                                                 [LTOBD2PID_SHORT_TERM_FUEL_TRIM_1_06 pidForMode1],
-                                                 [LTOBD2PID_LONG_TERM_FUEL_TRIM_1_07 pidForMode1],
-                                                 [LTOBD2PID_SHORT_TERM_FUEL_TRIM_2_08 pidForMode1],
-                                                 [LTOBD2PID_LONG_TERM_FUEL_TRIM_2_09 pidForMode1],
-                                                 [LTOBD2PID_FUEL_PRESSURE_0A pidForMode1],
-                                                 [LTOBD2PID_INTAKE_MAP_0B pidForMode1],
-                                                 
-                                                 [LTOBD2PID_ENGINE_RPM_0C pidForMode1],
-                                                 [LTOBD2PID_VEHICLE_SPEED_0D pidForMode1],
-                                                 [LTOBD2PID_TIMING_ADVANCE_0E pidForMode1],
-                                                 [LTOBD2PID_INTAKE_TEMP_0F pidForMode1],
-                                                 [LTOBD2PID_MAF_FLOW_10 pidForMode1],
-                                                 [LTOBD2PID_THROTTLE_11 pidForMode1],
-                                                 
-                                                 [LTOBD2PID_SECONDARY_AIR_STATUS_12 pidForMode1],
-                                                 [LTOBD2PID_OXYGEN_SENSORS_PRESENT_2_BANKS_13 pidForMode1],
-                                                 
-                                                 ].mutableCopy;
+
+                                       [LTOBD2CommandELM327_IDENTIFY command],
+                                       [LTOBD2CommandELM327_IGNITION_STATUS command],
+                                       [LTOBD2CommandELM327_READ_VOLTAGE command],
+                                       [LTOBD2CommandELM327_DESCRIBE_PROTOCOL command],
+
+                                       [LTOBD2PID_VIN_CODE_0902 pid],
+                                       [LTOBD2PID_FUEL_SYSTEM_STATUS_03 pidForMode1],
+                                       [LTOBD2PID_OBD_STANDARDS_1C pidForMode1],
+                                       [LTOBD2PID_FUEL_TYPE_51 pidForMode1],
+
+                                       [LTOBD2PID_ENGINE_LOAD_04 pidForMode1],
+                                       [LTOBD2PID_COOLANT_TEMP_05 pidForMode1],
+                                       [LTOBD2PID_SHORT_TERM_FUEL_TRIM_1_06 pidForMode1],
+                                       [LTOBD2PID_LONG_TERM_FUEL_TRIM_1_07 pidForMode1],
+                                       [LTOBD2PID_SHORT_TERM_FUEL_TRIM_2_08 pidForMode1],
+                                       [LTOBD2PID_LONG_TERM_FUEL_TRIM_2_09 pidForMode1],
+                                       [LTOBD2PID_FUEL_PRESSURE_0A pidForMode1],
+                                       [LTOBD2PID_INTAKE_MAP_0B pidForMode1],
+
+                                       [LTOBD2PID_ENGINE_RPM_0C pidForMode1],
+                                       [LTOBD2PID_VEHICLE_SPEED_0D pidForMode1],
+                                       [LTOBD2PID_TIMING_ADVANCE_0E pidForMode1],
+                                       [LTOBD2PID_INTAKE_TEMP_0F pidForMode1],
+                                       [LTOBD2PID_MAF_FLOW_10 pidForMode1],
+                                       [LTOBD2PID_THROTTLE_11 pidForMode1],
+
+                                       [LTOBD2PID_SECONDARY_AIR_STATUS_12 pidForMode1],
+                                       [LTOBD2PID_OXYGEN_SENSORS_PRESENT_2_BANKS_13 pidForMode1],
+
+                                       ].mutableCopy;
     for ( NSUInteger i = 0; i < 8; ++i )
     {
         [ma addObject:[LTOBD2PID_OXYGEN_SENSORS_INFO_1 pidForSensor:i mode:1]];
     }
-    
+
     [ma addObjectsFromArray:@[
                               [LTOBD2PID_OXYGEN_SENSORS_PRESENT_4_BANKS_1D pidForMode1],
                               [LTOBD2PID_AUX_INPUT_1E pidForMode1],
@@ -133,62 +143,66 @@ static const CGFloat animationDuration = 0.15;
                               [LTOBD2PID_EVAP_SYS_VAPOR_PRESSURE_32 pidForMode1],
                               [LTOBD2PID_ABSOLUTE_BAROMETRIC_PRESSURE_33 pidForMode1],
                               ]];
-    
-     for ( NSUInteger i = 0; i < 8; ++i )
-     {
-         [ma addObject:[LTOBD2PID_OXYGEN_SENSORS_INFO_3 pidForSensor:i mode:1]];
-     }
-     
-     [ma addObjectsFromArray:@[
-                               [LTOBD2PID_CATALYST_TEMP_B1S1_3C pidForMode1],
-                               [LTOBD2PID_CATALYST_TEMP_B2S1_3D pidForMode1],
-                               [LTOBD2PID_CATALYST_TEMP_B1S2_3E pidForMode1],
-                               [LTOBD2PID_CATALYST_TEMP_B2S2_3F pidForMode1],
-                               [LTOBD2PID_CONTROL_MODULE_VOLTAGE_42 pidForMode1],
-                               [LTOBD2PID_ABSOLUTE_ENGINE_LOAD_43 pidForMode1],
-                               [LTOBD2PID_AIR_FUEL_EQUIV_RATIO_44 pidForMode1],
-                               [LTOBD2PID_RELATIVE_THROTTLE_POS_45 pidForMode1],
-                               [LTOBD2PID_AMBIENT_TEMP_46 pidForMode1],
-                               [LTOBD2PID_ABSOLUTE_THROTTLE_POS_B_47 pidForMode1],
-                               [LTOBD2PID_ABSOLUTE_THROTTLE_POS_C_48 pidForMode1],
-                               [LTOBD2PID_ACC_PEDAL_POS_D_49 pidForMode1],
-                               [LTOBD2PID_ACC_PEDAL_POS_E_4A pidForMode1],
-                               [LTOBD2PID_ACC_PEDAL_POS_F_4B pidForMode1],
-                               [LTOBD2PID_COMMANDED_THROTTLE_ACTUATOR_4C pidForMode1],
-                               [LTOBD2PID_TIME_WITH_MIL_4D pidForMode1],
-                               [LTOBD2PID_TIME_SINCE_DTC_CLEARED_4E pidForMode1],
-                               [LTOBD2PID_MAX_VALUE_FUEL_AIR_EQUIVALENCE_RATIO_4F pidForMode1],
-                               [LTOBD2PID_MAX_VALUE_OXYGEN_SENSOR_VOLTAGE_4F pidForMode1],
-                               [LTOBD2PID_MAX_VALUE_OXYGEN_SENSOR_CURRENT_4F pidForMode1],
-                               [LTOBD2PID_MAX_VALUE_INTAKE_MAP_4F pidForMode1],
-                               [LTOBD2PID_MAX_VALUE_MAF_AIR_FLOW_RATE_50 pidForMode1],
-                               ]];
+
+    for ( NSUInteger i = 0; i < 8; ++i )
+    {
+        [ma addObject:[LTOBD2PID_OXYGEN_SENSORS_INFO_3 pidForSensor:i mode:1]];
+    }
+
+    [ma addObjectsFromArray:@[
+                              [LTOBD2PID_CATALYST_TEMP_B1S1_3C pidForMode1],
+                              [LTOBD2PID_CATALYST_TEMP_B2S1_3D pidForMode1],
+                              [LTOBD2PID_CATALYST_TEMP_B1S2_3E pidForMode1],
+                              [LTOBD2PID_CATALYST_TEMP_B2S2_3F pidForMode1],
+                              [LTOBD2PID_CONTROL_MODULE_VOLTAGE_42 pidForMode1],
+                              [LTOBD2PID_ABSOLUTE_ENGINE_LOAD_43 pidForMode1],
+                              [LTOBD2PID_AIR_FUEL_EQUIV_RATIO_44 pidForMode1],
+                              [LTOBD2PID_RELATIVE_THROTTLE_POS_45 pidForMode1],
+                              [LTOBD2PID_AMBIENT_TEMP_46 pidForMode1],
+                              [LTOBD2PID_ABSOLUTE_THROTTLE_POS_B_47 pidForMode1],
+                              [LTOBD2PID_ABSOLUTE_THROTTLE_POS_C_48 pidForMode1],
+                              [LTOBD2PID_ACC_PEDAL_POS_D_49 pidForMode1],
+                              [LTOBD2PID_ACC_PEDAL_POS_E_4A pidForMode1],
+                              [LTOBD2PID_ACC_PEDAL_POS_F_4B pidForMode1],
+                              [LTOBD2PID_COMMANDED_THROTTLE_ACTUATOR_4C pidForMode1],
+                              [LTOBD2PID_TIME_WITH_MIL_4D pidForMode1],
+                              [LTOBD2PID_TIME_SINCE_DTC_CLEARED_4E pidForMode1],
+                              [LTOBD2PID_MAX_VALUE_FUEL_AIR_EQUIVALENCE_RATIO_4F pidForMode1],
+                              [LTOBD2PID_MAX_VALUE_OXYGEN_SENSOR_VOLTAGE_4F pidForMode1],
+                              [LTOBD2PID_MAX_VALUE_OXYGEN_SENSOR_CURRENT_4F pidForMode1],
+                              [LTOBD2PID_MAX_VALUE_INTAKE_MAP_4F pidForMode1],
+                              [LTOBD2PID_MAX_VALUE_MAF_AIR_FLOW_RATE_50 pidForMode1],
+                              ]];
 
     _pids = [NSArray arrayWithArray:ma];
-    
+
     _adapterStatusLabel.text = @"Looking for adapter...";
     _rpmLabel.text = _speedLabel.text = _tempLabel.text = @"";
     _rssiLabel.text = @"";
     _incomingBytesNotification.alpha = 0.3;
     _outgoingBytesNotification.alpha = 0.3;
-    
+
+    _transporter = [LTBTLESerialTransporter transporterWithIdentifier:nil serviceUUIDs:_serviceUUIDs];
+    [_transporter connectWithBlock:^(NSInputStream * _Nullable inputStream, NSOutputStream * _Nullable outputStream) {
+
+        if ( !inputStream )
+        {
+            LOG( @"Could not connect to OBD2 adapter" );
+            return;
+        }
+
+        self->_obd2Adapter = [LTOBD2AdapterELM327 adapterWithInputStream:inputStream outputStream:outputStream];
+        [self->_obd2Adapter connect];
+    }];
+
+    [_transporter startUpdatingSignalStrengthWithInterval:1.0];
 }
 
--(void)didReceiveMemoryWarning
+-(void)disconnect
 {
-    [super didReceiveMemoryWarning];
+    [_obd2Adapter disconnect];
+    [_transporter disconnect];
 }
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-    
 
 #pragma mark -
 #pragma mark Actions
@@ -267,6 +281,16 @@ static const CGFloat animationDuration = 0.15;
     [_tableView reloadData];
 }
 
+-(void)onConnectAdapterClicked:(id)sender
+{
+    [self connect];
+}
+
+-(void)onDisconnectAdapterClicked:(id)sender
+{
+    [self disconnect];
+}
+
 #pragma mark -
 #pragma mark NSTimer
     
@@ -301,25 +325,45 @@ static const CGFloat animationDuration = 0.15;
     dispatch_async( dispatch_get_main_queue(), ^{
 
         self->_adapterStatusLabel.text = self->_obd2Adapter.friendlyAdapterState;
-        
-        if ( self->_obd2Adapter.adapterState == OBD2AdapterStateConnected )
-        {
-            self->_tableView.dataSource = self;
-            self->_tableView.delegate = self;
-            [self->_tableView reloadData];
-            
-            [self updateSensorData];
-        }
-        
-        if ( self->_obd2Adapter.adapterState == OBD2AdapterStateUnsupportedProtocol )
-        {
-            dispatch_async( dispatch_get_main_queue(), ^{
 
+        switch ( self->_obd2Adapter.adapterState )
+        {
+            case OBD2AdapterStateDiscovering: /* fallthrough intended */
+
+            case OBD2AdapterStateConnected:
+            {
+                self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(onDisconnectAdapterClicked:)];
+                self->_tableView.dataSource = self;
+                self->_tableView.delegate = self;
+                [self->_tableView reloadData];
+                [self updateSensorData];
+                break;
+            }
+
+            case OBD2AdapterStateGone:
+            {
+                self->_tableView.dataSource = nil;
+                [self->_tableView reloadData];
+                self->_rpmLabel.text = self->_speedLabel.text = _tempLabel.text = @"";
+                self->_rssiLabel.text = @"";
+                self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(onConnectAdapterClicked:)];
+                break;
+            }
+
+            case OBD2AdapterStateUnsupportedProtocol:
+            {
                 NSString* message = [NSString stringWithFormat:@"Adapter ready, but vehicle uses an unsupported protocol – %@", self->_obd2Adapter.friendlyVehicleProtocol];
                 self->_adapterStatusLabel.text = message;
-                
-            } );
+                break;
+            }
+
+            default:
+            {
+                NSLog( @"Unhandeld adapter state %@", self->_obd2Adapter.friendlyAdapterState );
+                break;
+            }
         }
+
     } );
 }
     
