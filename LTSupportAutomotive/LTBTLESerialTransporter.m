@@ -10,6 +10,7 @@
 #import "LTBTLEWriteCharacteristicStream.h"
 
 NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialTransporterDidUpdateSignalStrength";
+NSString* const LTBTLESerialTransporterDidDiscoverDevice = @"LTBTLESerialTransporterDidDiscoverDevice";
 
 //#define DEBUG_THIS_FILE
 
@@ -27,12 +28,14 @@ NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialT
     CBPeripheral* _adapter;
     CBCharacteristic* _reader;
     CBCharacteristic* _writer;
-    
+
+    // BTLE adapters
     NSMutableArray<CBPeripheral*>* _possibleAdapters;
     
     dispatch_queue_t _dispatchQueue;
     
     LTBTLESerialTransporterConnectionBlock _connectionBlock;
+    LTBTLEDeviceDiscoveredBlock _discoveryBlock;
     LTBTLEReadCharacteristicStream* _inputStream;
     LTBTLEWriteCharacteristicStream* _outputStream;
     
@@ -74,11 +77,24 @@ NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialT
 #pragma mark -
 #pragma mark API
 
--(void)connectWithBlock:(LTBTLESerialTransporterConnectionBlock)block
+-(void)connectWithIdentifier:(NSUUID*)identfier block:(LTBTLESerialTransporterConnectionBlock)block
 {
+    _identifier = identfier;
     _connectionBlock = block;
-    
-    _manager = [[CBCentralManager alloc] initWithDelegate:self queue:_dispatchQueue options:nil];
+    if (!_manager) {
+        _manager = [[CBCentralManager alloc] initWithDelegate:self queue:_dispatchQueue options:nil];
+    }
+    NSArray<CBPeripheral*>* peripherals = [_manager retrievePeripheralsWithIdentifiers:@[_identifier]];
+
+    if (!peripherals.count) {
+        [_manager scanForPeripheralsWithServices:nil options:nil];
+        return;
+    }
+
+    _adapter = peripherals.firstObject;
+    _adapter.delegate = self;
+    LOG( @"DISCOVER (cached) %@", _adapter );
+    [_manager connectPeripheral:_adapter options:nil];
 }
 
 -(void)disconnect
@@ -96,6 +112,21 @@ NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialT
     [_possibleAdapters enumerateObjectsUsingBlock:^(CBPeripheral * _Nonnull peripheral, NSUInteger idx, BOOL * _Nonnull stop) {
         [self->_manager cancelPeripheralConnection:peripheral];
     }];
+}
+
+-(void)startDiscoveryWithBlock:(LTBTLEDeviceDiscoveredBlock)block
+{
+    _discoveryBlock = block;
+    if (!_manager) {
+        _manager = [[CBCentralManager alloc] initWithDelegate:self queue:_dispatchQueue options:nil];
+    }
+}
+
+-(void)stopDiscovery
+{
+    if (_manager.isScanning) {
+        [_manager stopScan];
+    }
 }
 
 -(void)startUpdatingSignalStrengthWithInterval:(NSTimeInterval)interval
@@ -129,10 +160,12 @@ NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialT
 
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
+    LOG( @"centralManagerDidUpdateState" );
     if ( central.state != CBCentralManagerStatePoweredOn )
     {
         return;
     }
+
     NSArray<CBPeripheral*>* peripherals = [_manager retrieveConnectedPeripheralsWithServices:_serviceUUIDs];
     if ( peripherals.count )
     {
@@ -155,8 +188,10 @@ NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialT
     {
         peripherals = [_manager retrievePeripheralsWithIdentifiers:@[_identifier]];
     }
+
     if ( !peripherals.count )
     {
+        LOG( @"scanForPeripheralsWithServices" );
         // some devices are not advertising the service ID, hence we need to scan for all services
         [_manager scanForPeripheralsWithServices:nil options:nil];
         return;
@@ -220,11 +255,14 @@ NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialT
 
 -(void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
+    LOG( @"didDiscoverServices" );
+    /*
     if ( _adapter )
     {
         LOG( @"[IGNORING] SERVICES %@: %@", peripheral, peripheral.services );
         return;
     }
+     */
     
     if ( error )
     {
@@ -240,7 +278,7 @@ NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialT
         [_possibleAdapters removeObject:peripheral];
         return;
     }
-    
+
     _adapter = peripheral;
     _adapter.delegate = self;
     if ( _manager.isScanning )
@@ -254,6 +292,7 @@ NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialT
 
 -(void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
+    LOG( @"didDiscoverCharacteristicsForService" );
     for ( CBCharacteristic* characteristic in service.characteristics )
     {
         if ( characteristic.properties & CBCharacteristicPropertyNotify )
@@ -268,12 +307,17 @@ NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialT
         if ( characteristic.properties & CBCharacteristicPropertyWrite )
         {
             LOG( @"Did see write characteristic" );
+            if (!_writer) {
             _writer = characteristic;
+            }
         }
     }
     
     if ( _reader && _writer )
     {
+        if (_discoveryBlock) {
+            _discoveryBlock(peripheral);
+        }
         [self connectionAttemptSucceeded];
     }
     else
@@ -315,16 +359,25 @@ NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialT
 
 -(void)connectionAttemptSucceeded
 {
-    _inputStream = [[LTBTLEReadCharacteristicStream alloc] initWithCharacteristic:_reader];
-    _outputStream = [[LTBTLEWriteCharacteristicStream alloc] initToCharacteristic:_writer];
-    _connectionBlock( _inputStream, _outputStream );
-    _connectionBlock = nil;
+    if (_connectionBlock) {
+        _inputStream = [[LTBTLEReadCharacteristicStream alloc] initWithCharacteristic:_reader];
+        _outputStream = [[LTBTLEWriteCharacteristicStream alloc] initToCharacteristic:_writer];
+        _connectionBlock( _inputStream, _outputStream );
+        _connectionBlock = nil;
+    }
 }
 
 -(void)connectionAttemptFailed
 {
-    _connectionBlock( nil, nil );
-    _connectionBlock = nil;
+    if (_connectionBlock) {
+        _connectionBlock( nil, nil );
+        _connectionBlock = nil;
+    }
+}
+
+-(CBPeripheral*)adapter
+{
+    return _adapter;
 }
 
 @end
