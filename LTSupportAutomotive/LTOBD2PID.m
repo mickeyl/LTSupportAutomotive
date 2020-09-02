@@ -425,9 +425,28 @@
     NSMutableArray<LTOBD2DTC*>* ma = [NSMutableArray array];
     
     [self.cookedResponse enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull ecu, NSArray<NSNumber *> * _Nonnull bytes, BOOL * _Nonnull stop) {
-        
-        NSArray<NSNumber*>* codeBytes = bytes;
-        
+
+        NSArray<NSNumber*>* codeBytes = nil;
+
+        // NOTE: This is one of the rare cases where the PID parsers needs to refer to the actual car protocol
+        // According to OBD2 specialists, CAN protocols insert the number of DTCs as the first byte of the response,
+        // all others (PWM, VPWM, ISO, KWP2000) don't do that. I find SAE J1979 pretty confusing with regards to that,
+        // the 'real world' seems to confirm this theory though.
+        switch ( self.protocol )
+        {
+            case OBD2VehicleProtocolCAN_11B_500K:
+            case OBD2VehicleProtocolCAN_29B_500K:
+            case OBD2VehicleProtocolCAN_11B_250K:
+            case OBD2VehicleProtocolCAN_29B_250K:
+                codeBytes = [bytes subarrayWithRange:NSMakeRange(1, bytes.count - 1)];
+                break;
+
+            default:
+                codeBytes = bytes;
+                break;
+        }
+
+
         for ( NSUInteger n = 0; n < codeBytes.count / 2; ++n )
         {
             uint A = codeBytes[2*n+0].unsignedIntValue;
