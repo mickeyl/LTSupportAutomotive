@@ -426,8 +426,7 @@
     
     [self.cookedResponse enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull ecu, NSArray<NSNumber *> * _Nonnull bytes, BOOL * _Nonnull stop) {
         
-        NSRange codeRange = NSMakeRange(1, bytes.count-1);
-        NSArray<NSNumber*>* codeBytes = [bytes subarrayWithRange:codeRange];
+        NSArray<NSNumber*>* codeBytes = bytes;
         
         for ( NSUInteger n = 0; n < codeBytes.count / 2; ++n )
         {
