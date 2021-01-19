@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		70234E7D20D5253200657B54 /* LTSupportAutomotive.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DFA8621D9A6DDB004ECF98 /* LTSupportAutomotive.m */; };
 		70234E7E20D5253200657B54 /* LTOBD2PerformanceTrackingResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DFA8581D9A6DDB004ECF98 /* LTOBD2PerformanceTrackingResult.m */; };
 		70234E7F20D5253200657B54 /* LTOBD2ProtocolISO9141_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DFA86D1D9A6DDB004ECF98 /* LTOBD2ProtocolISO9141_2.m */; };
 		70234E8020D5253200657B54 /* LTOBD2Adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DFA86B1D9A6DDB004ECF98 /* LTOBD2Adapter.m */; };
@@ -49,8 +48,6 @@
 		70234EA620D5253200657B54 /* LTOBD2DTC.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DFA8511D9A6DDB004ECF98 /* LTOBD2DTC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70234EA720D5253200657B54 /* LTOBD2ProtocolISO9141_2.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DFA85C1D9A6DDB004ECF98 /* LTOBD2ProtocolISO9141_2.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70234EA820D5253200657B54 /* LTOBD2ProtocolISO14230_4.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DFA85D1D9A6DDB004ECF98 /* LTOBD2ProtocolISO14230_4.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		70234EAA20D5253200657B54 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 70F352191D9A6F1400F27FFB /* Localizable.strings */; };
-		70234EB220D5253F00657B54 /* LTSupportAutomotive.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DFA8621D9A6DDB004ECF98 /* LTSupportAutomotive.m */; };
 		70234EB320D5253F00657B54 /* LTOBD2PerformanceTrackingResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DFA8581D9A6DDB004ECF98 /* LTOBD2PerformanceTrackingResult.m */; };
 		70234EB420D5253F00657B54 /* LTOBD2ProtocolISO9141_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DFA86D1D9A6DDB004ECF98 /* LTOBD2ProtocolISO9141_2.m */; };
 		70234EB520D5253F00657B54 /* LTOBD2Adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DFA86B1D9A6DDB004ECF98 /* LTOBD2Adapter.m */; };
@@ -92,9 +89,17 @@
 		70234EDB20D5253F00657B54 /* LTOBD2DTC.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DFA8511D9A6DDB004ECF98 /* LTOBD2DTC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70234EDC20D5253F00657B54 /* LTOBD2ProtocolISO9141_2.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DFA85C1D9A6DDB004ECF98 /* LTOBD2ProtocolISO9141_2.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70234EDD20D5253F00657B54 /* LTOBD2ProtocolISO14230_4.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DFA85D1D9A6DDB004ECF98 /* LTOBD2ProtocolISO14230_4.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		70234EDF20D5253F00657B54 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 70F352191D9A6F1400F27FFB /* Localizable.strings */; };
 		70B0B2731DDA05DB00D30EDC /* LTOBD2Mode6TestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B0B2711DDA05DB00D30EDC /* LTOBD2Mode6TestResult.m */; };
 		70B0B2741DDA05DB00D30EDC /* LTOBD2Mode6TestResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 70B0B2721DDA05DB00D30EDC /* LTOBD2Mode6TestResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		70DDE0C425B71FE00086FDAA /* helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DDE0C225B71FE00086FDAA /* helpers.m */; };
+		70DDE0C525B71FE00086FDAA /* helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DDE0C225B71FE00086FDAA /* helpers.m */; };
+		70DDE0C625B71FE00086FDAA /* helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DDE0C225B71FE00086FDAA /* helpers.m */; };
+		70DDE0C725B71FE00086FDAA /* helpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DDE0C325B71FE00086FDAA /* helpers.h */; };
+		70DDE0C825B71FE00086FDAA /* helpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DDE0C325B71FE00086FDAA /* helpers.h */; };
+		70DDE0C925B71FE00086FDAA /* helpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DDE0C325B71FE00086FDAA /* helpers.h */; };
+		70DDE0DD25B720640086FDAA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 70DDE0D025B720640086FDAA /* Localizable.strings */; };
+		70DDE0DE25B720640086FDAA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 70DDE0D025B720640086FDAA /* Localizable.strings */; };
+		70DDE0DF25B720640086FDAA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 70DDE0D025B720640086FDAA /* Localizable.strings */; };
 		70DFA8441D9A6D55004ECF98 /* LTSupportAutomotive.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DFA8421D9A6D55004ECF98 /* LTSupportAutomotive.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70DFA8711D9A6DDB004ECF98 /* LTBTLEReadCharacteristicStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DFA84A1D9A6DDB004ECF98 /* LTBTLEReadCharacteristicStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70DFA8721D9A6DDB004ECF98 /* LTBTLEReadCharacteristicStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DFA84B1D9A6DDB004ECF98 /* LTBTLEReadCharacteristicStream.m */; };
@@ -120,7 +125,6 @@
 		70DFA8861D9A6DDB004ECF98 /* LTOBD2ProtocolISO15765_4.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DFA85F1D9A6DDB004ECF98 /* LTOBD2ProtocolISO15765_4.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70DFA8871D9A6DDB004ECF98 /* LTOBD2ProtocolSAEJ1850.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DFA8601D9A6DDB004ECF98 /* LTOBD2ProtocolSAEJ1850.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70DFA8881D9A6DDB004ECF98 /* LTOBD2ProtocolSAEJ1850.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DFA8611D9A6DDB004ECF98 /* LTOBD2ProtocolSAEJ1850.m */; };
-		70DFA8891D9A6DDB004ECF98 /* LTSupportAutomotive.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DFA8621D9A6DDB004ECF98 /* LTSupportAutomotive.m */; };
 		70DFA88A1D9A6DDB004ECF98 /* LTVIN.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DFA8631D9A6DDB004ECF98 /* LTVIN.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70DFA88B1D9A6DDB004ECF98 /* LTVIN.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DFA8641D9A6DDB004ECF98 /* LTVIN.m */; };
 		70DFA88C1D9A6DDB004ECF98 /* LTOBD2AdapterELM327.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DFA8651D9A6DDB004ECF98 /* LTOBD2AdapterELM327.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -135,58 +139,59 @@
 		70DFA8951D9A6DDB004ECF98 /* LTOBD2ProtocolISO15765_4.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DFA86E1D9A6DDB004ECF98 /* LTOBD2ProtocolISO15765_4.m */; };
 		70DFA8961D9A6DDB004ECF98 /* LTOBD2CaptureFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 70DFA86F1D9A6DDB004ECF98 /* LTOBD2CaptureFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70DFA8971D9A6DDB004ECF98 /* LTOBD2CaptureFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DFA8701D9A6DDB004ECF98 /* LTOBD2CaptureFile.m */; };
-		70F3521B1D9A6F1400F27FFB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 70F352191D9A6F1400F27FFB /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		70234EAE20D5253200657B54 /* LTSupportAutomotive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LTSupportAutomotive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70234EE320D5253F00657B54 /* LTSupportAutomotive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LTSupportAutomotive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B0B2711DDA05DB00D30EDC /* LTOBD2Mode6TestResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTOBD2Mode6TestResult.m; sourceTree = "<group>"; };
-		70B0B2721DDA05DB00D30EDC /* LTOBD2Mode6TestResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTOBD2Mode6TestResult.h; sourceTree = "<group>"; };
+		70B0B2721DDA05DB00D30EDC /* LTOBD2Mode6TestResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTOBD2Mode6TestResult.h; path = include/LTOBD2Mode6TestResult.h; sourceTree = "<group>"; };
+		70DDE0C225B71FE00086FDAA /* helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = helpers.m; sourceTree = "<group>"; };
+		70DDE0C325B71FE00086FDAA /* helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = helpers.h; path = privateInclude/helpers.h; sourceTree = "<group>"; };
+		70DDE0D125B720640086FDAA /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		70DDE0D825B720640086FDAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		70DDE0D925B720640086FDAA /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		70DFA83F1D9A6D55004ECF98 /* LTSupportAutomotive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LTSupportAutomotive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		70DFA8421D9A6D55004ECF98 /* LTSupportAutomotive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTSupportAutomotive.h; sourceTree = "<group>"; };
-		70DFA8431D9A6D55004ECF98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = LTSupportAutomotive/Info.plist; sourceTree = "<group>"; };
-		70DFA84A1D9A6DDB004ECF98 /* LTBTLEReadCharacteristicStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTBTLEReadCharacteristicStream.h; sourceTree = "<group>"; };
+		70DFA8421D9A6D55004ECF98 /* LTSupportAutomotive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LTSupportAutomotive.h; path = include/LTSupportAutomotive.h; sourceTree = "<group>"; };
+		70DFA8431D9A6D55004ECF98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70DFA84A1D9A6DDB004ECF98 /* LTBTLEReadCharacteristicStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTBTLEReadCharacteristicStream.h; path = include/LTBTLEReadCharacteristicStream.h; sourceTree = "<group>"; };
 		70DFA84B1D9A6DDB004ECF98 /* LTBTLEReadCharacteristicStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTBTLEReadCharacteristicStream.m; sourceTree = "<group>"; };
-		70DFA84C1D9A6DDB004ECF98 /* LTBTLESerialTransporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTBTLESerialTransporter.h; sourceTree = "<group>"; };
-		70DFA84D1D9A6DDB004ECF98 /* LTBTLEWriteCharacteristicStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTBTLEWriteCharacteristicStream.h; sourceTree = "<group>"; };
+		70DFA84C1D9A6DDB004ECF98 /* LTBTLESerialTransporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTBTLESerialTransporter.h; path = include/LTBTLESerialTransporter.h; sourceTree = "<group>"; };
+		70DFA84D1D9A6DDB004ECF98 /* LTBTLEWriteCharacteristicStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTBTLEWriteCharacteristicStream.h; path = include/LTBTLEWriteCharacteristicStream.h; sourceTree = "<group>"; };
 		70DFA84E1D9A6DDB004ECF98 /* LTBTLEWriteCharacteristicStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTBTLEWriteCharacteristicStream.m; sourceTree = "<group>"; };
-		70DFA84F1D9A6DDB004ECF98 /* LTOBD2Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTOBD2Command.h; sourceTree = "<group>"; };
+		70DFA84F1D9A6DDB004ECF98 /* LTOBD2Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTOBD2Command.h; path = include/LTOBD2Command.h; sourceTree = "<group>"; };
 		70DFA8501D9A6DDB004ECF98 /* LTOBD2Command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTOBD2Command.m; sourceTree = "<group>"; };
-		70DFA8511D9A6DDB004ECF98 /* LTOBD2DTC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTOBD2DTC.h; sourceTree = "<group>"; };
+		70DFA8511D9A6DDB004ECF98 /* LTOBD2DTC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTOBD2DTC.h; path = include/LTOBD2DTC.h; sourceTree = "<group>"; };
 		70DFA8521D9A6DDB004ECF98 /* LTOBD2DTC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTOBD2DTC.m; sourceTree = "<group>"; };
-		70DFA8531D9A6DDB004ECF98 /* LTOBD2MonitorResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTOBD2MonitorResult.h; sourceTree = "<group>"; };
+		70DFA8531D9A6DDB004ECF98 /* LTOBD2MonitorResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTOBD2MonitorResult.h; path = include/LTOBD2MonitorResult.h; sourceTree = "<group>"; };
 		70DFA8541D9A6DDB004ECF98 /* LTOBD2MonitorResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTOBD2MonitorResult.m; sourceTree = "<group>"; };
-		70DFA8551D9A6DDB004ECF98 /* LTOBD2O2Sensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTOBD2O2Sensor.h; sourceTree = "<group>"; };
+		70DFA8551D9A6DDB004ECF98 /* LTOBD2O2Sensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTOBD2O2Sensor.h; path = include/LTOBD2O2Sensor.h; sourceTree = "<group>"; };
 		70DFA8561D9A6DDB004ECF98 /* LTOBD2O2Sensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTOBD2O2Sensor.m; sourceTree = "<group>"; };
-		70DFA8571D9A6DDB004ECF98 /* LTOBD2PerformanceTrackingResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTOBD2PerformanceTrackingResult.h; sourceTree = "<group>"; };
+		70DFA8571D9A6DDB004ECF98 /* LTOBD2PerformanceTrackingResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTOBD2PerformanceTrackingResult.h; path = include/LTOBD2PerformanceTrackingResult.h; sourceTree = "<group>"; };
 		70DFA8581D9A6DDB004ECF98 /* LTOBD2PerformanceTrackingResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTOBD2PerformanceTrackingResult.m; sourceTree = "<group>"; };
-		70DFA8591D9A6DDB004ECF98 /* LTOBD2PID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTOBD2PID.h; sourceTree = "<group>"; };
-		70DFA85A1D9A6DDB004ECF98 /* LTOBD2Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTOBD2Protocol.h; sourceTree = "<group>"; };
+		70DFA8591D9A6DDB004ECF98 /* LTOBD2PID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTOBD2PID.h; path = include/LTOBD2PID.h; sourceTree = "<group>"; };
+		70DFA85A1D9A6DDB004ECF98 /* LTOBD2Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTOBD2Protocol.h; path = include/LTOBD2Protocol.h; sourceTree = "<group>"; };
 		70DFA85B1D9A6DDB004ECF98 /* LTOBD2Protocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTOBD2Protocol.m; sourceTree = "<group>"; };
-		70DFA85C1D9A6DDB004ECF98 /* LTOBD2ProtocolISO9141_2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTOBD2ProtocolISO9141_2.h; sourceTree = "<group>"; };
-		70DFA85D1D9A6DDB004ECF98 /* LTOBD2ProtocolISO14230_4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTOBD2ProtocolISO14230_4.h; sourceTree = "<group>"; };
+		70DFA85C1D9A6DDB004ECF98 /* LTOBD2ProtocolISO9141_2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTOBD2ProtocolISO9141_2.h; path = include/LTOBD2ProtocolISO9141_2.h; sourceTree = "<group>"; };
+		70DFA85D1D9A6DDB004ECF98 /* LTOBD2ProtocolISO14230_4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTOBD2ProtocolISO14230_4.h; path = include/LTOBD2ProtocolISO14230_4.h; sourceTree = "<group>"; };
 		70DFA85E1D9A6DDB004ECF98 /* LTOBD2ProtocolISO14230_4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTOBD2ProtocolISO14230_4.m; sourceTree = "<group>"; };
-		70DFA85F1D9A6DDB004ECF98 /* LTOBD2ProtocolISO15765_4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTOBD2ProtocolISO15765_4.h; sourceTree = "<group>"; };
-		70DFA8601D9A6DDB004ECF98 /* LTOBD2ProtocolSAEJ1850.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTOBD2ProtocolSAEJ1850.h; sourceTree = "<group>"; };
+		70DFA85F1D9A6DDB004ECF98 /* LTOBD2ProtocolISO15765_4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTOBD2ProtocolISO15765_4.h; path = include/LTOBD2ProtocolISO15765_4.h; sourceTree = "<group>"; };
+		70DFA8601D9A6DDB004ECF98 /* LTOBD2ProtocolSAEJ1850.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTOBD2ProtocolSAEJ1850.h; path = include/LTOBD2ProtocolSAEJ1850.h; sourceTree = "<group>"; };
 		70DFA8611D9A6DDB004ECF98 /* LTOBD2ProtocolSAEJ1850.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTOBD2ProtocolSAEJ1850.m; sourceTree = "<group>"; };
-		70DFA8621D9A6DDB004ECF98 /* LTSupportAutomotive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTSupportAutomotive.m; sourceTree = "<group>"; };
-		70DFA8631D9A6DDB004ECF98 /* LTVIN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTVIN.h; sourceTree = "<group>"; };
+		70DFA8631D9A6DDB004ECF98 /* LTVIN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTVIN.h; path = include/LTVIN.h; sourceTree = "<group>"; };
 		70DFA8641D9A6DDB004ECF98 /* LTVIN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTVIN.m; sourceTree = "<group>"; };
-		70DFA8651D9A6DDB004ECF98 /* LTOBD2AdapterELM327.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTOBD2AdapterELM327.h; sourceTree = "<group>"; };
+		70DFA8651D9A6DDB004ECF98 /* LTOBD2AdapterELM327.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTOBD2AdapterELM327.h; path = include/LTOBD2AdapterELM327.h; sourceTree = "<group>"; };
 		70DFA8661D9A6DDB004ECF98 /* LTOBD2PID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTOBD2PID.m; sourceTree = "<group>"; };
 		70DFA8671D9A6DDB004ECF98 /* LTOBD2AdapterELM327.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTOBD2AdapterELM327.m; sourceTree = "<group>"; };
 		70DFA8681D9A6DDB004ECF98 /* LTBTLESerialTransporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTBTLESerialTransporter.m; sourceTree = "<group>"; };
-		70DFA8691D9A6DDB004ECF98 /* LTOBD2AdapterCaptureFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTOBD2AdapterCaptureFile.h; sourceTree = "<group>"; };
-		70DFA86A1D9A6DDB004ECF98 /* LTOBD2Adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTOBD2Adapter.h; sourceTree = "<group>"; };
+		70DFA8691D9A6DDB004ECF98 /* LTOBD2AdapterCaptureFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTOBD2AdapterCaptureFile.h; path = include/LTOBD2AdapterCaptureFile.h; sourceTree = "<group>"; };
+		70DFA86A1D9A6DDB004ECF98 /* LTOBD2Adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTOBD2Adapter.h; path = include/LTOBD2Adapter.h; sourceTree = "<group>"; };
 		70DFA86B1D9A6DDB004ECF98 /* LTOBD2Adapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTOBD2Adapter.m; sourceTree = "<group>"; };
 		70DFA86C1D9A6DDB004ECF98 /* LTOBD2AdapterCaptureFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTOBD2AdapterCaptureFile.m; sourceTree = "<group>"; };
 		70DFA86D1D9A6DDB004ECF98 /* LTOBD2ProtocolISO9141_2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTOBD2ProtocolISO9141_2.m; sourceTree = "<group>"; };
 		70DFA86E1D9A6DDB004ECF98 /* LTOBD2ProtocolISO15765_4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTOBD2ProtocolISO15765_4.m; sourceTree = "<group>"; };
-		70DFA86F1D9A6DDB004ECF98 /* LTOBD2CaptureFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTOBD2CaptureFile.h; sourceTree = "<group>"; };
+		70DFA86F1D9A6DDB004ECF98 /* LTOBD2CaptureFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTOBD2CaptureFile.h; path = include/LTOBD2CaptureFile.h; sourceTree = "<group>"; };
 		70DFA8701D9A6DDB004ECF98 /* LTOBD2CaptureFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTOBD2CaptureFile.m; sourceTree = "<group>"; };
-		70F3521A1D9A6F1400F27FFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = LTSupportAutomotive/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		70F3521C1D9A6F4000F27FFB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = LTSupportAutomotive/de.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,20 +219,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		70C37D1B1D9A6ECD009116E1 /* Supporting Files */ = {
+		70C37D1B1D9A6ECD009116E1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				70DFA8431D9A6D55004ECF98 /* Info.plist */,
-				70F352191D9A6F1400F27FFB /* Localizable.strings */,
+				70DDE0D025B720640086FDAA /* Localizable.strings */,
 			);
-			name = "Supporting Files";
+			name = Resources;
+			path = Sources/LTSupportAutomotive/Resources;
 			sourceTree = "<group>";
 		};
 		70DFA8351D9A6D55004ECF98 = {
 			isa = PBXGroup;
 			children = (
 				70DFA8411D9A6D55004ECF98 /* LTSupportAutomotive */,
-				70C37D1B1D9A6ECD009116E1 /* Supporting Files */,
+				70C37D1B1D9A6ECD009116E1 /* Resources */,
 				70DFA8401D9A6D55004ECF98 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -253,7 +259,8 @@
 				70DFA89C1D9A6E45004ECF98 /* VIN Decoding */,
 				70DFA8981D9A6DE3004ECF98 /* Serial Transporter */,
 			);
-			path = LTSupportAutomotive;
+			name = LTSupportAutomotive;
+			path = Sources/LTSupportAutomotive;
 			sourceTree = "<group>";
 		};
 		70DFA8981D9A6DE3004ECF98 /* Serial Transporter */ = {
@@ -272,8 +279,9 @@
 		70DFA8991D9A6E24004ECF98 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				70DDE0C325B71FE00086FDAA /* helpers.h */,
+				70DDE0C225B71FE00086FDAA /* helpers.m */,
 				70DFA8421D9A6D55004ECF98 /* LTSupportAutomotive.h */,
-				70DFA8621D9A6DDB004ECF98 /* LTSupportAutomotive.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -368,6 +376,7 @@
 				70234E9F20D5253200657B54 /* LTOBD2Protocol.h in Headers */,
 				70234EA020D5253200657B54 /* LTOBD2Mode6TestResult.h in Headers */,
 				70234EA120D5253200657B54 /* LTOBD2CaptureFile.h in Headers */,
+				70DDE0C825B71FE00086FDAA /* helpers.h in Headers */,
 				70234EA220D5253200657B54 /* LTBTLESerialTransporter.h in Headers */,
 				70234EA320D5253200657B54 /* LTVIN.h in Headers */,
 				70234EA420D5253200657B54 /* LTBTLEWriteCharacteristicStream.h in Headers */,
@@ -396,6 +405,7 @@
 				70234ED420D5253F00657B54 /* LTOBD2Protocol.h in Headers */,
 				70234ED520D5253F00657B54 /* LTOBD2Mode6TestResult.h in Headers */,
 				70234ED620D5253F00657B54 /* LTOBD2CaptureFile.h in Headers */,
+				70DDE0C925B71FE00086FDAA /* helpers.h in Headers */,
 				70234ED720D5253F00657B54 /* LTBTLESerialTransporter.h in Headers */,
 				70234ED820D5253F00657B54 /* LTVIN.h in Headers */,
 				70234ED920D5253F00657B54 /* LTBTLEWriteCharacteristicStream.h in Headers */,
@@ -424,6 +434,7 @@
 				70DFA8811D9A6DDB004ECF98 /* LTOBD2Protocol.h in Headers */,
 				70B0B2741DDA05DB00D30EDC /* LTOBD2Mode6TestResult.h in Headers */,
 				70DFA8961D9A6DDB004ECF98 /* LTOBD2CaptureFile.h in Headers */,
+				70DDE0C725B71FE00086FDAA /* helpers.h in Headers */,
 				70DFA8731D9A6DDB004ECF98 /* LTBTLESerialTransporter.h in Headers */,
 				70DFA88A1D9A6DDB004ECF98 /* LTVIN.h in Headers */,
 				70DFA8741D9A6DDB004ECF98 /* LTBTLEWriteCharacteristicStream.h in Headers */,
@@ -522,6 +533,7 @@
 				Base,
 				de,
 				en,
+				fr,
 			);
 			mainGroup = 70DFA8351D9A6D55004ECF98;
 			productRefGroup = 70DFA8401D9A6D55004ECF98 /* Products */;
@@ -540,7 +552,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70234EAA20D5253200657B54 /* Localizable.strings in Resources */,
+				70DDE0DE25B720640086FDAA /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,7 +560,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70234EDF20D5253F00657B54 /* Localizable.strings in Resources */,
+				70DDE0DF25B720640086FDAA /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,7 +568,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70F3521B1D9A6F1400F27FFB /* Localizable.strings in Resources */,
+				70DDE0DD25B720640086FDAA /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,7 +579,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70234E7D20D5253200657B54 /* LTSupportAutomotive.m in Sources */,
 				70234E7E20D5253200657B54 /* LTOBD2PerformanceTrackingResult.m in Sources */,
 				70234E7F20D5253200657B54 /* LTOBD2ProtocolISO9141_2.m in Sources */,
 				70234E8020D5253200657B54 /* LTOBD2Adapter.m in Sources */,
@@ -581,6 +592,7 @@
 				70234E8820D5253200657B54 /* LTOBD2Protocol.m in Sources */,
 				70234E8920D5253200657B54 /* LTOBD2ProtocolSAEJ1850.m in Sources */,
 				70234E8A20D5253200657B54 /* LTOBD2O2Sensor.m in Sources */,
+				70DDE0C525B71FE00086FDAA /* helpers.m in Sources */,
 				70234E8B20D5253200657B54 /* LTOBD2AdapterCaptureFile.m in Sources */,
 				70234E8C20D5253200657B54 /* LTOBD2MonitorResult.m in Sources */,
 				70234E8D20D5253200657B54 /* LTOBD2PID.m in Sources */,
@@ -595,7 +607,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70234EB220D5253F00657B54 /* LTSupportAutomotive.m in Sources */,
 				70234EB320D5253F00657B54 /* LTOBD2PerformanceTrackingResult.m in Sources */,
 				70234EB420D5253F00657B54 /* LTOBD2ProtocolISO9141_2.m in Sources */,
 				70234EB520D5253F00657B54 /* LTOBD2Adapter.m in Sources */,
@@ -609,6 +620,7 @@
 				70234EBD20D5253F00657B54 /* LTOBD2Protocol.m in Sources */,
 				70234EBE20D5253F00657B54 /* LTOBD2ProtocolSAEJ1850.m in Sources */,
 				70234EBF20D5253F00657B54 /* LTOBD2O2Sensor.m in Sources */,
+				70DDE0C625B71FE00086FDAA /* helpers.m in Sources */,
 				70234EC020D5253F00657B54 /* LTOBD2AdapterCaptureFile.m in Sources */,
 				70234EC120D5253F00657B54 /* LTOBD2MonitorResult.m in Sources */,
 				70234EC220D5253F00657B54 /* LTOBD2PID.m in Sources */,
@@ -623,7 +635,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70DFA8891D9A6DDB004ECF98 /* LTSupportAutomotive.m in Sources */,
 				70DFA87F1D9A6DDB004ECF98 /* LTOBD2PerformanceTrackingResult.m in Sources */,
 				70DFA8941D9A6DDB004ECF98 /* LTOBD2ProtocolISO9141_2.m in Sources */,
 				70DFA8921D9A6DDB004ECF98 /* LTOBD2Adapter.m in Sources */,
@@ -637,6 +648,7 @@
 				70DFA8821D9A6DDB004ECF98 /* LTOBD2Protocol.m in Sources */,
 				70DFA8881D9A6DDB004ECF98 /* LTOBD2ProtocolSAEJ1850.m in Sources */,
 				70DFA87D1D9A6DDB004ECF98 /* LTOBD2O2Sensor.m in Sources */,
+				70DDE0C425B71FE00086FDAA /* helpers.m in Sources */,
 				70DFA8931D9A6DDB004ECF98 /* LTOBD2AdapterCaptureFile.m in Sources */,
 				70DFA87B1D9A6DDB004ECF98 /* LTOBD2MonitorResult.m in Sources */,
 				70DFA88D1D9A6DDB004ECF98 /* LTOBD2PID.m in Sources */,
@@ -650,11 +662,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		70F352191D9A6F1400F27FFB /* Localizable.strings */ = {
+		70DDE0D025B720640086FDAA /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				70F3521A1D9A6F1400F27FFB /* Base */,
-				70F3521C1D9A6F4000F27FFB /* de */,
+				70DDE0D125B720640086FDAA /* fr */,
+				70DDE0D825B720640086FDAA /* Base */,
+				70DDE0D925B720640086FDAA /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -869,7 +882,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = LTSupportAutomotive/Info.plist;
+				INFOPLIST_FILE = Sources/LTSupportAutomotive/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.vanille.LTSupportAutomotive;
@@ -887,7 +900,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = LTSupportAutomotive/Info.plist;
+				INFOPLIST_FILE = Sources/LTSupportAutomotive/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.vanille.LTSupportAutomotive;
