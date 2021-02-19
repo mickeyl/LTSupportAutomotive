@@ -128,7 +128,7 @@ NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialT
 
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
-    if ( central.state != CBCentralManagerStatePoweredOn )
+    if ( central.state != CBManagerStatePoweredOn )
     {
         return;
     }
