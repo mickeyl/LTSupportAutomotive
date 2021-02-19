@@ -190,7 +190,7 @@
 
 +(instancetype)dummyCommand
 {
-    return [[self alloc] init];
+    return [[self alloc] initWithRawString:@""];
 }
 
 @end

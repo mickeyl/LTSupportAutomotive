@@ -26,9 +26,7 @@ let package = Package(
         .target(
             name: "LTSupportAutomotive",
             dependencies: [],
-            resources: [
-                .copy("LTSupportAutomotive/Info.plist")
-            ],
+            exclude: ["Resources/Info.plist"],
             cSettings: [
                 .headerSearchPath("privateInclude")
             ]
