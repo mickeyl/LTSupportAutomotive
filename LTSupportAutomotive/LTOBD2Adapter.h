@@ -8,7 +8,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class LTOBD2ECU;
 
-typedef enum : NSUInteger {
+typedef NS_ENUM(NSUInteger, OBD2AdapterState) {
     OBD2AdapterStateUnknown = 0,
     OBD2AdapterStateNotFound,
     OBD2AdapterStateError,
@@ -20,9 +20,9 @@ typedef enum : NSUInteger {
     OBD2AdapterStateConnected,              /* Adapter connected to ECU(s), received at least one valid result to a PID query */
     OBD2AdapterStateUnsupportedProtocol,    /* Adapter could not negotiate a vehicle protocol that we support */
     OBD2AdapterStateGone,                   /* Adapter disconnected, no longer possible to communicate */
-} OBD2AdapterState;
+};
 
-typedef enum : NSUInteger {
+typedef NS_ENUM(NSUInteger, OBD2VehicleProtocol) {
     OBD2VehicleProtocolUnknown       = 0xff,
     OBD2VehicleProtocolAUTO          = 0,
     OBD2VehicleProtocolJ_1850PWM     = 1,   /* Not supported by some adapters */
@@ -35,7 +35,7 @@ typedef enum : NSUInteger {
     OBD2VehicleProtocolCAN_11B_250K  = 8,
     OBD2VehicleProtocolCAN_29B_250K  = 9,
     OBD2VehicleProtocolMAX           = 10,
-} OBD2VehicleProtocol;
+};
 
 @class LTOBD2Command;
 

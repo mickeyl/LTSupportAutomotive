@@ -61,13 +61,25 @@ typedef enum : NSUInteger {
 #pragma mark -
 #pragma mark Some abstract classes to simplify
 
-@interface LTOBD2PIDSingleByteTemperature : LTOBD2PID
+/**
+ Abstract subclass for PIDs which deocde to a single Integer payload value.
+ */
+@interface LTOBD2PIDInteger : LTOBD2PID
 @end
 
-@interface LTOBD2PIDDoubleByteTemperature : LTOBD2PID
+/**
+ Abstract subclass for PIDs which deocde to a single Double payload value.
+ */
+@interface LTOBD2PIDDouble : LTOBD2PID
 @end
 
-@interface LTOBD2PIDSingleBytePercent : LTOBD2PID
+@interface LTOBD2PIDSingleByteTemperature : LTOBD2PIDDouble
+@end
+
+@interface LTOBD2PIDDoubleByteTemperature : LTOBD2PIDDouble
+@end
+
+@interface LTOBD2PIDSingleBytePercent : LTOBD2PIDDouble
 @end
 
 @interface LTOBD2PIDStoredDTC : LTOBD2PID
@@ -213,7 +225,7 @@ typedef enum : NSUInteger {
 
 @end
 
-@interface LTOBD2PID_ENGINE_RPM_0C : LTOBD2PID
+@interface LTOBD2PID_ENGINE_RPM_0C : LTOBD2PIDDouble
 
 +(instancetype)pid NS_UNAVAILABLE;
 
@@ -279,6 +291,9 @@ typedef enum : NSUInteger {
 @end
 
 @interface LTOBD2PID_OXYGEN_SENSOR_INFO_1_SENSOR_5_19 : LTOBD2PID_OXYGEN_SENSORS_INFO_1
+@end
+
+@interface LTOBD2PID_SUPPORTED_COMMANDS2_20 : LTOBD2PID
 @end
 
 @interface LTOBD2PID_OXYGEN_SENSOR_INFO_1_SENSOR_6_1A : LTOBD2PID_OXYGEN_SENSORS_INFO_1
@@ -444,6 +459,9 @@ typedef enum : NSUInteger {
 
 +(instancetype)pid NS_UNAVAILABLE;
 
+@end
+
+@interface LTOBD2PID_SUPPORTED_COMMANDS3_40 : LTOBD2PID
 @end
 
 @interface LTOBD2PID_CONTROL_MODULE_VOLTAGE_42 : LTOBD2PID
@@ -620,6 +638,9 @@ typedef enum : NSUInteger {
 
 @end
 
+@interface LTOBD2PID_SUPPORTED_COMMANDS4_60 : LTOBD2PID
+@end
+
 @interface LTOBD2PID_ENGINE_TORQUE_DEMANDED_61 : LTOBD2PID
 
 +(instancetype)pid NS_UNAVAILABLE;
@@ -636,6 +657,15 @@ typedef enum : NSUInteger {
 
 +(instancetype)pid NS_UNAVAILABLE;
 
+@end
+
+@interface LTOBD2PID_SUPPORTED_COMMANDS5_80 : LTOBD2PID
+@end
+
+@interface LTOBD2PID_SUPPORTED_COMMANDS6_A0 : LTOBD2PID
+@end
+
+@interface LTOBD2PID_ODOMETER_A6 : LTOBD2PID
 @end
 
 #pragma mark -

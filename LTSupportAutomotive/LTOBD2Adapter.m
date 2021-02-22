@@ -61,7 +61,7 @@ static NSString* const COMMAND_TERMINATION_SEQUENCE = @"\r"; // CR (0x0D)
     {
         if ( ! [lines.firstObject isEqualToString:RESPONSE_FINAL_NODATA] )
         {
-            [_command didCookResponse:[protocol decode:lines originatingCommand:_command.commandString] withProtocolType:protocolType];
+            [_command didUnpackResponsePayload:[protocol decode:lines originatingCommand:_command.commandString] withProtocolType:protocolType];
         }
     }
     

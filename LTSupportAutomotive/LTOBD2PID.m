@@ -3,6 +3,7 @@
 //
 
 #import "LTOBD2PID.h"
+#import "float.h"
 
 #import "LTSupportAutomotive.h"
 
@@ -90,6 +91,20 @@
 #pragma mark -
 #pragma mark API for subclasses
 
+-(NSNumber*) decodeSingleByteDoubleValueWithOffset:(double)offset factor:(double)factor
+{
+    NSArray<NSNumber*>* responseFromAnyECU = [self anyResponseWithMinimumLength:1];
+    if ( !responseFromAnyECU )
+    {
+        return OBD2_NO_DATA_NUMBER;
+    }
+    uint A = responseFromAnyECU[0].unsignedIntValue;
+    
+    double original = (double)A;
+    double decoded = offset + original * factor;
+    return [NSNumber numberWithDouble:decoded];
+}
+
 -(NSString*)formatSingleByteDoubleValueWithString:(NSString*)formatString offset:(double)offset factor:(double)factor
 {
     NSArray<NSNumber*>* responseFromAnyECU = [self anyResponseWithMinimumLength:1];
@@ -102,6 +117,21 @@
     double original = (double)A;
     double adapted = offset + original * factor;
     return [NSString stringWithFormat:formatString, adapted];
+}
+
+-(NSNumber*)decodeTwoByteDoubleValueWithOffset:(double)offset factor:(double)factor
+{
+    NSArray<NSNumber*>* responseFromAnyECU = [self anyResponseWithMinimumLength:2];
+    if ( !responseFromAnyECU )
+    {
+        return OBD2_NO_DATA_NUMBER;
+    }
+    uint A = responseFromAnyECU[0].unsignedIntValue;
+    uint B = responseFromAnyECU[1].unsignedIntValue;
+    
+    double original = (double) ( A * 256 + B );
+    double decoded = offset + original * factor;
+    return [NSNumber numberWithDouble:decoded];
 }
 
 -(NSString*)formatTwoByteDoubleValueWithString:(NSString*)formatString offset:(double)offset factor:(double)factor
@@ -179,13 +209,13 @@
 
 -(NSDictionary<NSString*,NSString*>*)stringResponses
 {
-    if ( self.cookedResponse.count < 1 )
+    if ( self.responsePayload.count < 1 )
     {
         return nil;
     }
     
     NSMutableDictionary<NSString*,NSString*>* md = [NSMutableDictionary dictionary];
-    [self.cookedResponse enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray<NSNumber *> * _Nonnull bytes, BOOL * _Nonnull stop) {
+    [self.responsePayload enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray<NSNumber *> * _Nonnull bytes, BOOL * _Nonnull stop) {
     
         NSMutableString* ms = [NSMutableString string];
         // if the first byte is a non-printable byte, then it indicates the number of following responses.
@@ -227,10 +257,10 @@
 
 -(NSArray<NSNumber*>*)anyResponseWithMinimumLength:(NSUInteger)minimumLength
 {
-    NSArray<NSString*>* sortedECUs = [self.cookedResponse.allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+    NSArray<NSString*>* sortedECUs = [self.responsePayload.allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
     for ( NSString* ecu in sortedECUs )
     {
-        NSArray<NSNumber*>* bytes = [self.cookedResponse objectForKey:ecu];
+        NSArray<NSNumber*>* bytes = [self.responsePayload objectForKey:ecu];
         
         if ( bytes.count >= minimumLength )
         {
@@ -386,29 +416,89 @@
 #pragma mark -
 #pragma mark Some abstract classes for simplification
 
+@implementation LTOBD2PIDInteger
+
+-(LTResponseDataType) responseDataType
+{
+    return LTInteger;
+}
+
+@end
+
+@implementation LTOBD2PIDDouble
+
+-(LTResponseDataType) responseDataType
+{
+    return LTDouble;
+}
+
+@end
+
+/**
+ Provides default baseclass decoding and formatting behaviour for a single byte temperature PID.
+ Override decodeResponse to change decoding offset.
+ */
 @implementation LTOBD2PIDSingleByteTemperature
 
--(NSString*)formattedResponse
+-(NSString*)units
 {
-    return [self formatSingleByteDoubleValueWithString:@"%.0f" UTF8_NARROW_NOBREAK_SPACE @"°C" offset:-40 factor:1];
+    return @"°C";
+}
+
+-(NSString*)format
+{
+    return @"%.0f";
+}
+
+-(NSObject*)decodeResponse
+{
+    return [self decodeSingleByteDoubleValueWithOffset:-40 factor:1];
 }
 
 @end
 
+/**
+ Provides default baseclass decoding and formatting behaviour for a double byte temperature PID.
+ Override decodeResponse to change decoding offset.
+ */
 @implementation LTOBD2PIDDoubleByteTemperature
 
--(NSString*)formattedResponse
+-(NSString*)units
 {
-    return [self formatTwoByteDoubleValueWithString:@"%.1f" UTF8_NARROW_NOBREAK_SPACE @"°C" offset:-40 factor:0.1];
+    return @"°C";
+}
+
+-(NSString*)format
+{
+    return @"%.1f";
+}
+
+-(NSObject*)decodeResponse
+{
+    return [self decodeTwoByteDoubleValueWithOffset:-40 factor:1];
 }
 
 @end
 
+/**
+ Provides default baseclass decoding and formatting behaviour for a single byte percentage PID.
+ Override decodeResponse to change decoding factors.
+ */
 @implementation LTOBD2PIDSingleBytePercent
 
--(NSString*)formattedResponse
+-(NSString*)units
 {
-    return [self formatSingleByteDoubleValueWithString:@"%.1f" UTF8_NARROW_NOBREAK_SPACE @"%%" offset:0 factor:100 / 255.0];
+    return @"%";
+}
+
+-(NSString*)format
+{
+    return @"%.1f";
+}
+
+-(NSObject*)decodeResponse
+{
+    return [self decodeSingleByteDoubleValueWithOffset:0 factor:100 / 255.0];
 }
 
 @end
@@ -424,7 +514,7 @@
     
     NSMutableArray<LTOBD2DTC*>* ma = [NSMutableArray array];
     
-    [self.cookedResponse enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull ecu, NSArray<NSNumber *> * _Nonnull bytes, BOOL * _Nonnull stop) {
+    [self.responsePayload enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull ecu, NSArray<NSNumber *> * _Nonnull bytes, BOOL * _Nonnull stop) {
         
         NSRange codeRange = NSMakeRange(1, bytes.count-1);
         NSArray<NSNumber*>* codeBytes = [bytes subarrayWithRange:codeRange];
@@ -810,14 +900,14 @@
 
 -(NSArray<NSString*>*)connectedECUs
 {
-    if ( !self.cookedResponse.count )
+    if ( !self.responsePayload.count )
     {
         return nil;
     }
     
     NSMutableArray<NSString*>* ma = [NSMutableArray array];
     
-    [self.cookedResponse enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray<NSNumber *> * _Nonnull obj, BOOL * _Nonnull stop) {
+    [self.responsePayload enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray<NSNumber *> * _Nonnull obj, BOOL * _Nonnull stop) {
         [ma addObject:key];
     }];
     
@@ -830,7 +920,7 @@
 
 -(NSString*)formattedResponse
 {
-    if ( !self.cookedResponse.count )
+    if ( !self.responsePayload.count )
     {
         return OBD2_NO_DATA;
     }
@@ -846,7 +936,7 @@
 {
     __block BOOL on = NO;
     
-    [self.cookedResponse enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray<NSNumber *> * _Nonnull responseFromECU, BOOL * _Nonnull stop) {
+    [self.responsePayload enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray<NSNumber *> * _Nonnull responseFromECU, BOOL * _Nonnull stop) {
         
         uint A = responseFromECU[0].unsignedIntValue;
         if ( A & 0x80 )
@@ -864,7 +954,7 @@
 {
     __block NSUInteger n = 0;
 
-    [self.cookedResponse enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray<NSNumber *> * _Nonnull responseFromECU, BOOL * _Nonnull stop) {
+    [self.responsePayload enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray<NSNumber *> * _Nonnull responseFromECU, BOOL * _Nonnull stop) {
         
         uint A = responseFromECU[0].unsignedIntValue;
         n += ( A & 0x7F );
@@ -878,7 +968,7 @@
 {
     NSMutableDictionary<NSString*,NSNumber*>* md = [NSMutableDictionary dictionary];
     
-    [self.cookedResponse enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray<NSNumber *> * _Nonnull responseFromECU, BOOL * _Nonnull stop) {
+    [self.responsePayload enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray<NSNumber *> * _Nonnull responseFromECU, BOOL * _Nonnull stop) {
         
         uint A = responseFromECU[0].unsignedIntValue;
         uint n = ( A & 0x7F );
@@ -928,7 +1018,7 @@
     
     NSMutableArray<LTOBD2DTC*>* ma = [NSMutableArray array];
     
-    [self.cookedResponse enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull ecu, NSArray<NSNumber *> * _Nonnull bytes, BOOL * _Nonnull stop) {
+    [self.responsePayload enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull ecu, NSArray<NSNumber *> * _Nonnull bytes, BOOL * _Nonnull stop) {
         
         uint A = bytes[0].unsignedIntValue;
         uint B = bytes[1].unsignedIntValue;
@@ -1034,10 +1124,19 @@
 
 @implementation LTOBD2PID_ENGINE_RPM_0C
 
--(NSString*)formattedResponse
+-(NSString*)units
 {
-    NSString* string = [self formatTwoByteDoubleValueWithString:@"%.0f" UTF8_NARROW_NOBREAK_SPACE @"rpm" offset:0 factor:1 / 4.0];
-    return string;
+    return @"rpm";
+}
+
+-(NSString*)format
+{
+    return @"%.0f";
+}
+
+-(NSObject*)decodeResponse
+{
+    return [self decodeTwoByteDoubleValueWithOffset:0 factor:1 / 4.0];
 }
 
 @end
@@ -1240,6 +1339,9 @@
 
 @end
 
+@implementation LTOBD2PID_SUPPORTED_COMMANDS2_20
+@end
+
 @implementation LTOBD2PID_DISTANCE_WITH_MIL_21
 
 -(NSString*)formattedResponse
@@ -1413,6 +1515,9 @@
     return [self formatTwoByteDoubleValueWithString:@"%.2f" UTF8_NARROW_NOBREAK_SPACE @"°C" offset:-40 factor:1 / 10.0];
 }
 
+@end
+
+@implementation LTOBD2PID_SUPPORTED_COMMANDS3_40
 @end
 
 @implementation LTOBD2PID_MONITOR_STATUS_THIS_DRIVE_CYCLE_41
@@ -1644,6 +1749,9 @@
 
 @end
 
+@implementation LTOBD2PID_SUPPORTED_COMMANDS4_60
+@end
+
 @implementation LTOBD2PID_ENGINE_TORQUE_DEMANDED_61
 
 -(NSString*)formattedResponse
@@ -1669,6 +1777,15 @@
     return [self formatTwoByteDoubleValueWithString:@"%.0f" UTF8_NARROW_NOBREAK_SPACE @"Nm" offset:0 factor:1];
 }
 
+@end
+
+@implementation LTOBD2PID_SUPPORTED_COMMANDS5_80
+@end
+
+@implementation LTOBD2PID_SUPPORTED_COMMANDS6_A0
+@end
+
+@implementation LTOBD2PID_ODOMETER_A6
 @end
 
 #pragma mark -
@@ -1805,7 +1922,7 @@ static const NSUInteger LTOBD2PID_MODE_6_PAYLOAD_LENGTH_CAN     = 9;
 
 -(NSDictionary<NSString*,NSString*>*)recognizedECUs
 {
-    if ( !self.cookedResponse.count )
+    if ( !self.responsePayload.count )
     {
         return nil;
     }

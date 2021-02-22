@@ -52,8 +52,20 @@ static NSDictionary* _wmi_manufacturers;
         _manufacturer = LTStringLookupWithPlaceholder( manufacturerCode2Digits, UNKNOWN );
     }
     
+    static NSUInteger const MODEL_YEAR_RANGE_DISCRIMINATOR_LOCATION = 6;
+    static NSUInteger const MODEL_YEAR_CODE_LOCATION = 9;
+    
+    if (isdigit([_vin characterAtIndex:MODEL_YEAR_RANGE_DISCRIMINATOR_LOCATION])) {
+        // if the character at index 6 is a numeric digit then we select our model year from the 'old' 1980-2009 range
+        NSString* modelYearCode = [@"VIN_MODEL_YEAR_OLD_" stringByAppendingString:[_vin substringWithRange:NSMakeRange(MODEL_YEAR_CODE_LOCATION, 1)]];
+        _modelYear = LTStringLookupWithPlaceholder( modelYearCode, UNASSIGNED );
+    } else {
+        // if the character at index 6 is not a numeric digit then we select our model year from the 'new' 2010-2029 range
+        NSString* modelYearCode = [@"VIN_MODEL_YEAR_NEW_" stringByAppendingString:[_vin substringWithRange:NSMakeRange(MODEL_YEAR_CODE_LOCATION, 1)]];
+        _modelYear = LTStringLookupWithPlaceholder( modelYearCode, UNASSIGNED );
+    }
+    
     // these are unknown in the base class, subclasses can populate them
-    _modelYear = UNKNOWN;
     _model = UNKNOWN;
     _productionPlant = UNKNOWN;
 }

@@ -6,6 +6,12 @@
 
 #import "LTSupportAutomotive.h"
 
+NSNumber* OBD2_NO_DATA_NUMBER;
+
+__attribute__((constructor))
+static void initGlobalConstants() {
+    OBD2_NO_DATA_NUMBER = [NSNumber numberWithInteger:-999999];
+}
 @implementation LTOBD2Command
 {
     NSString* _rawString;
@@ -99,7 +105,7 @@
 
 -(BOOL)gotValidAnswer
 {
-    return _cookedResponse.count > 0;
+    return _responsePayload.count > 0;
 }
 
 -(BOOL)isCAN
@@ -117,26 +123,106 @@
     }
 }
 
--(NSString*)formattedResponse
+/**
+ Default decodeResponse implementation decodes the array of bytes in the responsePayload
+ as unsigned int values, and converts them to a String of comma separated unsigned int values.
+*/
+-(NSObject*)decodeResponse
 {
-    if ( !self.cookedResponse )
+    if ( !self.responsePayload )
     {
         return LTStringLookupWithPlaceholder(@"OBD2_NO_DATA", @"N/A");
     }
     
     NSMutableArray<NSString*>* ma = [NSMutableArray array];
-    
-    for ( NSString* ecu in [self.cookedResponse.allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] )
+
+    for ( NSString* ecu in [self.responsePayload.allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] )
     {
         NSMutableString* ms = [NSMutableString string];
-        NSArray<NSNumber*>* bytes = [self.cookedResponse objectForKey:ecu];
+        NSArray<NSNumber*>* bytes = [self.responsePayload objectForKey:ecu];
         [bytes enumerateObjectsUsingBlock:^(NSNumber * _Nonnull byte, NSUInteger idx, BOOL * _Nonnull stop) {
             [ms appendFormat:@"%02X", byte.unsignedIntValue];
         }];
         [ma addObject:ms];
     }
     
+    // default implementation returns a single NSString
     return [ma componentsJoinedByString:@", "];
+}
+
+
+/**
+ Units string used when building the formattedResponse
+ Default units is empty string.
+ Subclasses can override to define their own units.
+*/
+-(NSString*)units
+{
+    return @"";
+}
+
+/**
+ Format string used when building the formattedResponse
+ Default format is simple string concatentation
+ Subclasses can override to define their own formatting for integer and double value types.
+*/
+-(NSString*)format
+{
+    return @"%@";
+}
+
+/**
+ Declares the type of the decodedResponse object.
+   - String
+   - Integer
+   - Double
+ Default responseDataType is a String.
+ Subclasses can override to configure their own responseDataType.
+*/
+-(LTResponseDataType)responseDataType
+{
+    return LTString;
+}
+
+/**
+ Default formattedResponse implementation
+ Uses the format string to format the decodeResponse object and then appends the units string.
+ Subclasses can override to customise their own formattedResponse string.
+ However, most commands do not need to customise this function, and can just configure format and units strings and provide an impl of decodeResponse.
+*/
+-(NSString*)formattedResponse
+{
+    if ( !self.responsePayload )
+    {
+        return LTStringLookupWithPlaceholder(@"OBD2_NO_DATA", @"N/A");
+    }
+    
+    NSObject* decodedResponse = self.decodeResponse;
+    
+    LOG( @"decodedResponse: '%@'", decodedResponse );
+    
+    NSString* responseString;
+    
+    if (self.responseDataType == LTString) {
+        responseString = [NSString stringWithFormat:self.format, decodedResponse];
+    } else if (self.responseDataType == LTInteger) {
+        int decodedIntValue = ((NSNumber*) decodedResponse).intValue;
+        responseString = [NSString stringWithFormat:self.format, decodedIntValue ];
+    } else if (self.responseDataType == LTDouble) {
+        double decodedDoubleValue = ((NSNumber*) decodedResponse).doubleValue;
+        responseString = [NSString stringWithFormat:self.format, decodedDoubleValue ];
+    } else {
+        LOG( @"ERROR - UNHANDLED ResponseDataType: '%@'", self.responseDataType );
+    }
+    
+    LOG( @"responseString after format: '%@': '%@'", self.format, responseString );
+
+    if (self.units) {
+        responseString = [NSString stringWithFormat: @"%@" UTF8_NARROW_NOBREAK_SPACE @"%@", responseString, self.units];
+        LOG( @"responseString with units: '%@'", responseString );
+    }
+    
+    return responseString;
 }
 
 -(void)didCompleteResponse:(NSArray<NSString*>*)lines completionTime:(NSTimeInterval)completionTime
@@ -145,7 +231,7 @@
     _completionTime = completionTime;
 }
 
--(void)didCookResponse:(NSDictionary<NSString*,LTOBD2ProtocolResult*>*)responseDictionary withProtocolType:(OBD2VehicleProtocol)protocol
+-(void)didUnpackResponsePayload:(NSDictionary<NSString*,LTOBD2ProtocolResult*>*)responseDictionary withProtocolType:(OBD2VehicleProtocol)protocol
 {
     _protocol = protocol;
     
@@ -166,13 +252,13 @@
         
     }];
     
-    _cookedResponse = positiveResponses;
+    _responsePayload = positiveResponses;
     _failureResponse = negativeResponses;
 }
 
 -(void)invalidateResponse
 {
-    _cookedResponse = nil;
+    _responsePayload = nil;
     _failureResponse = nil;
 }
 

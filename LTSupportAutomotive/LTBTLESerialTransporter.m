@@ -24,7 +24,6 @@ NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialT
     CBCentralManager* _manager;
     NSUUID* _identifier;
     NSArray<CBUUID*>* _serviceUUIDs;
-    CBPeripheral* _adapter;
     CBCharacteristic* _reader;
     CBCharacteristic* _writer;
     
@@ -231,11 +230,21 @@ NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialT
         LOG( @"Could not discover services: %@", error );
         return;
     }
+     
+    // Temp workaround to ignore pesky Bluetooth Battery Monitor
+    if ( [peripheral.name isEqualToString:@"Battery Monitor"] )
+    {
+        LOG( @"Peripheral '%@' is that darn Battery Monitor", peripheral.identifier );
+
+        [_manager cancelPeripheralConnection:peripheral];
+        [_possibleAdapters removeObject:peripheral];
+        return;
+    }
     
     if ( !peripheral.services.count )
     {
-        LOG( @"Peripheral does not offer requested services" );
-    
+        LOG( @"Peripheral '%@' does not offer requested services", peripheral.name );
+
         [_manager cancelPeripheralConnection:peripheral];
         [_possibleAdapters removeObject:peripheral];
         return;
