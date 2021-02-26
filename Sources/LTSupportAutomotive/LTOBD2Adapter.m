@@ -198,6 +198,12 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
 
 -(void)connect
 {
+    [self connectUsingProtocol:OBD2VehicleProtocolAUTO];
+}
+
+-(void)connectUsingProtocol:(OBD2VehicleProtocol)protocol
+{
+    _desiredProtocol = protocol;
     [self advanceAdapterStateTo:OBD2AdapterStateDiscovering];
 
     [_inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];

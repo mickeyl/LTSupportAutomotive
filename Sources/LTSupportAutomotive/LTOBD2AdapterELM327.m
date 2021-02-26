@@ -113,6 +113,12 @@
                 {
                     [self advanceAdapterStateTo:OBD2AdapterStateReady];
 
+                    if ( self.description != OBD2VehicleProtocolAUTO )
+                    {
+                        [self setupWithSpecificProtocol];
+                        return;
+                    }
+
                     [self transmitRawString:@"ATIGN" responseHandler:^(NSArray<NSString *> * _Nullable response) {
 
                         NSString* answer = response.lastObject;
@@ -146,6 +152,23 @@
         }];
     }];
 }
+
+-(void)setupWithSpecificProtocol
+{
+    LTOBD2CommandELM327_SET_PROTOCOL* cmd = [LTOBD2CommandELM327_SET_PROTOCOL commandForProtocol:self.desiredProtocol];
+    [self transmitCommand:cmd responseHandler:^(LTOBD2Command * _Nonnull command) {
+        if ( [command.rawResponse.lastObject isEqualToString:@"OK"] )
+        {
+            [self initDoneIdentifyProtocol];
+        }
+        else
+        {
+            LOG( @"Adapter did not answer 'OK' to '%@' => Error", cmd );
+            [self advanceAdapterStateTo:OBD2AdapterStateError];
+        }
+    }];
+}
+
 
 -(void)receivedData:(NSData*)data receiveBuffer:(NSMutableData*)receiveBuffer
 {

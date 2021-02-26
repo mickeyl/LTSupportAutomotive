@@ -52,6 +52,7 @@ extern NSString* const LTOBD2AdapterDidReceive;
 
 @property(assign,nonatomic,readonly) OBD2AdapterState adapterState;
 @property(nonatomic,readonly) NSString* friendlyAdapterState;
+@property(assign,nonatomic,readonly) OBD2VehicleProtocol desiredProtocol;
 @property(assign,nonatomic,readonly) OBD2VehicleProtocol vehicleProtocol;
 @property(nonatomic,readonly) NSString* friendlyVehicleProtocol;
 
@@ -70,7 +71,8 @@ extern NSString* const LTOBD2AdapterDidReceive;
 +(nullable instancetype)new NS_UNAVAILABLE;
 
 // connection handling
--(void)connect;
+-(void)connect; // connects using OBD2VehicleProtocolAUTO.
+-(void)connectUsingProtocol:(OBD2VehicleProtocol)protocol;
 -(void)disconnect;
 
 // command handling
