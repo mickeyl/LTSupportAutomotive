@@ -480,3 +480,32 @@
 }
 
 @end
+
+
+
+@implementation LTOBD2CommandELM327_SET_HEADER_ARBITRATION
+
++(instancetype)commandForId:(NSString*)header
+{
+    NSString* string = [NSString stringWithFormat:@"ATSH%@", header];
+    return [self commandWithRawString:string];
+}
+
+@end
+
+
+
+@implementation LTOBD2CommandELM327_CAN_RECEIVE_ARBITRATION
+
++(instancetype)command
+{
+    return [self commandWithRawString:@"ATCRA"];
+}
+
++(instancetype)commandForId:(NSString*)header
+{
+    NSString* string = [NSString stringWithFormat:@"ATCRA%@", header];
+    return [self commandWithRawString:string];
+}
+
+@end

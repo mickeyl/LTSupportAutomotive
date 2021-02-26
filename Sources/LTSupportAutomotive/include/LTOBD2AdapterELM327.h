@@ -58,4 +58,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface LTOBD2CommandELM327_SET_HEADER_ARBITRATION : LTOBD2Command
+
++(instancetype)commandForId:(NSString*)header;
+
+@end
+
+/// CAN-ONLY commands (protocols 6 to C)
+
+@interface LTOBD2CommandELM327_CAN_RECEIVE_ARBITRATION : LTOBD2Command
+
++(instancetype)command; // clear receive arbitration (resets to broadcast)
++(instancetype)commandForId:(NSString*)header;
+
+@end
+
 NS_ASSUME_NONNULL_END
