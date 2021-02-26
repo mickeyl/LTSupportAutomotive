@@ -2,6 +2,8 @@
 
 **LTSupportAutomotive** is a library for writing apps that communicate with vehicles using **OBD2** adapters. It also contains auxilliary classes, such as a *VIN decoder*, and a *BTLE characteristic(s) / `NSStream`* serial bridge.
 
+While its primary purpose has been sending and receiving OBD2 PIDs for emission control and diagnostic trouble codes (DTC), I have just begun working on adding support for UDS (unifified diagnostic services), which can then be used for directly talking and reprogramming ECUs. You can follow that work on the [UDS](https://github.com/mickeyl/LTSupportAutomotive/tree/UDS) branch.
+
 Here is an overview of the most important classes:
 
 ### `LTOBD2Adapter` (abstract) ###
