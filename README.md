@@ -62,14 +62,15 @@ I have tested this library myself with the following adapters (Note that none of
 * FIXD OBD-II Scan Tool (2nd Gen)
 * LELink Bluetooth Low Energy
 * VGate iCar Pro BLE4.0 Dual
+* WGSoft.de UniCarScan UCSI-2000
 
 ### WiFi ###
 * NAVISKAUTO WIFI WLAN ELM327
 * EXZA® SUPER Mini WiFi WLAN OBD 2
-* OBDLINK MX (w/ STN11xx)
+* SCANTOOL OBDLINK MX WIFI (STN1153)
 
 ### USB ###
-* OBDLINK SX SCANTOOL
+* SCANTOOL OBDLINK SX (STN1130)
 
 # Enhancements #
 
