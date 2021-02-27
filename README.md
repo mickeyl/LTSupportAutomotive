@@ -57,16 +57,20 @@ Moreover, they're much more convenient as you don't have to switch the WiFi netw
 
 I have tested this library myself with the following adapters (Note that none of these contain a *real* ELM327):
 
-### BTLE (aka BLE, BluetoothSmart, or BT 4.0) ###
+### Apple MFi ###
+* SCANTOOL OBDLINK MX+ (STN2255)
+
+### Bluetooth 4.0 (BLE) ###
 * Carista Bluetooth OBD2
 * FIXD OBD-II Scan Tool (2nd Gen)
+* kungfuren OBD2 Bluetooth 4.0
 * LELink Bluetooth Low Energy
 * VGate iCar Pro BLE4.0 Dual
 * WGSoft.de UniCarScan UCSI-2000
 
 ### WiFi ###
-* NAVISKAUTO WIFI WLAN ELM327
 * EXZA® SUPER Mini WiFi WLAN OBD 2
+* NAVISKAUTO WIFI WLAN ELM327
 * SCANTOOL OBDLINK MX WIFI (STN1153)
 
 ### USB ###
