@@ -113,7 +113,7 @@
                 {
                     [self advanceAdapterStateTo:OBD2AdapterStateReady];
 
-                    if ( self.description != OBD2VehicleProtocolAUTO )
+                    if ( self.desiredProtocol != OBD2VehicleProtocolAUTO )
                     {
                         [self setupWithSpecificProtocol];
                         return;
