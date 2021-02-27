@@ -39,6 +39,10 @@ If anyone wants to make this *carthage* aware, feel free to supply a pull reques
 
 You can also include LTSupportAutomotive as an Xcode subproject and link `LTSupportAutomotive.framework` to your executable.
 
+### Swift Package Manager ###
+
+Please see the [SPM](https://github.com/mickeyl/LTSupportAutomotive/tree/SPM) branch.
+
 # Examples #
 
 `LTAutomotiveSupportDemo.xcodeproj` is a (pretty bare-bones) example project.
@@ -52,8 +56,9 @@ Please drop us a note, if you are using this library as well.
 
 # Supported Hardware #
 
-This software should work with most ELM327-compatible hardware (including the behemoth of available *clones*). In general, I recommend the Bluetooth 4.0 devices, since they seems to have a much better quality compared to the WiFi adapters.
-Moreover, they're much more convenient as you don't have to switch the WiFi network. Note that since iOS is lacking public SDK access to *Bluetooth classic* (in particular the Bluetooth `rfcomm` protocol), iOS devices will **not** work with Bluetooth 3.0 adapters.
+This software should work with most ELM327-compatible hardware (including the behemoth of available *clones*). In general, I recommend the Bluetooth 4.0 devices, since they seem to have a much better quality compared to WiFi adapters – and these days they are only minimally more expensive. Moreover, they're much more convenient as you don't have to switch the WiFi network (potentially losing your internet connectivity).
+
+Note that since iOS is lacking public SDK access to *Bluetooth classic* (in particular the Bluetooth `rfcomm` protocol), iOS devices will _generally_ **not** work with Bluetooth 3.0 adapters – notable exceptions being those who take part in the Apple _Manufactured For iPod_ program.
 
 I have tested this library myself with the following adapters (Note that none of these contain a *real* ELM327):
 
@@ -90,14 +95,16 @@ While this library can already be used for a lot of things, I'd like to see impr
 
 Please fork and open a pull-request. I'd also like to know about success stories or confirmation for additional compatible hardware (see above) working with this library.
 
-# Thanks #
+# Special Thanks #
 
 * LAWA Solutions GmbH
 * Thomas Dankert
+* BOSCH Service Solutions GmbH
+* TPE Europe GmbH
 
 # License #
 
-Copyright (c) 2016-2019 Dr. Michael 'Mickey' Lauer
+Copyright (c) 2016-2021 Dr. Michael 'Mickey' Lauer
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
