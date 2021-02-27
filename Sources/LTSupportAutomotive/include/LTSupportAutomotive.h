@@ -25,6 +25,7 @@ FOUNDATION_EXPORT const unsigned char LTSupportAutomotiveVersionString[];
 #import "LTOBD2PerformanceTrackingResult.h"
 #import "LTOBD2Mode6TestResult.h"
 #import "LTOBD2CaptureFile.h"
+#import "LTOBD2UDS.h"
 
 // aux (should go into a seperate library)
 #import "LTBTLESerialTransporter.h"
