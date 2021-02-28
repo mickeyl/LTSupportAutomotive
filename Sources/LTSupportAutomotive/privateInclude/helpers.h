@@ -28,3 +28,17 @@ NS_ASSUME_NONNULL_END
 #ifndef ERROR
 #define ERROR LOG
 #endif
+
+// type inference
+#if defined(__cplusplus)
+#define let auto const
+#else
+#define let const __auto_type
+#endif
+
+#if defined(__cplusplus)
+#define var auto
+#else
+#define var __auto_type
+#endif
+

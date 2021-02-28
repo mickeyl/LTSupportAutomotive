@@ -25,11 +25,25 @@ typedef NS_ENUM(UInt8, UDSEcuResetType) {
 +(instancetype)commandWithRawString:(NSString *)rawString NS_UNAVAILABLE;
 +(instancetype)commandWithString:(NSString *)string NS_UNAVAILABLE;
 
+@property(nonatomic,readonly) BOOL succeeded;
+// for debugging
+@property(nonatomic,readonly) NSString* hexResponse;
+@property(nonatomic,readonly) NSString* stringResponse;
+
+@end
+
+@interface LTOBD2UDS_TESTER_PRESENT : LTOBD2UDSCommand
+
++(instancetype)command;
+
 @end
 
 @interface LTOBD2UDS_DIAGNOSTIC_SESSION_CONTROL : LTOBD2UDSCommand
 
 +(instancetype)requestSession:(UDSDiagnosticSessionType)type;
+
+@property(nonatomic,readonly) NSTimeInterval p2ServerMax;
+@property(nonatomic,readonly) NSTimeInterval p2eServerMax;
 
 @end
 

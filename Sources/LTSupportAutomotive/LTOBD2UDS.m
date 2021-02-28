@@ -3,6 +3,8 @@
 //
 #import "LTOBD2UDS.h"
 
+#import "helpers.h"
+
 typedef NS_ENUM(UInt8, UDSRequestSID) {
     DiagnosticSessionControl                    = 0x10,
     ECUReset                                    = 0x11,
@@ -53,6 +55,52 @@ typedef NS_ENUM(UInt8, UDSRoutineControlType) {
     return [super commandWithString:[NSString stringWithString:string]];
 }
 
+-(BOOL)succeeded
+{
+    return self.cookedResponse.count;
+}
+
+-(NSArray<NSNumber*>*)response
+{
+    //FIXME: Make sure that we only have one ECU responding (otherwise the SHA/CRA commands would have been failing)
+    //FIXME: Make sure that the response arbitrary ID is actually expected
+    return self.cookedResponse.count == 1 ? self.cookedResponse[self.cookedResponse.allKeys.firstObject] : nil;
+}
+
+-(NSString*)hexResponse
+{
+    NSMutableString* string = [NSMutableString string];
+    [self.response enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [string appendFormat:@"%02X ", obj.unsignedShortValue];
+    }];
+    return string;
+}
+
+-(NSString*)stringResponse
+{
+    NSMutableString* string = [NSMutableString string];
+    [self.response enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        char value = obj.unsignedCharValue;
+        [string appendFormat:@"%c", ( value > 0x1F && value < 0x7F ) ? value : '.' ];
+    }];
+    return string;
+}
+
+@end
+
+
+
+@implementation LTOBD2UDS_TESTER_PRESENT : LTOBD2UDSCommand
+
++(instancetype)command
+{
+    NSArray<NSNumber*>* bytes = @[
+        @(TesterPresent),
+        @(0x00),
+    ];
+    return [self commandWithBytes:bytes];
+}
+
 @end
 
 
@@ -66,6 +114,30 @@ typedef NS_ENUM(UInt8, UDSRoutineControlType) {
         @(type),
     ];
     return [self commandWithBytes:bytes];
+}
+
+-(NSTimeInterval)p2ServerMax
+{
+    let response = self.response;
+    if ( response.count != 4 ) { return -1; }
+
+    UInt8 high = self.response[0].unsignedShortValue;
+    UInt8 lo = self.response[1].unsignedShortValue;
+
+    UInt16 milliseconds = ( high << 8 ) + lo;
+    return milliseconds / 1000.0;
+}
+
+-(NSTimeInterval)p2eServerMax
+{
+    let response = self.response;
+    if ( response.count != 4 ) { return -1; }
+
+    UInt8 high = self.response[0].unsignedShortValue;
+    UInt8 lo = self.response[1].unsignedShortValue;
+
+    UInt16 centiseconds = ( high << 8 ) + lo;
+    return centiseconds / 100.0;
 }
 
 @end
