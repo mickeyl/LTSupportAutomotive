@@ -89,6 +89,14 @@
         {
             md[sourceKey] = resultForSource = [self createProtocolResultForBytes:bytesInLine sidIndex:addressIndex + 2];
         }
+        if ( resultForSource.failureType == OBD2FailureTypeRequestCorrectlyReceivedResponsePending )
+        {
+            // Note: As per ISO 14229-1, a negative response with type RequestCorrectlyReceivedResponsePending is just an
+            // intermediate response which is to be expected whenever the ECU will perform an operation
+            // that could take "a bit longer". For OBD2 this should never happen – for UDS, it seems to be quite common.
+            // In this case, we assume that another – positive – response is forthcoming, and just swallow the "negative" response.
+            md[sourceKey] = resultForSource = [self createProtocolResultForBytes:bytesInLine sidIndex:addressIndex + 2];
+        }
         if ( resultForSource.failureType != OBD2FailureTypeInternalOK )
         {
             continue;
