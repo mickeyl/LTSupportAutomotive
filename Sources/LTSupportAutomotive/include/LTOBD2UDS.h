@@ -20,6 +20,52 @@ typedef NS_ENUM(UInt8, UDSEcuResetType) {
     DisableRapidPowerShutdown       = 0x05,
 };
 
+typedef NS_ENUM(UInt8, UDSNegativeResponseCode) {
+    GeneralReject                               = 0x10,
+    ServiceNotSupported                         = 0x11,
+    SubFunctionNotSupported                     = 0x12,
+    IncorrectMessageLengthOrInvalidFormat       = 0x13,
+    ResponseTooLong                             = 0x14,
+
+    BusyRepeatReques                            = 0x21,
+    ConditionsNotCorrect                        = 0x22,
+    RequestSequenceError                        = 0x24,
+
+    RequestOutOfRange                           = 0x31,
+    SecurityAccessDenied                        = 0x33,
+    InvalidKey                                  = 0x35,
+    ExceedNumberOfAttempts                      = 0x36,
+    RequiredTimeDelayNotExpired                 = 0x37,
+
+    UploadDownloadNotAccepted                   = 0x70,
+    TransferDataSuspended                       = 0x71,
+    GeneralProgrammingFailure                   = 0x72,
+    WrongBlockSequenceCounter                   = 0x73,
+    RequestCorrectlyReceivedResponsePending     = 0x78, // NOT an error, but an intermediate response
+    SubFunctionNotSupportedInActiveSession      = 0x7E,
+    ServiceNotSupportedInActiveSession          = 0x7F,
+
+    RpmTooHigh                                  = 0x81,
+    RpmTooLow                                   = 0x82,
+    EngineIsRunning                             = 0x83,
+    EngineIsNotRunning                          = 0x84,
+    EngineRunTimeTooLow                         = 0x85,
+    TemperatureTooHigh                          = 0x86,
+    TemperatureTooLow                           = 0x87,
+    VehicleSpeedTooHigh                         = 0x88,
+    VehicleSpeedTooLow                          = 0x89,
+    ThrottleTooHigh                             = 0x8A,
+    ThrottleTooLow                              = 0x8B,
+    TransmissionRangeNotInNeutral               = 0x8C,
+    TransmissionRangeNotInGear                  = 0x8D,
+    BrakeSwitchNotClosed                        = 0x8F,
+
+    ShifterLeverNotInPark                       = 0x90,
+    TorqueConverterClutchLocked                 = 0x91,
+    VoltageTooHigh                              = 0x92,
+    VoltageTooLow                               = 0x93,
+};
+
 @interface LTOBD2UDSCommand : LTOBD2Command
 
 +(instancetype)commandWithRawString:(NSString *)rawString NS_UNAVAILABLE;
@@ -27,8 +73,8 @@ typedef NS_ENUM(UInt8, UDSEcuResetType) {
 
 @property(nonatomic,readonly) BOOL succeeded;
 // for debugging
-@property(nonatomic,readonly) NSString* hexResponse;
-@property(nonatomic,readonly) NSString* stringResponse;
+@property(nonatomic,readonly) NSString* hexPayload;
+@property(nonatomic,readonly) NSString* stringPayload;
 
 @end
 

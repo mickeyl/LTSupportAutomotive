@@ -43,6 +43,11 @@ typedef NS_ENUM(UInt8, UDSRoutineControlType) {
     RequestRoutineResults                       = 0x03,
 };
 
+typedef NS_ENUM(UInt8, UDSTesterPresentType) {
+    SendResponse                                = 0x00,
+    DoNotSendRespond                            = 0x80,
+};
+
 @implementation LTOBD2UDSCommand
 
 +(instancetype)commandWithBytes:(NSArray<NSNumber*>*)bytes
@@ -63,20 +68,20 @@ typedef NS_ENUM(UInt8, UDSRoutineControlType) {
 -(NSArray<NSNumber*>*)response
 {
     //FIXME: Make sure that we only have one ECU responding (otherwise the SHA/CRA commands would have been failing)
-    //FIXME: Make sure that the response arbitrary ID is actually expected
+    //FIXME: Make sure that the response arbitrary ID is actually the expected one
     return self.cookedResponse.count == 1 ? self.cookedResponse[self.cookedResponse.allKeys.firstObject] : nil;
 }
 
--(NSString*)hexResponse
+-(NSString*)hexPayload
 {
     NSMutableString* string = [NSMutableString string];
     [self.response enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [string appendFormat:@"%02X ", obj.unsignedShortValue];
+        [string appendFormat:@"%02X", obj.unsignedShortValue];
     }];
     return string;
 }
 
--(NSString*)stringResponse
+-(NSString*)stringPayload
 {
     NSMutableString* string = [NSMutableString string];
     [self.response enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -89,6 +94,20 @@ typedef NS_ENUM(UInt8, UDSRoutineControlType) {
 @end
 
 
+@implementation LTOBD2UDS_ECU_RESET : LTOBD2UDSCommand
+
++(instancetype)resetWithType:(UDSEcuResetType)type
+{
+    NSArray<NSNumber*>* bytes = @[
+        @(ECUReset),
+        @(type),
+    ];
+    return [self commandWithBytes:bytes];
+}
+
+@end
+
+
 
 @implementation LTOBD2UDS_TESTER_PRESENT : LTOBD2UDSCommand
 
@@ -96,7 +115,16 @@ typedef NS_ENUM(UInt8, UDSRoutineControlType) {
 {
     NSArray<NSNumber*>* bytes = @[
         @(TesterPresent),
-        @(0x00),
+        @(SendResponse),
+    ];
+    return [self commandWithBytes:bytes];
+}
+
++(instancetype)commandDoNotRespond
+{
+    NSArray<NSNumber*>* bytes = @[
+        @(TesterPresent),
+        @(DoNotSendRespond),
     ];
     return [self commandWithBytes:bytes];
 }

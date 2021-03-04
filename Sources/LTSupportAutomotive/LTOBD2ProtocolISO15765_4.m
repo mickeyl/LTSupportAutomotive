@@ -125,7 +125,9 @@
         BOOL isFirstFrameOfMultiple = ( frametype == 0x01 );
         __unused BOOL isConsecutiveFrame = ( frametype == 0x02 );
         NSUInteger multiFrameCorrective = isFirstFrameOfMultiple ? 1 : 0;
-        NSUInteger originalCommandCorrective = ( isSingleFrame || isFirstFrameOfMultiple ) ? numberOfBytesInCommand : 0;
+        // Note: The original code has been written with OBD2 in mind which has commands that are either one or two bytes.
+        // For UDS though, commands (and answers) can be of (almost) arbitrary length, hence we need a corrective of maximal 2 bytes.
+        NSUInteger originalCommandCorrective = ( isSingleFrame || isFirstFrameOfMultiple ) ? MIN(2, numberOfBytesInCommand) : 0;
 
         NSUInteger payloadIndex = headerLength + originalCommandCorrective + multiFrameCorrective;
         NSUInteger payloadLength = bytesInLine.count - payloadIndex;
