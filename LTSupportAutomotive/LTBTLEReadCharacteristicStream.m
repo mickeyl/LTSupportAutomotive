@@ -137,4 +137,8 @@
     return _buffer.length > 0;
 }
 
+-(void)dealloc {
+    _delegate = nil;
+}
+
 @end

@@ -37,3 +37,12 @@ NSString* LTDataToString( NSData* d )
     NSString* s = [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
     return [[s stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"] stringByReplacingOccurrencesOfString:@"\r" withString:@"\\r"];
 }
+
+dispatch_queue_t LTSupportAutomotive_backgroundQueue() {
+    static dispatch_once_t queueCreationGuard;
+    static dispatch_queue_t queue;
+    dispatch_once(&queueCreationGuard, ^{
+        queue = dispatch_queue_create("LTSupportAutomotive.backgroundQueue", DISPATCH_QUEUE_SERIAL);
+    });
+    return queue;
+}

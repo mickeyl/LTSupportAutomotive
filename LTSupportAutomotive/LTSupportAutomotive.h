@@ -38,6 +38,7 @@ NSString* _Nullable LTStringLookupOrNil( NSString* key );
 NSString* LTStringLookupWithPlaceholder( NSString* key, NSString* placeholder );
 void MyNSLog(const char *file, int lineNumber, const char *functionName, NSString *format, ...);
 NSString* LTDataToString( NSData* d );
+extern dispatch_queue_t LTSupportAutomotive_backgroundQueue(void);
 
 NS_ASSUME_NONNULL_END
 
