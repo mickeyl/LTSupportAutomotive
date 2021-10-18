@@ -1,4 +1,5 @@
 build
+.build
 *.mode1v3
 *.pbxuser
 *.pyc
