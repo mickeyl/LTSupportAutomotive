@@ -43,7 +43,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LTOBD2DummyCommand : LTOBD2Command
 
--(instancetype)initWithRawString:(NSString*)rawString NS_UNAVAILABLE;
 -(instancetype)initWithString:(NSString*)string NS_UNAVAILABLE;
 
 +(instancetype)dummyCommand;
