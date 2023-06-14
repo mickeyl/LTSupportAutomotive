@@ -2,7 +2,9 @@
 
 This library is stable and by now pretty much in _bugfix-only_ mode. The reason for that is that the support for Unified Diagnostic Services (UDS) (which I originally planned to implement in this library) proved to be unworkable – see [this comment](https://github.com/mickeyl/LTSupportAutomotive/issues/35#issuecomment-808062461) for more details.
 
-If your priority is full OBD2 coverage, you can (and should) still continue to use this library. It works great with both Objective-C and Swift. If your priority is UDS though, I'd rather recommend my new library [Swift-UDS](https://github.com/Automotive-Swift/Swift-UDS).
+If your priority is full OBD2 coverage, you can (and should) still continue to use this library. It works great with both Objective-C and Swift
+(in particular the [SPM branch](https://github.com/mickeyl/LTSupportAutomotive/tree/SPM)).
+If your priority is UDS though, I might have something proprietary for you. If you aren't shy of licensing a closed source library, please contact me in private.
 
 # Introduction #
 
