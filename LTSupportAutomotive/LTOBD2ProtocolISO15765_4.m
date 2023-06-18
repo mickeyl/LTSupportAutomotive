@@ -121,6 +121,11 @@
         NSUInteger originalCommandCorrective = ( isSingleFrame || isFirstFrameOfMultiple ) ? numberOfBytesInCommand : 0;
 
         NSUInteger payloadIndex = headerLength + originalCommandCorrective + multiFrameCorrective;
+        
+        if (payloadIndex >= bytesInLine.count) {
+            continue;
+        }
+        
         NSUInteger payloadLength = bytesInLine.count - payloadIndex;
         NSRange payloadRange = NSMakeRange(payloadIndex, payloadLength);
         NSArray<NSNumber*>* payload = [bytesInLine subarrayWithRange:payloadRange];
