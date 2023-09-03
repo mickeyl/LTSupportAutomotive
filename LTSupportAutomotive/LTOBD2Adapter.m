@@ -125,7 +125,7 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
     _outputStream = outputStream;
     _outputStream.delegate = self;
     _commandQueue = [NSMutableArray array];
-    _dispatchQueue = dispatch_queue_create( [self.description cStringUsingEncoding:NSUTF8StringEncoding], DISPATCH_QUEUE_SERIAL );
+    _dispatchQueue = LTSupportAutomotive_backgroundQueue();
     
     _adapterState = OBD2AdapterStateUnknown;
     
@@ -268,18 +268,22 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
 
 -(void)cancelPendingCommands
 {
-    // This cancels all but the first command in order to prevent sending a new command while
-    // the response to an active command is still pending. OBD2 adapters usually can't cope with
-    // that and emit a 'STOPPED' response in that case.
-    if ( _hasPendingAnswer )
-    {
-        NSRange allButTheFirst = NSMakeRange( 1, _commandQueue.count - 1 );
-        [_commandQueue removeObjectsInRange:allButTheFirst];
-    }
-    else
-    {
-        [_commandQueue removeAllObjects];
-    }
+     dispatch_async( _dispatchQueue, ^{
+        // This cancels all but the first command in order to prevent sending a new command while
+        // the response to an active command is still pending. OBD2 adapters usually can't cope with
+        // that and emit a 'STOPPED' response in that case.
+        if ( self->_hasPendingAnswer )
+        {
+            if ( self->_commandQueue.count > 0 ) {
+                NSRange allButTheFirst = NSMakeRange( 1, self->_commandQueue.count - 1 );
+                [self->_commandQueue removeObjectsInRange:allButTheFirst];
+            }
+        }
+        else
+        {
+            [self->_commandQueue removeAllObjects];
+        }
+    });
 }
 
 #pragma mark -
@@ -384,21 +388,31 @@ NSString* const LTOBD2AdapterDidReceive = @"LTOBD2AdapterDidReceive";
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:LTOBD2AdapterDidReceive object:self];
     
-    if ( !_hasPendingAnswer )
-    {
-        WARN( @" Received command without pending answer (perhaps in reaction to a cancelPendingCommands?)!" );
-        return;
-    }
-    
-    LTOBD2AdapterInternalCommand* internalCommand = _commandQueue.firstObject;
-    [_commandQueue removeObjectAtIndex:0];
-    [internalCommand didCompleteResponse:lines protocol:_adapterProtocol protocolType:_vehicleProtocol];
-    _hasPendingAnswer = NO;
+    dispatch_async( _dispatchQueue, ^{
+        
+        if ( !self->_hasPendingAnswer )
+        {
+            WARN( @" Received command without pending answer (perhaps in reaction to a cancelPendingCommands?)!" );
+            return;
+        }
+        
+        if ( self->_commandQueue.count == 0 ) {
+            WARN( @" Received command without pending answer (perhaps in reaction to a cancelPendingCommands?)! : CommandCount 0" );
+            return;
+        }
+        
+        LTOBD2AdapterInternalCommand* internalCommand = self->_commandQueue.firstObject;
+        if ( self->_commandQueue.count > 0 ) {
+            [self->_commandQueue removeObjectAtIndex:0];
+        }
+        [internalCommand didCompleteResponse:lines protocol:self->_adapterProtocol protocolType:self->_vehicleProtocol];
+        self->_hasPendingAnswer = NO;
 
-    if ( _nextCommandDelay )
-    {
-        [NSThread sleepForTimeInterval:_nextCommandDelay];
-    }
+        if ( self->_nextCommandDelay )
+        {
+            [NSThread sleepForTimeInterval:self->_nextCommandDelay];
+        }
+    });
     [self processCommandQueue];
 }
 

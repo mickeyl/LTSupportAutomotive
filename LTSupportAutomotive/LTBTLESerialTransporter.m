@@ -58,7 +58,7 @@ NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialT
     _identifier = identifier;
     _serviceUUIDs = serviceUUIDs;
     
-    _dispatchQueue = dispatch_queue_create( [NSStringFromClass(self.class) UTF8String], DISPATCH_QUEUE_SERIAL );
+    _dispatchQueue = LTSupportAutomotive_backgroundQueue();
     _possibleAdapters = [NSMutableArray array];
     
     XLOG( @"Created w/ identifier %@, services %@", _identifier, _serviceUUIDs );
