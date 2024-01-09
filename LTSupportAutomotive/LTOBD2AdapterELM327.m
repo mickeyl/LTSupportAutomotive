@@ -99,10 +99,10 @@
             
             if ( [string isEqualToString:@"ATI"] )
             {
-                _version = response.lastObject;
-                if ( [_version isEqualToString:@"NO DATA"] || ![_version containsString:@" "] )
+                self->_version = response.lastObject;
+                if ( [self->_version isEqualToString:@"NO DATA"] || ![self->_version containsString:@" "] )
                 {
-                    WARN( @"Did not find expected ELM327 identification response. Got %@ instead", _version );
+                    WARN( @"Did not find expected ELM327 identification response. Got %@ instead", self->_version );
                     [self advanceAdapterStateTo:OBD2AdapterStateError];
                     return;
                 }

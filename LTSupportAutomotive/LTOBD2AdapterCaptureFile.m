@@ -108,9 +108,9 @@ typedef NSDictionary<NSString*,NSArray<NSString*>*> RequestResponseDictionary;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 
-        if ( _logFile )
+        if ( self->_logFile )
         {
-            [self populateRequestResponseDictionaryWithLogData:_logFile];
+            [self populateRequestResponseDictionaryWithLogData:self->_logFile];
         }
         [self advanceAdapterStateTo:OBD2AdapterStatePresent];
 

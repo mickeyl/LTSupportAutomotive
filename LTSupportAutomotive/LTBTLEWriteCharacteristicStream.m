@@ -6,7 +6,7 @@
 
 @implementation LTBTLEWriteCharacteristicStream
 {
-    __unsafe_unretained id<NSStreamDelegate> _delegate;
+    __weak id<NSStreamDelegate> _delegate;
     CBCharacteristic* _characteristic;
     
     NSStreamStatus _status;

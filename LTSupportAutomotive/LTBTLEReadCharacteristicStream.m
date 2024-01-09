@@ -6,7 +6,7 @@
 
 @implementation LTBTLEReadCharacteristicStream
 {
-    __unsafe_unretained id<NSStreamDelegate> _delegate;
+    __weak id<NSStreamDelegate> _delegate;
 
     __weak CBPeripheral* _peripheral;
     CBCharacteristic* _characteristic;

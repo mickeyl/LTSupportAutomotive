@@ -94,7 +94,7 @@ NSString* const LTBTLESerialTransporterDidUpdateSignalStrength = @"LTBTLESerialT
     }
     
     [_possibleAdapters enumerateObjectsUsingBlock:^(CBPeripheral * _Nonnull peripheral, NSUInteger idx, BOOL * _Nonnull stop) {
-        [_manager cancelPeripheralConnection:peripheral];
+        [self->_manager cancelPeripheralConnection:peripheral];
     }];
 }
 

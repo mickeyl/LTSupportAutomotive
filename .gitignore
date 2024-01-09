@@ -1,4 +1,5 @@
 build
+.build
 *.mode1v3
 *.pbxuser
 *.pyc
@@ -9,5 +10,6 @@ AntiCrack-InfoScanner-Result.h
 ._*
 .smbdelete*
 project.xcworkspace
+xcshareddata
 xcuserdata
 DerivedData
