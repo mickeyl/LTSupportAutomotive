@@ -76,7 +76,7 @@ I have tested this library myself with the following adapters (Note that none of
 * FIXD OBD-II Scan Tool (2nd Gen)
 * kungfuren OBD2 Bluetooth 4.0
 * LELink Bluetooth Low Energy
-* VGate iCar Pro BLE4.0 Dual
+* SCANTOOL OBDLINK CX
 * WGSoft.de UniCarScan UCSI-2000
 * WGSoft.de UniCarScan UCSI-2100
 
